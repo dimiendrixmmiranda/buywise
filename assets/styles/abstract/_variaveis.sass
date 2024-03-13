@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap')
+// colors
+$laranja-claro: #FF9A00
+$vinho: #7C203A
+$branco: #fff
+$preto: #000
+$vermelho-rosa: #ED1138
+$azul: #124076
+$azul-claro: #277fe4
+
+// fontes
+$fonte-titulo: "Madimi One", sans-serif
+$fonte-primaria: "Oswald", sans-serif
+
+
+// animação
+$piscarBarra: piscarBarra
+$animacaoBordaFormulario1: animarBordaFormulario1
+$animacaoBordaFormulario2: animarBordaFormulario2
+$animacaoBordaFormulario3: animarBordaFormulario3
+$animacaoBordaFormulario4: animarBordaFormulario4
+
+@keyframes piscarBarra
+    0%
+        opacity: 1%
+    50%
+        opacity: 100%
+    100%
+        opacity: 1%
+
+@keyframes animarBordaFormulario1
+    0%
+        transform: translateX(-100%)
+    100%
+        transform: translateX(100%)
+@keyframes animarBordaFormulario2
+    0%
+        transform: translateY(-100%)
+    100%
+        transform: translateY(100%)
+        
+@keyframes animarBordaFormulario3
+    0%
+        transform: translateX(100%)
+    100%
+        transform: translateX(-100%)
+        
+@keyframes animarBordaFormulario4
+    0%
+        transform: translateY(100%)
+    100%
+        transform: translateY(-100%)
+        
+        

@@ -1,0 +1,48 @@
+@import '../abstract/_variaveis'
+header
+    width: 100vw
+    height: auto
+    display: grid
+    grid-template-columns: 1fr 60px
+    a
+        display: grid
+        grid-template-columns: 70px 1fr
+        text-decoration: none
+        color: $branco
+        font-family: $fonte-titulo
+        grid-column: 1/2
+        img
+            grid-column: 1/2
+            width: 90%
+            justify-self: center
+            align-self: center
+        h1
+            grid-column: 2/3
+            width: 100%
+            align-self: center
+            margin-top: 8px
+            font-size: 2.5em
+    button
+        grid-column: 2/3
+        background: transparent
+        border: none
+        font-size: 2.5em
+        align-self: end
+        margin-bottom: 5px
+        color: $branco
+        margin-right: .5em
+
+@media screen and ( min-width: 768px)
+    header
+        grid-template-columns: 1fr 85px
+        a
+            grid-template-columns: 100px
+            h1
+                font-size: 3.5em
+                margin-top: 15px
+        button
+            align-self: center
+            margin-bottom: 0
+            font-size: 4em
+            margin-top: 10px
+            margin-right: 1em

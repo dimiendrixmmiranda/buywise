@@ -1,0 +1,259 @@
+import { animarTextoContainerFormulario } from "./animacaoTexto.js";
+import { gerarID } from "./gerarID.js";
+const formulario = document.querySelector('#form')
+const lista = document.querySelector('.lista')
+const arrayProdutos = JSON.parse(localStorage.getItem("produtos")) || []
+
+arrayProdutos.forEach(produto => {
+    adicionandoCriandoNovaCategoria(produto)
+});
+
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const inputNomeProduto = e.target.closest('.container__formulario__form').querySelector('#nomeProduto')
+    const objetoProduto = {
+        nome: e.target.closest('.container__formulario__form').querySelector('#nomeProduto').value,
+        tipoUnidade: e.target.closest('.container__formulario__form').querySelector('#unidadeProduto').value,
+        categoria: e.target.closest('.container__formulario__form').querySelector('#categoriaProduto').value,
+        quantidade: e.target.closest('.container__formulario__form').querySelector('#quantidadeProduto').value,
+        preco: '',
+        itemPego: false,
+        id: gerarID()
+    }
+    if (objetoProduto.categoria != '') {
+        adicionandoCriandoNovaCategoria(objetoProduto)
+        arrayProdutos.push(objetoProduto)
+        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+        limparFormulario(e)
+        inputNomeProduto.focus()
+    }
+})
+
+function criarProdutoDaLista(objetoProduto) {
+    const li = document.createElement('li')
+    li.classList.add('lista__categoria__lista__item')
+    li.dataset.id = objetoProduto.id
+
+    const divContainer = document.createElement('div')
+    divContainer.classList.add('lista__categoria__lista__item__container')
+
+    const pQuantidade = document.createElement('p')
+    pQuantidade.classList.add('lista__categoria__item__quantidade')
+    pQuantidade.innerHTML = objetoProduto.quantidade
+
+    const pProduto = document.createElement('p')
+    pProduto.classList.add('lista__categoria__item__produto')
+    pProduto.innerHTML = objetoProduto.nome
+
+    const divInserirPreco = document.createElement('div')
+    divInserirPreco.classList.add('lista__categoria__item__preco')
+    const pPrecoTexto = document.createElement('p')
+    pPrecoTexto.innerHTML = 'Preço:'
+    const inputPreco = document.createElement('input')
+    inputPreco.type = 'text'
+    inputPreco.id = 'inputPreco'
+    divInserirPreco.appendChild(pPrecoTexto)
+    divInserirPreco.appendChild(inputPreco)
+
+    const divBtns = document.createElement('div')
+    divBtns.classList.add('lista__categoria__item__btns')
+
+    const btnExcluir = document.createElement('button')
+    btnExcluir.classList.add('btn__excluir')
+    btnExcluir.addEventListener('click', (e) => excluirTarefa(e))
+
+    const btnAlterar = document.createElement('button')
+    btnAlterar.classList.add('btn__alterar')
+    btnAlterar.addEventListener('click', (e) => {
+        e.preventDefault()
+        const formularioAlterarTarefa = criarFormulario(objetoProduto)
+        li.appendChild(formularioAlterarTarefa)
+        formularioAlterarTarefa.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const objetoProdutoAlterado = {
+                nome: formularioAlterarTarefa.querySelector('#nomeProduto').value,
+                tipoUnidade: formularioAlterarTarefa.querySelector('#unidadeProduto').value,
+                categoria: formularioAlterarTarefa.querySelector('#categoriaProduto').value,
+                quantidade: formularioAlterarTarefa.querySelector('#quantidadeProduto').value,
+                preco: objetoProduto.preco,
+                itemPego: objetoProduto.itemPego,
+                id: objetoProduto.id
+            }
+            // BUG: Quando a tarefa é alterada, se a opção selecione(vazio) estiver selecionada, ele ainda sim cria a tarefa
+            alterarTarefa(objetoProdutoAlterado, e)
+            const id = e.target.closest('.lista__categoria__lista__item').dataset.id
+            arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
+            localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+            formularioAlterarTarefa.remove()
+        })
+
+    })
+
+
+    const btnConcluir = document.createElement('button')
+    btnConcluir.classList.add('btn__concluir')
+    btnConcluir.addEventListener('click', (e) => concluirTarefa(e))
+
+    vereficarSeOItemFoiPego(objetoProduto, divContainer)
+
+    divBtns.appendChild(btnExcluir)
+    divBtns.appendChild(btnAlterar)
+    divBtns.appendChild(btnConcluir)
+
+    const formularioAlterarTarefa = document.createElement('div')
+    formularioAlterarTarefa.classList.add('lista__categoria__lista__item__alterar__tarefa')
+
+    divContainer.appendChild(pQuantidade)
+    divContainer.appendChild(pProduto)
+    divContainer.appendChild(divInserirPreco)
+    divContainer.appendChild(divBtns)
+
+    li.appendChild(divContainer)
+    return li
+}
+
+function criarNovaCategoria(objetoProduto) {
+    const li = document.createElement('li')
+    li.classList.add('lista__categoria')
+    li.dataset.categoria = objetoProduto.categoria
+
+    const tituloCategoria = document.createElement('h2')
+    tituloCategoria.classList.add('lista__categoria__titulo')
+    tituloCategoria.innerHTML = objetoProduto.categoria
+
+    const ul = document.createElement('ul')
+    ul.classList.add('lista__categoria__lista')
+
+    const btnExcluirLista = document.createElement('button')
+    btnExcluirLista.classList.add('lista__categoria__btnExcluirLista')
+    btnExcluirLista.addEventListener('click', (e) => excluirCategoria(e))
+
+    li.appendChild(btnExcluirLista)
+    li.appendChild(tituloCategoria)
+    li.appendChild(ul)
+    return li
+}
+
+function adicionandoCriandoNovaCategoria(objetoProduto) {
+    const categoria = document.querySelector(`[data-categoria="${objetoProduto.categoria}"]`)
+    if (categoria) {
+        const listaDaCategoria = categoria.querySelector('.lista__categoria__lista')
+        const produtoDaLista = criarProdutoDaLista(objetoProduto)
+        listaDaCategoria.appendChild(produtoDaLista)
+        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+    } else {
+        const novaCategoria = criarNovaCategoria(objetoProduto)
+        const produtoDaLista = criarProdutoDaLista(objetoProduto)
+        novaCategoria.querySelector('.lista__categoria__lista').appendChild(produtoDaLista)
+        lista.appendChild(novaCategoria)
+        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+    }
+}
+
+function limparFormulario(e) {
+    e.target.closest('.container__formulario__form').querySelector('#nomeProduto').value = ''
+    e.target.closest('.container__formulario__form').querySelector('#unidadeProduto').value = 'un'
+    e.target.closest('.container__formulario__form').querySelector('#categoriaProduto').value = ''
+    e.target.closest('.container__formulario__form').querySelector('#quantidadeProduto').value = ''
+}
+
+function excluirTarefa(e) {
+    const tarefa = e.target.closest('.lista__categoria__lista__item')
+    const id = tarefa.dataset.id
+    tarefa.remove()
+    arrayProdutos.splice(acharProdutoNoArray(id), 1)
+    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+}
+
+function concluirTarefa(e) {
+    const elemento = e.target.closest('.lista__categoria__lista__item')
+    const elementoContainer = elemento.querySelector('.lista__categoria__lista__item__container')
+    const id = elemento.dataset.id
+    elementoContainer.classList.toggle('lista__categoria__lista__item__coletado')
+    arrayProdutos[acharProdutoNoArray(id)].itemPego = arrayProdutos[acharProdutoNoArray(id)].itemPego ? false : true
+    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+}
+
+function vereficarSeOItemFoiPego(objetoProduto, div) {
+    if (objetoProduto.itemPego) {
+        div.classList.add('lista__categoria__lista__item__coletado')
+    } else {
+        div.classList.remove('lista__categoria__lista__item__coletado')
+    }
+}
+
+function acharProdutoNoArray(id) {
+    return arrayProdutos.findIndex(tarefa => tarefa.id == id)
+}
+
+function criarFormulario(objetoProduto) {
+    const divFormulario = document.createElement('form')
+    divFormulario.id = 'formAlterarTarefa'
+    divFormulario.classList.add('lista__categoria__lista__item__alterar__tarefa')
+    divFormulario.innerHTML = `
+    <fieldset class="alterar__tarefa__nome">
+        <label for="nomeProduto">Nome do produto:</label>
+        <input type="text" name="nomeProduto" id="nomeProduto" required="" value="${objetoProduto.nome}">
+    </fieldset>
+    <fieldset class="alterar__tarefa__tipo">
+        <label for="unidadeProduto">TIPO</label>
+        <select name="unidadeProduto" id="unidadeProduto">
+            <option value="un">un</option>
+            <option value="kg">kg</option>
+            <option value="g">g</option>
+            <option value="L">L</option>
+            <option value="ml">ml</option>
+            <option value="dz">dz</option>
+        </select>
+    </fieldset>
+
+    <fieldset class="alterar__tarefa__categoria">
+        <label for="categoriaProduto">Categoria:</label>
+        <select name="categoriaProduto" id="categoriaProduto">
+            <option value="">Categoria</option>
+            <option value="Mercearia">Mercearia</option>
+            <option value="Padaria">Padaria</option>
+            <option value="Frutas e Verduras">Frutas e Verduras</option>
+            <option value="Carnes">Carnes</option>
+            <option value="Frios">Frios</option>
+            <option value="Limpeza">Limpeza</option>
+            <option value="Higiene Pessoal">Higiene Pessoal</option>
+            <option value="Petz">Petz</option>
+            <option value="Utensílios Domésticos">Utensílios Domésticos</option>
+            <option value="Outros">Outros</option>
+        </select>
+    </fieldset>
+
+    <fieldset class="alterar__tarefa__quantidade">
+        <label for="quantidadeProduto">QTDE.</label>
+        <input type="text" id="quantidadeProduto" required="" value="${objetoProduto.quantidade}">
+    </fieldset>
+
+    <fieldset class="alterar__tarefa__botoes">
+        <button type="submit">Adicionar</button>
+        <button type="reset">Cancelar</button>
+    </fieldset>
+    `
+    return divFormulario
+}
+
+function alterarTarefa(objetoProdutoAlterado, e) {
+    const produto = e.target.closest('.lista__categoria__lista__item').querySelector('.lista__categoria__lista__item__container')
+
+    produto.querySelector('.lista__categoria__item__quantidade').innerHTML = objetoProdutoAlterado.quantidade
+    produto.querySelector('.lista__categoria__item__produto').innerHTML = objetoProdutoAlterado.nome
+
+    // lógica dos selects vai ser diferente
+}
+
+function excluirCategoria(e){
+    const containerLista = e.target.closest('.lista__categoria')
+    const listaProdutosCategoria = containerLista.querySelectorAll('.lista__categoria__lista li')
+    listaProdutosCategoria.forEach(produto => {
+        arrayProdutos.splice(acharProdutoNoArray(produto.dataset.id), 1)
+        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+        containerLista.remove()
+    })
+}
+animarTextoContainerFormulario()

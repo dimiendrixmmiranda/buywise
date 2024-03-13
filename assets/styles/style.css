@@ -1,0 +1,788 @@
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: #FF9A00;
+  overflow-x: hidden;
+}
+
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+header {
+  width: 100vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+}
+header a {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  text-decoration: none;
+  color: #fff;
+  font-family: "Madimi One", sans-serif;
+  grid-column: 1/2;
+}
+header a img {
+  grid-column: 1/2;
+  width: 90%;
+  justify-self: center;
+  align-self: center;
+}
+header a h1 {
+  grid-column: 2/3;
+  width: 100%;
+  align-self: center;
+  margin-top: 8px;
+  font-size: 2.5em;
+}
+header button {
+  grid-column: 2/3;
+  background: transparent;
+  border: none;
+  font-size: 2.5em;
+  align-self: end;
+  margin-bottom: 5px;
+  color: #fff;
+  margin-right: 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    grid-template-columns: 1fr 85px;
+  }
+  header a {
+    grid-template-columns: 100px;
+  }
+  header a h1 {
+    font-size: 3.5em;
+    margin-top: 15px;
+  }
+  header button {
+    align-self: center;
+    margin-bottom: 0;
+    font-size: 4em;
+    margin-top: 10px;
+    margin-right: 1em;
+  }
+}
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.banner {
+  width: 90%;
+  margin: 2em auto 0 auto;
+  color: #fff;
+}
+.banner h2 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 1.8em;
+  text-align: center;
+}
+.banner h2 strong {
+  font-weight: bold;
+  color: #ED1138;
+}
+.banner img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 425px) {
+  .banner h2 {
+    font-size: 2.2em;
+  }
+}
+@media screen and (min-width: 768px) {
+  .banner h2 {
+    font-size: 3em;
+  }
+  .banner img {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .banner {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    margin-top: 0.5em;
+  }
+  .banner h2 {
+    font-size: 3em;
+    justify-self: center;
+    align-self: center;
+  }
+  .banner img {
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+  }
+}
+@media screen and (min-width: 1220px) {
+  .banner h2 {
+    font-size: 3em;
+    justify-self: center;
+    align-self: center;
+  }
+  .banner img {
+    width: 85%;
+    justify-self: center;
+    align-self: center;
+  }
+}
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.container__formulario {
+  width: 90%;
+  margin: 0 auto;
+  font-family: "Oswald", sans-serif;
+  max-width: 400px;
+}
+.container__formulario h3 {
+  line-height: 1.2;
+  font-size: 1.8em;
+  color: #fff;
+  text-align: center;
+}
+.container__formulario h3::after {
+  content: "|";
+  margin-left: 5px;
+  opacity: 1;
+  animation: piscarBarra 0.7s infinite;
+}
+.container__formulario .container__formulario__form {
+  display: grid;
+  margin: 1.5em 0;
+  grid-template-columns: 40px 1fr 60px;
+  background-color: #277fe4;
+  color: #fff;
+  text-shadow: 0 0 2px black;
+  padding: 1em;
+  row-gap: 0.8em;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 1px 2px #124076;
+}
+.container__formulario .container__formulario__form span {
+  position: absolute;
+}
+.container__formulario .container__formulario__form span:first-of-type {
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, transparent, #124076);
+  width: 100%;
+  height: 3px;
+  animation: animarBordaFormulario1 2s linear infinite;
+}
+.container__formulario .container__formulario__form span:nth-of-type(2) {
+  top: 0;
+  right: 0;
+  background: linear-gradient(to bottom, transparent, #124076);
+  width: 3px;
+  height: 100%;
+  animation: animarBordaFormulario2 2s linear infinite;
+  animation-delay: 1s;
+}
+.container__formulario .container__formulario__form span:nth-of-type(3) {
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to left, transparent, #124076);
+  width: 100%;
+  height: 3px;
+  animation: animarBordaFormulario3 2s linear infinite;
+}
+.container__formulario .container__formulario__form span:last-of-type {
+  top: 0;
+  left: 0;
+  background: linear-gradient(to left, transparent, #124076);
+  width: 3px;
+  height: 100%;
+  animation: animarBordaFormulario4 2s linear infinite;
+  animation-delay: 1s;
+}
+.container__formulario .container__formulario__form .container__formulario__form__banner {
+  width: 100%;
+  grid-row: 1/2;
+  grid-column: 1/4;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.container__formulario .container__formulario__form .container__formulario__form__banner img {
+  width: 100%;
+}
+.container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
+  font-size: 1.1em;
+  font-weight: bold;
+  justify-self: center;
+  align-self: center;
+}
+@media screen and (min-width: 375px) {
+  .container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
+    font-size: 1.38em;
+  }
+}
+@media screen and (min-width: 425px) {
+  .container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
+    font-size: 1.5em;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
+    font-size: 1.6em;
+  }
+}
+.container__formulario .container__formulario__form fieldset {
+  outline: none;
+  margin: 0;
+  border: none;
+  padding: 0.2em;
+}
+.container__formulario .container__formulario__form .container__formulario__form__nome {
+  grid-column: 1/3;
+  grid-row: 2/3;
+  justify-self: center;
+  align-self: center;
+  position: relative;
+  width: 100%;
+}
+.container__formulario .container__formulario__form .container__formulario__form__nome label {
+  font-size: 1.2em;
+}
+.container__formulario .container__formulario__form .container__formulario__form__nome input {
+  width: 100%;
+}
+.container__formulario .container__formulario__form .container__formulario__form__unidade {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  height: 100%;
+  justify-content: end;
+}
+.container__formulario .container__formulario__form .container__formulario__form__unidade label {
+  margin-bottom: 0.15em;
+}
+.container__formulario .container__formulario__form .container__formulario__form__unidade select {
+  width: 100%;
+}
+.container__formulario .container__formulario__form .container__formulario__form__categoria {
+  grid-column: 1/3;
+  grid-row: 3/4;
+}
+.container__formulario .container__formulario__form .container__formulario__form__categoria select {
+  width: 100%;
+}
+.container__formulario .container__formulario__form .container__formulario__form__quantidade {
+  grid-column: 3/4;
+  grid-row: 3/4;
+  text-align: center;
+}
+.container__formulario .container__formulario__form .container__formulario__form__quantidade input {
+  width: 100%;
+}
+.container__formulario .container__formulario__form .container__formulario__form__btns {
+  grid-column: 1/4;
+  grid-row: 4/5;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
+}
+.container__formulario .container__formulario__form .container__formulario__form__btns button {
+  font-size: 1.2em;
+  padding: 0.5em 0;
+  font-weight: bold;
+  width: 100%;
+}
+.container__formulario .container__formulario__form input, .container__formulario .container__formulario__form select {
+  height: 24px;
+  padding: 0.2em 0.5em;
+  font-size: 0.8em;
+}
+.container__formulario .container__formulario__form label {
+  font-size: 1.2em;
+}
+
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.lista {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
+}
+.lista .lista__categoria {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 350px;
+  margin: 0 auto;
+  background-color: #FBA834;
+  padding: 0.5em;
+  font-size: 1em;
+  font-family: "Oswald", sans-serif;
+  box-shadow: 0 0 5px 2px black;
+  position: relative;
+}
+.lista .lista__categoria .lista__categoria__btnExcluirLista {
+  background-color: red;
+  position: absolute;
+  top: 5%;
+  right: 2.5%;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-image: url("../../assets/imgs/botao-excluir.png");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 2px 1px black;
+}
+.lista .lista__categoria .lista__categoria__titulo {
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+.lista .lista__categoria .lista__categoria__lista {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4em;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__coletado {
+  background-color: green !important;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container {
+  display: grid;
+  grid-template-columns: 30px 1fr 80px 50px;
+  position: relative;
+  background-color: #FC6736;
+  border: solid 1px black;
+  color: white;
+  height: 35px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__quantidade {
+  grid-column: 1/2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__produto {
+  grid-column: 2/3;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco {
+  grid-column: 3/4;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco p {
+  font-size: 0.7em;
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco input {
+  width: 90%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns {
+  grid-column: 4/5;
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: 2px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns button i {
+  font-size: 1.3em;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns .btn__concluir {
+  grid-row: 1/3;
+  grid-column: 2/3;
+  font-size: 1.3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-image: url("../../assets/imgs/botao-concluir.png");
+  background-position: center;
+  background-size: 130%;
+  background-repeat: no-repeat;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns .btn__alterar {
+  color: yellow;
+  background-image: url("../../assets/imgs/botao-alterar-tarefa.png");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns .btn__excluir {
+  color: red;
+  background-image: url("../../assets/imgs/botao-excluir.png");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-top: 2.5px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa {
+  background-color: red;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  grid-template-rows: 48px 48px auto;
+  padding: 0.5em;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa fieldset {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa fieldset input {
+  width: 90%;
+  height: 22px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa fieldset select {
+  height: 22px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__nome {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__tipo {
+  grid-row: 1/2;
+  grid-column: 2/3;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__categoria {
+  grid-row: 2/3;
+  grid-column: 1/2;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__quantidade {
+  grid-row: 2/3;
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__quantidade input {
+  width: 100%;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__botoes {
+  grid-row: 3/4;
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  margin-top: 1em;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__botoes button {
+  width: 95%;
+  font-size: 1em;
+  padding: 0.5em 0;
+  font-weight: bold;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__botoes button:first-child {
+  justify-self: start;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__botoes button:last-child {
+  justify-self: end;
+}
+
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+footer {
+  margin-top: 2em;
+  text-align: center;
+  background-color: #124076;
+  color: white;
+  padding: 0.7em;
+  font-family: "Madimi One", sans-serif;
+}
+footer strong {
+  font-weight: 500;
+  color: #FF9A00;
+}/*# sourceMappingURL=style.css.map */

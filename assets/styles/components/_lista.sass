@@ -1,0 +1,169 @@
+@import '../abstract/_variaveis'
+.lista
+    display: flex
+    flex-direction: column
+    row-gap: 1em
+    .lista__categoria
+        display: flex
+        flex-direction: column
+        width: 90%
+        max-width: 350px
+        margin: 0 auto
+        background-color: #FBA834
+        padding: .5em
+        font-size: 1em
+        font-family: $fonte-primaria
+        box-shadow: 0 0 5px 2px black
+        position: relative
+        .lista__categoria__btnExcluirLista
+            background-color: red
+            position: absolute
+            top: 5%
+            right: 2.5%
+            width: 20px
+            height: 20px
+            border: none
+            background-image: url('../../assets/imgs/botao-excluir.png')
+            background-position: center
+            background-size: 100%
+            background-repeat: no-repeat
+            border-radius: 5px
+            cursor: pointer
+            box-shadow: 0 0 2px 1px black
+        .lista__categoria__titulo
+            text-align: center
+            padding-bottom: .5em
+        .lista__categoria__lista
+            display: flex
+            flex-direction: column
+            row-gap: .4em
+            .lista__categoria__lista__item
+                display: flex
+                flex-direction: column
+                row-gap: .5em
+                .lista__categoria__lista__item__coletado
+                    background-color: green!important
+                .lista__categoria__lista__item__container
+                    display: grid
+                    grid-template-columns: 30px 1fr 80px 50px
+                    position: relative
+                    background-color: #FC6736
+                    border: solid 1px black
+                    color: white
+                    height: 35px
+                    .lista__categoria__item__quantidade
+                        grid-column: 1/2
+                        position: absolute
+                        top: 50%
+                        left: 50%
+                        transform: translate(-50%, -50%)
+                    .lista__categoria__item__produto
+                        grid-column: 2/3
+                        position: absolute
+                        top: 50%
+                        transform: translate(0,-50%)
+                    .lista__categoria__item__preco
+                        grid-column: 3/4
+                        width: 100%
+                        height: 100%
+                        overflow: hidden
+                        position: relative
+                        p
+                            font-size: .7em
+                            position: absolute
+                            top: -2px
+                            left: 50%
+                            transform: translate(-50%)
+                        input
+                            width: 90%
+                            position: absolute
+                            top: 40%
+                            left: 50%
+                            transform: translate(-50%)
+                            border-radius: 5px
+                    .lista__categoria__item__btns
+                        grid-column: 4/5
+                        display: grid
+                        grid-template-columns: 40% 1fr
+                        gap: 2px
+                        button
+                            background: transparent
+                            border: none
+                            outline: none
+                            cursor: pointer
+                            i
+                                font-size: 1.3em
+                        .btn__concluir
+                            grid-row: 1/3
+                            grid-column: 2/3
+                            font-size: 1.3em
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                            overflow: hidden
+                            background-image: url('../../assets/imgs/botao-concluir.png')
+                            background-position: center
+                            background-size: 130%
+                            background-repeat: no-repeat
+                        .btn__alterar
+                            color: yellow
+                            background-image: url('../../assets/imgs/botao-alterar-tarefa.png')
+                            background-position: center
+                            background-size: 100%
+                            background-repeat: no-repeat
+                        .btn__excluir
+                            color: red
+                            background-image: url('../../assets/imgs/botao-excluir.png')
+                            background-position: center
+                            background-size: 100%
+                            background-repeat: no-repeat
+                            margin-top: 2.5px
+                .lista__categoria__lista__item__alterar__tarefa
+                    background-color: red
+                    display: grid
+                    grid-template-columns: 1fr 40px
+                    grid-template-rows: 48px 48px auto
+                    padding: .5em
+                    fieldset
+                        border: 0
+                        display: flex
+                        flex-direction: column
+                        input
+                            width: 90%
+                            height: 22px
+                        select
+                            height: 22px
+                    .alterar__tarefa__nome
+                        grid-row: 1/2
+                        grid-column: 1/2
+                    .alterar__tarefa__tipo
+                        grid-row: 1/2
+                        grid-column: 2/3
+                    .alterar__tarefa__categoria
+                        grid-row: 2/3
+                        grid-column: 1/2
+                        display: flex
+                        flex-direction: column
+                        width: 90%
+                    .alterar__tarefa__quantidade
+                        grid-row: 2/3
+                        grid-column: 2/3
+                        display: flex
+                        flex-direction: column
+                        input
+                            width: 100%
+                    .alterar__tarefa__botoes
+                        grid-row: 3/4
+                        grid-column: 1/3
+                        display: grid
+                        grid-template-columns: repeat(2, 50%)
+                        margin-top: 1em
+                        button
+                            width: 95%
+                            font-size: 1em
+                            padding: .5em 0
+                            font-weight: bold
+                            &:first-child
+                                justify-self: start
+                            &:last-child
+                                justify-self: end

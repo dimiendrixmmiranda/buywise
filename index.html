@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="shortcut icon" href="./assets/imgs/logo.png" type="image/x-icon">
+    <title>Buywise - Compre com Inteligência!</title>
+</head>
+
+<body>
+    <header>
+        <a href="#">
+            <img src="./assets/imgs/logo.png" alt="">
+            <h1>Buywise</h1>
+        </a>
+        <button>
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <main>
+        <div class="banner">
+            <h2>
+                Facilite sua vida com o <strong>Buywise</strong>! Economise seu tempo com mais <strong>praticidade e
+                    facilidade</strong>!
+            </h2>
+            <img src="./assets/imgs/svg-1.svg" alt="">
+            <!-- opção dois de svg https://storyset.com/illustration/successful-purchase/bro/animate -->
+        </div>
+        <div id="containerFormulario" class="container__formulario">
+            <form id="form" class="container__formulario__form">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="container__formulario__form__banner">
+                    <img src="./assets/imgs/svg-2.svg" alt="">
+                    <p class="container__formulario__form__banner__texto">Faça sua lista de compras de maneira simples, fácil e prático! </p>
+                </div>
+                <fieldset class="container__formulario__form__nome">
+                    <label for="nomeProduto">Nome do produto:</label>
+                    <input type="text" name="nomeProduto" id="nomeProduto" required>
+                </fieldset>
+
+                <fieldset class="container__formulario__form__unidade">
+                    <label for="unidadeProduto">TIPO</label>
+                    <select name="unidadeProduto" id="unidadeProduto">
+                        <option value="un">un</option>
+                        <option value="kg">kg</option>
+                        <option value="g">g</option>
+                        <option value="L">L</option>
+                        <option value="ml">ml</option>
+                        <option value="dz">dz</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="container__formulario__form__categoria">
+                    <label for="categoriaProduto">Categoria:</label>
+                    <select name="categoriaProduto" id="categoriaProduto">
+                        <option value="">Categoria</option>
+                        <option value="Mercearia">Mercearia</option>
+                        <option value="Padaria">Padaria</option>
+                        <option value="Frutas e Verduras">Frutas e Verduras</option>
+                        <option value="Carnes">Carnes</option>
+                        <option value="Frios">Frios</option>
+                        <option value="Limpeza">Limpeza</option>
+                        <option value="Higiene Pessoal">Higiene Pessoal</option>
+                        <option value="Petz">Petz</option>
+                        <option value="Utensílios Domésticos">Utensílios Domésticos</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="container__formulario__form__quantidade">
+                    <label for="quantidadeProduto">QTDE.</label>
+                    <input type="text" id="quantidadeProduto" required>
+                </fieldset>
+
+                <fieldset class="container__formulario__form__btns">
+                    <button type="submit">Adicionar</button>
+                    <button type="reset">Cancelar</button>
+                </fieldset>
+            </form>
+        </div>
+
+        <ul class="lista"></ul>
+    </main>
+
+    <footer>
+        Projeto desenvolvido por <strong>Dimi Endrix Martins Miranda</strong> baseado nas tecnologias HTML, CSS e JS,
+        utilizando a ferramenta Local Storage para armazenamento de dados. <strong>Projeto sem fins lucrativos!</strong>
+    </footer>
+    
+    <script type="module" src="./script/script.js"></script>
+</body>
+
+</html>
