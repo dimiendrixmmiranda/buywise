@@ -33,20 +33,21 @@
             <!-- opção dois de svg https://storyset.com/illustration/successful-purchase/bro/animate -->
         </div>
         <div id="containerFormulario" class="container__formulario">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <div class="container__formulario__banner">
+                <p class="container__formulario__form__banner__texto">Faça sua lista de compras de maneira simples, fácil e prático! </p>
+                <img src="./assets/imgs/svg-2.svg" alt="">
+            </div>
+
             <form id="form" class="container__formulario__form">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <div class="container__formulario__form__banner">
-                    <img src="./assets/imgs/svg-2.svg" alt="">
-                    <p class="container__formulario__form__banner__texto">Faça sua lista de compras de maneira simples, fácil e prático! </p>
-                </div>
                 <fieldset class="container__formulario__form__nome">
                     <label for="nomeProduto">Nome do produto:</label>
                     <input type="text" name="nomeProduto" id="nomeProduto" required>
                 </fieldset>
-
                 <fieldset class="container__formulario__form__unidade">
                     <label for="unidadeProduto">TIPO</label>
                     <select name="unidadeProduto" id="unidadeProduto">
@@ -58,7 +59,6 @@
                         <option value="dz">dz</option>
                     </select>
                 </fieldset>
-
                 <fieldset class="container__formulario__form__categoria">
                     <label for="categoriaProduto">Categoria:</label>
                     <select name="categoriaProduto" id="categoriaProduto">
@@ -75,12 +75,10 @@
                         <option value="Outros">Outros</option>
                     </select>
                 </fieldset>
-
                 <fieldset class="container__formulario__form__quantidade">
                     <label for="quantidadeProduto">QTDE.</label>
                     <input type="text" id="quantidadeProduto" required>
                 </fieldset>
-
                 <fieldset class="container__formulario__form__btns">
                     <button type="submit">Adicionar</button>
                     <button type="reset">Cancelar</button>

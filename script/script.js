@@ -49,7 +49,7 @@ function criarProdutoDaLista(objetoProduto) {
     const divInserirPreco = document.createElement('div')
     divInserirPreco.classList.add('lista__categoria__item__preco')
     const pPrecoTexto = document.createElement('p')
-    pPrecoTexto.innerHTML = 'Preço:'
+    pPrecoTexto.innerHTML = 'Inserir Preço:'
     const inputPreco = document.createElement('input')
     inputPreco.type = 'text'
     inputPreco.id = 'inputPreco'
@@ -80,10 +80,38 @@ function criarProdutoDaLista(objetoProduto) {
                 itemPego: objetoProduto.itemPego,
                 id: objetoProduto.id
             }
-            // BUG: Quando a tarefa é alterada, se a opção selecione(vazio) estiver selecionada, ele ainda sim cria a tarefa
-            alterarTarefa(objetoProdutoAlterado, e)
-            const id = e.target.closest('.lista__categoria__lista__item').dataset.id
-            arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
+            const produto = e.target.closest('.lista__categoria__lista__item').querySelector('.lista__categoria__lista__item__container')
+            produto.querySelector('.lista__categoria__item__quantidade').innerHTML = objetoProdutoAlterado.quantidade
+            produto.querySelector('.lista__categoria__item__produto').innerHTML = objetoProdutoAlterado.nome
+
+            // lógica dos selects vai ser diferente
+            const categoriaAtual = produto.closest('.lista__categoria').dataset.categoria
+
+            if (categoriaAtual == objetoProdutoAlterado.categoria) {
+                const id = e.target.closest('.lista__categoria__lista__item').dataset.id
+                arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
+                console.log('É igual')
+            } else {
+                produto.remove()
+                const categoria = document.querySelector(`[data-categoria="${objetoProdutoAlterado.categoria}"] .lista__categoria__lista`)
+                if (categoria == null) {
+                    const novaCategoria = criarNovaCategoria(objetoProdutoAlterado)
+                    const li = criarProdutoDaLista(objetoProdutoAlterado)
+                    lista.appendChild(novaCategoria)
+                    console.log(novaCategoria)
+                    novaCategoria.querySelector('.lista__categoria__lista').appendChild(li)
+                    
+                    const id = e.target.closest('.lista__categoria__lista__item').dataset.id
+                    arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
+                    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+                } else {
+                    const li = criarProdutoDaLista(objetoProdutoAlterado)
+                    categoria.appendChild(li)
+                    const id = e.target.closest('.lista__categoria__lista__item').dataset.id
+                    arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
+                    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+                }
+            }
             localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
             formularioAlterarTarefa.remove()
         })
@@ -224,6 +252,11 @@ function criarFormulario(objetoProduto) {
             <option value="Outros">Outros</option>
         </select>
     </fieldset>
+    
+    <fieldset class="alterar__tarefa__preco">
+        <label for="precoProduto">Preço:</label>
+        <input type="text" id="precoProduto" required="" value="${objetoProduto.preco}">
+    </fieldset>
 
     <fieldset class="alterar__tarefa__quantidade">
         <label for="quantidadeProduto">QTDE.</label>
@@ -235,19 +268,12 @@ function criarFormulario(objetoProduto) {
         <button type="reset">Cancelar</button>
     </fieldset>
     `
+
+    // fazer a parde no formulario de inserir o preço
     return divFormulario
 }
 
-function alterarTarefa(objetoProdutoAlterado, e) {
-    const produto = e.target.closest('.lista__categoria__lista__item').querySelector('.lista__categoria__lista__item__container')
-
-    produto.querySelector('.lista__categoria__item__quantidade').innerHTML = objetoProdutoAlterado.quantidade
-    produto.querySelector('.lista__categoria__item__produto').innerHTML = objetoProdutoAlterado.nome
-
-    // lógica dos selects vai ser diferente
-}
-
-function excluirCategoria(e){
+function excluirCategoria(e) {
     const containerLista = e.target.closest('.lista__categoria')
     const listaProdutosCategoria = containerLista.querySelectorAll('.lista__categoria__lista li')
     listaProdutosCategoria.forEach(produto => {
@@ -256,4 +282,3 @@ function excluirCategoria(e){
         containerLista.remove()
     })
 }
-animarTextoContainerFormulario()

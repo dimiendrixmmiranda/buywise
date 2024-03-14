@@ -222,7 +222,7 @@ header button {
 }
 .banner h2 strong {
   font-weight: bold;
-  color: #ED1138;
+  color: #124076;
 }
 .banner img {
   width: 100%;
@@ -236,21 +236,13 @@ header button {
   }
 }
 @media screen and (min-width: 768px) {
-  .banner h2 {
-    font-size: 3em;
-  }
-  .banner img {
-    width: 80%;
-  }
-}
-@media screen and (min-width: 768px) {
   .banner {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     margin-top: 0.5em;
   }
   .banner h2 {
-    font-size: 3em;
+    font-size: 2.5em;
     justify-self: center;
     align-self: center;
   }
@@ -262,7 +254,7 @@ header button {
 }
 @media screen and (min-width: 1220px) {
   .banner h2 {
-    font-size: 3em;
+    font-size: 3.5em;
     justify-self: center;
     align-self: center;
   }
@@ -317,39 +309,20 @@ header button {
 }
 .container__formulario {
   width: 90%;
-  margin: 0 auto;
   font-family: "Oswald", sans-serif;
-  max-width: 400px;
-}
-.container__formulario h3 {
-  line-height: 1.2;
-  font-size: 1.8em;
-  color: #fff;
-  text-align: center;
-}
-.container__formulario h3::after {
-  content: "|";
-  margin-left: 5px;
-  opacity: 1;
-  animation: piscarBarra 0.7s infinite;
-}
-.container__formulario .container__formulario__form {
-  display: grid;
-  margin: 1.5em 0;
-  grid-template-columns: 40px 1fr 60px;
-  background-color: #277fe4;
-  color: #fff;
-  text-shadow: 0 0 2px black;
-  padding: 1em;
-  row-gap: 0.8em;
+  max-width: 650px;
+  background-color: #0058bd;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 1px 2px #124076;
+  padding: 1em;
+  color: #fff;
 }
-.container__formulario .container__formulario__form span {
+.container__formulario span {
   position: absolute;
+  z-index: 2;
 }
-.container__formulario .container__formulario__form span:first-of-type {
+.container__formulario span:first-of-type {
   top: 0;
   left: 0;
   background: linear-gradient(to right, transparent, #124076);
@@ -357,7 +330,7 @@ header button {
   height: 3px;
   animation: animarBordaFormulario1 2s linear infinite;
 }
-.container__formulario .container__formulario__form span:nth-of-type(2) {
+.container__formulario span:nth-of-type(2) {
   top: 0;
   right: 0;
   background: linear-gradient(to bottom, transparent, #124076);
@@ -366,7 +339,7 @@ header button {
   animation: animarBordaFormulario2 2s linear infinite;
   animation-delay: 1s;
 }
-.container__formulario .container__formulario__form span:nth-of-type(3) {
+.container__formulario span:nth-of-type(3) {
   bottom: 0;
   right: 0;
   background: linear-gradient(to left, transparent, #124076);
@@ -374,7 +347,7 @@ header button {
   height: 3px;
   animation: animarBordaFormulario3 2s linear infinite;
 }
-.container__formulario .container__formulario__form span:last-of-type {
+.container__formulario span:last-of-type {
   top: 0;
   left: 0;
   background: linear-gradient(to left, transparent, #124076);
@@ -383,108 +356,115 @@ header button {
   animation: animarBordaFormulario4 2s linear infinite;
   animation-delay: 1s;
 }
-.container__formulario .container__formulario__form .container__formulario__form__banner {
-  width: 100%;
-  grid-row: 1/2;
-  grid-column: 1/4;
+.container__formulario .container__formulario__banner {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
 }
-.container__formulario .container__formulario__form .container__formulario__form__banner img {
-  width: 100%;
-}
-.container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
-  font-size: 1.1em;
-  font-weight: bold;
-  justify-self: center;
-  align-self: center;
-}
-@media screen and (min-width: 375px) {
-  .container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
-    font-size: 1.38em;
+@media screen and (min-width: 768px) {
+  .container__formulario .container__formulario__banner {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
+.container__formulario .container__formulario__banner p {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.2;
+  align-self: center;
+}
 @media screen and (min-width: 425px) {
-  .container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
-    font-size: 1.5em;
+  .container__formulario .container__formulario__banner p {
+    font-size: 1.8em;
   }
 }
 @media screen and (min-width: 768px) {
-  .container__formulario .container__formulario__form .container__formulario__form__banner .container__formulario__form__banner__texto {
-    font-size: 1.6em;
+  .container__formulario .container__formulario__banner p {
+    font-size: 2.4em;
   }
 }
+.container__formulario .container__formulario__banner img {
+  width: 90%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 530px) {
+  .container__formulario .container__formulario__banner img {
+    width: 75%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container__formulario .container__formulario__banner img {
+    width: 90%;
+  }
+}
+.container__formulario .container__formulario__form {
+  display: grid;
+  grid-template-columns: 1fr 60px;
+}
 .container__formulario .container__formulario__form fieldset {
-  outline: none;
-  margin: 0;
   border: none;
-  padding: 0.2em;
+  margin: 0;
+}
+.container__formulario .container__formulario__form fieldset label {
+  font-size: 1.3em;
+}
+.container__formulario .container__formulario__form fieldset input, .container__formulario .container__formulario__form fieldset select {
+  height: 23px;
+  padding: 0 0.5em;
 }
 .container__formulario .container__formulario__form .container__formulario__form__nome {
-  grid-column: 1/3;
-  grid-row: 2/3;
-  justify-self: center;
-  align-self: center;
-  position: relative;
-  width: 100%;
-}
-.container__formulario .container__formulario__form .container__formulario__form__nome label {
-  font-size: 1.2em;
+  grid-row: 1/2;
+  grid-column: 1/2;
 }
 .container__formulario .container__formulario__form .container__formulario__form__nome input {
-  width: 100%;
+  width: 95%;
 }
 .container__formulario .container__formulario__form .container__formulario__form__unidade {
-  grid-column: 3/4;
-  grid-row: 2/3;
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  height: 100%;
-  justify-content: end;
+  grid-row: 1/2;
+  grid-column: 2/3;
 }
 .container__formulario .container__formulario__form .container__formulario__form__unidade label {
-  margin-bottom: 0.15em;
+  text-align: center;
+  width: 100%;
+  display: block;
 }
 .container__formulario .container__formulario__form .container__formulario__form__unidade select {
   width: 100%;
+  text-align: center;
 }
 .container__formulario .container__formulario__form .container__formulario__form__categoria {
-  grid-column: 1/3;
-  grid-row: 3/4;
+  grid-row: 2/3;
+  grid-column: 1/2;
 }
 .container__formulario .container__formulario__form .container__formulario__form__categoria select {
-  width: 100%;
+  width: 95%;
 }
 .container__formulario .container__formulario__form .container__formulario__form__quantidade {
-  grid-column: 3/4;
-  grid-row: 3/4;
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+.container__formulario .container__formulario__form .container__formulario__form__quantidade label {
+  display: block;
   text-align: center;
 }
 .container__formulario .container__formulario__form .container__formulario__form__quantidade input {
   width: 100%;
+  text-align: center;
 }
 .container__formulario .container__formulario__form .container__formulario__form__btns {
-  grid-column: 1/4;
-  grid-row: 4/5;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-row: 3/4;
+  grid-column: 1/3;
+  display: flex;
   -moz-column-gap: 0.5em;
        column-gap: 0.5em;
 }
 .container__formulario .container__formulario__form .container__formulario__form__btns button {
-  font-size: 1.2em;
-  padding: 0.5em 0;
+  flex-grow: 1;
+  font-size: 1.4em;
   font-weight: bold;
-  width: 100%;
-}
-.container__formulario .container__formulario__form input, .container__formulario .container__formulario__form select {
-  height: 24px;
-  padding: 0.2em 0.5em;
-  font-size: 0.8em;
-}
-.container__formulario .container__formulario__form label {
-  font-size: 1.2em;
+  padding: 0.4em 0;
+  margin-top: 1em;
+  background-color: #FF9A00;
+  color: #fff;
+  border-radius: 5px;
 }
 
 @keyframes piscarBarra {
@@ -534,12 +514,16 @@ header button {
   display: flex;
   flex-direction: column;
   row-gap: 1em;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 1.5em;
+  margin: 1.5em auto 0 auto;
 }
 .lista .lista__categoria {
   display: flex;
   flex-direction: column;
   width: 90%;
-  max-width: 350px;
+  max-width: 425px;
   margin: 0 auto;
   background-color: #FBA834;
   padding: 0.5em;
@@ -583,12 +567,13 @@ header button {
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container {
   display: grid;
-  grid-template-columns: 30px 1fr 80px 50px;
+  grid-template-columns: 40px 1fr 80px 50px;
   position: relative;
   background-color: #FC6736;
   border: solid 1px black;
   color: white;
-  height: 35px;
+  height: 40px;
+  padding: 0.2em 0.2em 0.4em 0.2em;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__quantidade {
   grid-column: 1/2;
@@ -602,6 +587,7 @@ header button {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
+  line-height: 1;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco {
   grid-column: 3/4;
@@ -611,11 +597,12 @@ header button {
   position: relative;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco p {
-  font-size: 0.7em;
+  font-size: 0.65em;
   position: absolute;
   top: -2px;
   left: 50%;
   transform: translate(-50%);
+  white-space: nowrap;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco input {
   width: 90%;
@@ -624,6 +611,8 @@ header button {
   left: 50%;
   transform: translate(-50%);
   border-radius: 5px;
+  font-size: 0.7em;
+  padding: 0.1em 0.4em;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns {
   grid-column: 4/5;
@@ -669,10 +658,11 @@ header button {
   margin-top: 2.5px;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa {
-  background-color: red;
+  background-color: #124076;
+  color: white;
   display: grid;
-  grid-template-columns: 1fr 40px;
-  grid-template-rows: 48px 48px auto;
+  grid-template-columns: 1fr 50px 50px;
+  grid-template-rows: 48px 48px 48px auto;
   padding: 0.5em;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa fieldset {
@@ -689,11 +679,15 @@ header button {
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__nome {
   grid-row: 1/2;
-  grid-column: 1/2;
+  grid-column: 1/3;
+  padding-right: 2px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__nome input {
+  width: 100%;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__tipo {
   grid-row: 1/2;
-  grid-column: 2/3;
+  grid-column: 3/4;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__categoria {
   grid-row: 2/3;
@@ -702,9 +696,18 @@ header button {
   flex-direction: column;
   width: 90%;
 }
-.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__quantidade {
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__preco {
   grid-row: 2/3;
   grid-column: 2/3;
+  text-align: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__quantidade {
+  grid-row: 2/3;
+  grid-column: 3/4;
   display: flex;
   flex-direction: column;
 }
@@ -713,7 +716,7 @@ header button {
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa .alterar__tarefa__botoes {
   grid-row: 3/4;
-  grid-column: 1/3;
+  grid-column: 1/4;
   display: grid;
   grid-template-columns: repeat(2, 50%);
   margin-top: 1em;
