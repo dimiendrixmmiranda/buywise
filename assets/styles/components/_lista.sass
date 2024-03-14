@@ -1,23 +1,22 @@
 @import '../abstract/_variaveis'
 .lista
     display: flex
-    flex-direction: column
+    flex-wrap: wrap
     row-gap: 1em
     height: fit-content
-    margin-top: 1.5em
     margin: 1.5em auto 0 auto
     .lista__categoria
         display: flex
         flex-direction: column
         width: 90%
-        max-width: 425px
-        margin: 0 auto
+        max-width: 340px
         background-color: #FBA834
         padding: .5em
         font-size: 1em
         font-family: $fonte-primaria
         box-shadow: 0 0 5px 2px black
         position: relative
+        margin: 0 auto
         .lista__categoria__btnExcluirLista
             background-color: red
             position: absolute
