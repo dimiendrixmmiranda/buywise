@@ -201,7 +201,8 @@ function limparFormulario(e) {
 }
 
 function excluirTarefa(e) {
-    if (!(arrayProdutos.length >= 2)) {
+    const lista = e.target.closest('.lista__categoria').querySelectorAll('li')
+    if (!(lista.length >= 2)) {
         const categoria = e.target.closest('.lista__categoria')
         categoria.remove()
     }
