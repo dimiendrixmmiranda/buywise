@@ -505,7 +505,7 @@ header button {
   flex-direction: column;
   width: 90%;
   max-width: 340px;
-  background-color: #FBA834;
+  background-color: #0058bd;
   padding: 0.5em;
   font-size: 1em;
   font-family: "Oswald", sans-serif;
@@ -532,6 +532,9 @@ header button {
 .lista .lista__categoria .lista__categoria__titulo {
   text-align: center;
   padding-bottom: 0.5em;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+  text-transform: uppercase;
 }
 .lista .lista__categoria .lista__categoria__lista {
   display: flex;
@@ -550,11 +553,11 @@ header button {
   display: grid;
   grid-template-columns: 40px 1fr 80px 50px;
   position: relative;
-  background-color: #FC6736;
+  background-color: #124076;
   border: solid 1px black;
   color: white;
   height: 40px;
-  padding: 0.2em 0.2em 0.4em 0.2em;
+  padding: 0.2em 0.2em 0.2em 0.2em;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__quantidade {
   grid-column: 1/2;
@@ -578,9 +581,9 @@ header button {
   position: relative;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco p {
-  font-size: 0.65em;
+  font-size: 0.6em;
   position: absolute;
-  top: -2px;
+  top: -3px;
   left: 50%;
   transform: translate(-50%);
   white-space: nowrap;
@@ -588,12 +591,69 @@ header button {
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco input {
   width: 90%;
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%);
   border-radius: 5px;
   font-size: 0.7em;
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.3em;
+  height: 20px;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco button {
+  z-index: 3;
+  position: absolute;
+  right: 5%;
+  top: 35%;
+  width: 20px;
+  height: 20px;
+  border-radius: 0 5px 5px 0;
+  background-color: green;
+  color: white;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido {
+  background-color: #3c73b3;
+  height: 100%;
+  width: 100%;
+  grid-column: 3/4;
+  grid-row: 1/2;
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px black;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido p {
+  grid-row: 1/3;
+  grid-column: 1/2;
+  font-size: 0.9em;
+  position: relative;
+  align-self: center;
+  top: 0;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido button {
+  position: relative;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15px;
+  font-size: 0.8em;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido button:nth-of-type(1) i {
+  color: yellow;
+  box-shadow: 0 0 1px black;
+  background-color: black;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido button:last-child i {
+  color: red;
+  box-shadow: 0 0 1px black;
+  background-color: black;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns {
   grid-column: 4/5;

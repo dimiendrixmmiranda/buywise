@@ -10,7 +10,7 @@
         flex-direction: column
         width: 90%
         max-width: 340px
-        background-color: #FBA834
+        background-color: $azul-claro
         padding: .5em
         font-size: 1em
         font-family: $fonte-primaria
@@ -35,6 +35,9 @@
         .lista__categoria__titulo
             text-align: center
             padding-bottom: .5em
+            color: $branco
+            text-shadow: 0 0 2px $preto
+            text-transform: uppercase
         .lista__categoria__lista
             display: flex
             flex-direction: column
@@ -49,11 +52,11 @@
                     display: grid
                     grid-template-columns: 40px 1fr 80px 50px
                     position: relative
-                    background-color: #FC6736
+                    background-color: $azul
                     border: solid 1px black
                     color: white
                     height: 40px
-                    padding: .2em .2em .4em .2em
+                    padding: .2em .2em .2em .2em
                     .lista__categoria__item__quantidade
                         grid-column: 1/2
                         position: absolute
@@ -73,21 +76,74 @@
                         overflow: hidden
                         position: relative
                         p
-                            font-size: .65em
+                            font-size: .6em
                             position: absolute
-                            top: -2px
+                            top: -3px
                             left: 50%
                             transform: translate(-50%)
                             white-space: nowrap
                         input
                             width: 90%
                             position: absolute
-                            top: 40%
+                            top: 35%
                             left: 50%
                             transform: translate(-50%)
                             border-radius: 5px
                             font-size: .7em
-                            padding: .1em .4em
+                            padding: .1em .3em
+                            height: 20px
+                        button
+                            z-index: 3
+                            position: absolute
+                            right: 5%
+                            top: 35%
+                            width: 20px
+                            height: 20px
+                            border-radius: 0 5px 5px 0
+                            background-color: green
+                            color: white
+                    .lista__categoria__item__preco__definido
+                        background-color: $azul-claro-preco
+                        height: 100%
+                        width: 100%
+                        grid-column: 3/4
+                        grid-row: 1/2
+                        text-align: center
+                        display: grid
+                        grid-template-rows: auto auto
+                        grid-template-columns: 1fr 20px
+                        border-radius: 5px
+                        box-shadow: 0 0 2px black
+                        p
+                            grid-row: 1/3
+                            grid-column: 1/2
+                            font-size: .9em
+                            position: relative
+                            align-self: center
+                            top: 0
+                        button
+                            position: relative
+                            display: block
+                            top: 0
+                            left: 0
+                            height: 100%
+                            width: 15px
+                            font-size: .8em
+                            cursor: pointer
+                            background: transparent
+                            border: none
+                            width: 100%
+                            height: 100%
+                            &:nth-of-type(1)                                
+                                i
+                                    color: yellow
+                                    box-shadow: 0 0 1px black
+                                    background-color: black
+                            &:last-child
+                                i
+                                    color: red
+                                    box-shadow: 0 0 1px black
+                                    background-color: black
                     .lista__categoria__item__btns
                         grid-column: 4/5
                         display: grid

@@ -53,8 +53,20 @@ function criarProdutoDaLista(objetoProduto) {
     const inputPreco = document.createElement('input')
     inputPreco.type = 'text'
     inputPreco.id = 'inputPreco'
+    inputPreco.value = 'R$'
+    const btnInserirPreco = document.createElement('button')
+    btnInserirPreco.addEventListener('click', (e) => inserirPrecoNoProduto(e))
+
+    if (objetoProduto.preco) {
+        divInserirPreco.style.display = 'none'
+        const preco = criarPrecoDoProduto(objetoProduto.preco)
+        divContainer.appendChild(preco)
+    }
+
+    btnInserirPreco.innerHTML = '<i class="fa-regular fa-circle-check"></i>'
     divInserirPreco.appendChild(pPrecoTexto)
     divInserirPreco.appendChild(inputPreco)
+    divInserirPreco.appendChild(btnInserirPreco)
 
     const divBtns = document.createElement('div')
     divBtns.classList.add('lista__categoria__item__btns')
@@ -69,6 +81,8 @@ function criarProdutoDaLista(objetoProduto) {
         e.preventDefault()
         const formularioAlterarTarefa = criarFormulario(objetoProduto)
         li.appendChild(formularioAlterarTarefa)
+
+        // BUG: quando clico no btn alterar tarefa, se clicar mais de uma vez ele ira fazer mais de um formulario
         formularioAlterarTarefa.addEventListener('submit', (e) => {
             e.preventDefault()
             const objetoProdutoAlterado = {
@@ -100,7 +114,7 @@ function criarProdutoDaLista(objetoProduto) {
                     lista.appendChild(novaCategoria)
                     console.log(novaCategoria)
                     novaCategoria.querySelector('.lista__categoria__lista').appendChild(li)
-                    
+
                     const id = e.target.closest('.lista__categoria__lista__item').dataset.id
                     arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
                     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
@@ -187,6 +201,10 @@ function limparFormulario(e) {
 }
 
 function excluirTarefa(e) {
+    if (!(arrayProdutos.length >= 2)) {
+        const categoria = e.target.closest('.lista__categoria')
+        categoria.remove()
+    }
     const tarefa = e.target.closest('.lista__categoria__lista__item')
     const id = tarefa.dataset.id
     tarefa.remove()
@@ -281,4 +299,59 @@ function excluirCategoria(e) {
         localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
         containerLista.remove()
     })
+}
+
+function inserirPrecoNoProduto(e) {
+    const elementoProdutoPai = e.target.closest('.lista__categoria__lista__item__container')
+    const elementoItemPreco = e.target.closest('.lista__categoria__item__preco')
+    const valorInputItemPreco = elementoItemPreco.querySelector('#inputPreco').value
+    elementoItemPreco.style.display = 'none'
+
+    const div = criarPrecoDoProduto(valorInputItemPreco)
+    elementoProdutoPai.appendChild(div)
+
+    const liID = elementoProdutoPai.parentElement.dataset.id
+    arrayProdutos[acharProdutoNoArray(liID)].preco = valorInputItemPreco
+    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+}
+
+function criarPrecoDoProduto(valorInputItemPreco) {
+    const div = document.createElement('div')
+    div.classList.add('lista__categoria__item__preco__definido')
+    const p = document.createElement('p')
+    p.innerHTML = valorInputItemPreco
+    const btnAlterarPreco = document.createElement('button')
+    btnAlterarPreco.innerHTML = '<i class="fa-solid fa-square-pen"></i>'
+    btnAlterarPreco.id = "alterarPrecoProduto"
+    btnAlterarPreco.addEventListener('click', (e) => {
+        const containerItem = e.target.closest('.lista__categoria__lista__item__container')
+        containerItem.querySelector('.lista__categoria__item__preco__definido').remove()
+        containerItem.querySelector('.lista__categoria__item__preco').style.display = 'block'
+        containerItem.querySelector('.lista__categoria__item__preco input').focus()
+        const idElemento = containerItem.parentElement.dataset.id
+        arrayProdutos[acharProdutoNoArray(idElemento)].preco = ''
+        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+    })
+
+
+    const btnExcluirPreco = document.createElement('button')
+    btnExcluirPreco.innerHTML = '<i class="fa-solid fa-square-xmark"></i>'
+    btnExcluirPreco.id = 'excluirPrecoProduto'
+
+    btnExcluirPreco.addEventListener('click', (e) => {
+        const containerItem = e.target.closest('.lista__categoria__lista__item__container')
+        containerItem.querySelector('.lista__categoria__item__preco__definido').remove()
+        containerItem.querySelector('.lista__categoria__item__preco').style.display = 'block'
+        containerItem.querySelector('.lista__categoria__item__preco input').focus()
+        containerItem.querySelector('.lista__categoria__item__preco input').value = 'R$'
+        const idElemento = containerItem.parentElement.dataset.id
+        arrayProdutos[acharProdutoNoArray(idElemento)].preco = ''
+        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+    })
+
+
+    div.appendChild(p)
+    div.appendChild(btnAlterarPreco)
+    div.appendChild(btnExcluirPreco)
+    return div
 }
