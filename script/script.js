@@ -2,10 +2,12 @@ import { gerarID } from "./gerarID.js";
 const formulario = document.querySelector('#form')
 const lista = document.querySelector('.lista')
 const arrayProdutos = JSON.parse(localStorage.getItem("produtos")) || []
+obterPrecoFinalListaProdutos()
 
 arrayProdutos.forEach(produto => {
     adicionandoCriandoNovaCategoria(produto)
 });
+
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -26,9 +28,9 @@ formulario.addEventListener('submit', (e) => {
         arrayProdutos.push(objetoProduto)
         localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
         limparFormulario(e)
+        obterPrecoFinalListaProdutos()
         inputNomeProduto.focus()
     }
-    console.log(objetoProduto)
 })
 
 function criarProdutoDaLista(objetoProduto) {
@@ -186,7 +188,7 @@ function criarNovaCategoria(objetoProduto) {
     if (objetoProduto.precoFinal) {
         const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === objetoProduto.categoria)
         const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
-        strong.innerHTML = `R$${precoFinalDaCategoria}`
+        strong.innerHTML = `R$${(precoFinalDaCategoria).toFixed(2)}`
     }
 
     li.appendChild(btnExcluirLista)
@@ -230,6 +232,7 @@ function excluirTarefa(e) {
     const id = tarefa.dataset.id
     tarefa.remove()
     arrayProdutos.splice(acharProdutoNoArray(id), 1)
+    obterPrecoFinalListaProdutos()
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
 }
 
@@ -238,6 +241,7 @@ function concluirTarefa(e) {
     const elementoContainer = elemento.querySelector('.lista__categoria__lista__item__container')
     const id = elemento.dataset.id
     elementoContainer.classList.toggle('lista__categoria__lista__item__coletado')
+    elemento.querySelector('.lista__categoria__item__preco__definido').classList.toggle('lista__categoria__item__preco__definido__coletado')
     arrayProdutos[acharProdutoNoArray(id)].itemPego = arrayProdutos[acharProdutoNoArray(id)].itemPego ? false : true
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
 }
@@ -315,10 +319,12 @@ function criarFormulario(objetoProduto) {
 function excluirCategoria(e) {
     const containerLista = e.target.closest('.lista__categoria')
     const listaProdutosCategoria = containerLista.querySelectorAll('.lista__categoria__lista li')
+    
     listaProdutosCategoria.forEach(produto => {
         arrayProdutos.splice(acharProdutoNoArray(produto.dataset.id), 1)
         localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
         containerLista.remove()
+        obterPrecoFinalListaProdutos()
     })
 }
 
@@ -346,13 +352,15 @@ function inserirPrecoNoProduto(e) {
     const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
     const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
     liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria}`
+    
+    obterPrecoFinalListaProdutos()
 }
 
 function criarPrecoDoProduto(valorInputItemPreco) {
     const div = document.createElement('div')
     div.classList.add('lista__categoria__item__preco__definido')
     const p = document.createElement('p')
-    p.innerHTML = `R$${valorInputItemPreco}`
+    p.innerHTML = `R$${(valorInputItemPreco).toFixed(2)}`
     const btnAlterarPreco = document.createElement('button')
     btnAlterarPreco.innerHTML = '<i class="fa-solid fa-square-pen"></i>'
     btnAlterarPreco.id = "alterarPrecoProduto"
@@ -387,8 +395,9 @@ function excluirPreco(e) {
     const categoria = formulario.closest('.lista__categoria').dataset.categoria
     const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
     const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
-    console.log(precoFinalDaCategoria)
-    formulario.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria}`
+    formulario.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${(precoFinalDaCategoria).toFixed(2)}`
+    
+    obterPrecoFinalListaProdutos()
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
 }
 
@@ -402,4 +411,16 @@ function alterarPreco(e) {
     inputPreco.value = arrayProdutos[acharProdutoNoArray(idElemento)].preco
     inputPreco.focus()
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+}
+
+function obterPrecoFinalListaProdutos(){
+    const elementoPrecoFinalGeral = document.querySelector('#precoFinalGeral')
+    if(arrayProdutos.length > 0){
+        const precoFinalGeral = arrayProdutos.map(produto => produto.precoFinal).reduce((a, b) => a + b) 
+        elementoPrecoFinalGeral.innerHTML = `R$${(precoFinalGeral).toFixed(2)}`
+        elementoPrecoFinalGeral.parentElement.style.display = 'flex'
+    }else{
+        elementoPrecoFinalGeral.innerHTML = `R$${0}`
+        elementoPrecoFinalGeral.parentElement.style.display = 'none'
+    }
 }

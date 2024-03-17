@@ -10,6 +10,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 @keyframes piscarBarra {
   0% {
     opacity: 1%;
@@ -628,6 +630,9 @@ header button {
   background-color: green;
   color: white;
 }
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido__coletado {
+  background-color: #3e864a !important;
+}
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido {
   background-color: #3c73b3;
   height: 100%;
@@ -847,4 +852,73 @@ footer {
 footer strong {
   font-weight: 500;
   color: #FF9A00;
+}
+
+@keyframes piscarBarra {
+  0% {
+    opacity: 1%;
+  }
+  50% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
+}
+@keyframes animarBordaFormulario1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes animarBordaFormulario2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes animarBordaFormulario3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes animarBordaFormulario4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+.preco__final__geral {
+  background-color: #0058bd;
+  margin-top: 1em;
+  max-width: 90%;
+  margin: 1em auto;
+  font-family: "Oswald", sans-serif;
+  font-weight: 800;
+  padding: 0.4em;
+  text-align: center;
+  box-shadow: 0 0 4px 2px #000;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+.preco__final__geral h3 {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.preco__final__geral p {
+  font-size: 1.5em;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+  background-color: #FF9A00;
 }/*# sourceMappingURL=style.css.map */
