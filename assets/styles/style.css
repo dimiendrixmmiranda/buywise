@@ -509,7 +509,7 @@ header button {
   display: flex;
   flex-direction: column;
   width: 90%;
-  max-width: 340px;
+  max-width: 380px;
   background-color: #0058bd;
   padding: 0.5em;
   font-size: 1em;
