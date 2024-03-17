@@ -369,6 +369,9 @@ header button {
   align-self: center;
   margin-bottom: 1em;
 }
+.container__formulario .container__formulario__banner p strong {
+  color: #FF9A00;
+}
 @media screen and (min-width: 425px) {
   .container__formulario .container__formulario__banner p {
     font-size: 1.8em;
@@ -530,8 +533,7 @@ header button {
        column-gap: 0.5em;
 }
 .lista .lista__categoria .lista__categoria__preco__final strong {
-  color: red;
-  text-shadow: none;
+  color: #fff;
 }
 .lista .lista__categoria .lista__categoria__btnExcluirLista {
   background-color: red;
@@ -636,47 +638,64 @@ header button {
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido {
   background-color: #3c73b3;
   height: 100%;
-  width: 100%;
+  width: 95%;
   grid-column: 3/4;
   grid-row: 1/2;
   text-align: center;
   display: grid;
-  grid-template-rows: auto auto;
-  grid-template-columns: 1fr 20px;
+  grid-template-columns: 1fr 15px;
   border-radius: 5px;
   box-shadow: 0 0 2px black;
+  position: relative;
+  margin-right: 1em;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido span {
+  grid-column: 1/2;
+  font-size: 0.6em;
+  text-align: center;
+  align-self: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  white-space: nowrap;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido p {
-  grid-row: 1/3;
   grid-column: 1/2;
   font-size: 0.9em;
   position: relative;
   align-self: center;
-  top: 0;
+  text-align: center;
+  align-self: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
 }
-.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido button {
-  position: relative;
-  display: block;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 15px;
-  font-size: 0.8em;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  width: 100%;
-  height: 100%;
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido .div__btns__preco__definido {
+  grid-row: 1/3;
+  grid-column: 2/3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
-.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido button:nth-of-type(1) i {
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido .div__btns__preco__definido button {
+  width: 16px;
+  height: 16px;
+  align-self: flex-end;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido .div__btns__preco__definido button:first-child {
+  background-color: #000;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido .div__btns__preco__definido button:first-child i {
   color: yellow;
-  box-shadow: 0 0 1px black;
-  background-color: black;
 }
-.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido button:last-child i {
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido .div__btns__preco__definido button:last-child {
+  background-color: #000;
+}
+.lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__preco__definido .div__btns__preco__definido button:last-child i {
   color: red;
-  box-shadow: 0 0 1px black;
-  background-color: black;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__container .lista__categoria__item__btns {
   grid-column: 4/5;
@@ -719,7 +738,6 @@ header button {
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
-  margin-top: 2.5px;
 }
 .lista .lista__categoria .lista__categoria__lista .lista__categoria__lista__item .lista__categoria__lista__item__alterar__tarefa {
   background-color: #124076;

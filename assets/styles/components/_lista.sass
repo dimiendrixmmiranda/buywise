@@ -29,9 +29,8 @@
             display: flex
             justify-content: center
             column-gap: .5em
-            strong 
-                color: red
-                text-shadow: none
+            strong
+                color: $branco
         .lista__categoria__btnExcluirLista
             background-color: red
             position: absolute
@@ -122,45 +121,56 @@
                     .lista__categoria__item__preco__definido
                         background-color: $azul-claro-preco
                         height: 100%
-                        width: 100%
+                        width: 95%
                         grid-column: 3/4
                         grid-row: 1/2
                         text-align: center
                         display: grid
-                        grid-template-rows: auto auto
-                        grid-template-columns: 1fr 20px
+                        grid-template-columns: 1fr 15px
                         border-radius: 5px
                         box-shadow: 0 0 2px black
+                        position: relative
+                        margin-right: 1em
+                        span
+                            grid-column: 1/2
+                            font-size: .6em
+                            text-align: center
+                            align-self: center
+                            position: absolute
+                            top: 0
+                            left: 50%
+                            transform: translate(-50%)
+                            white-space: nowrap
                         p
-                            grid-row: 1/3
                             grid-column: 1/2
                             font-size: .9em
                             position: relative
                             align-self: center
-                            top: 0
-                        button
-                            position: relative
-                            display: block
-                            top: 0
-                            left: 0
-                            height: 100%
-                            width: 15px
-                            font-size: .8em
-                            cursor: pointer
-                            background: transparent
-                            border: none
-                            width: 100%
-                            height: 100%
-                            &:nth-of-type(1)                                
-                                i
-                                    color: yellow
-                                    box-shadow: 0 0 1px black
-                                    background-color: black
-                            &:last-child
-                                i
-                                    color: red
-                                    box-shadow: 0 0 1px black
-                                    background-color: black
+                            text-align: center
+                            align-self: center
+                            position: absolute
+                            bottom: 0
+                            left: 50%
+                            transform: translate(-50%)
+                        .div__btns__preco__definido
+                            grid-row: 1/3
+                            grid-column: 2/3
+                            margin: 0
+                            padding: 0
+                            display: flex
+                            flex-direction: column
+                            button
+                                width: 16px
+                                height: 16px
+                                align-self: flex-end
+                                &:first-child
+                                    background-color: $preto
+                                    i
+                                        color: yellow
+                                &:last-child
+                                    background-color: $preto
+                                    i
+                                        color: red
                     .lista__categoria__item__btns
                         grid-column: 4/5
                         display: grid
@@ -197,7 +207,6 @@
                             background-position: center
                             background-size: 100%
                             background-repeat: no-repeat
-                            margin-top: 2.5px
                 .lista__categoria__lista__item__alterar__tarefa
                     background-color: $azul
                     color: white

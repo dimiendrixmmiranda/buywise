@@ -64,7 +64,7 @@ function criarProdutoDaLista(objetoProduto) {
 
     if (objetoProduto.preco) {
         formInserirPreco.style.display = 'none'
-        const preco = criarPrecoDoProduto(objetoProduto.preco)
+        const preco = criarPrecoDoProduto((objetoProduto))
         divContainer.appendChild(preco)
     }
 
@@ -345,37 +345,43 @@ function inserirPrecoNoProduto(e) {
     // parte visual
     const formulario = liProduto.querySelector('.lista__categoria__item__preco')
     formulario.style.display = 'none'
-    const containerPrecoProdutoDefinido = criarPrecoDoProduto((preco).toFixed(2))
+    const containerPrecoProdutoDefinido = criarPrecoDoProduto(arrayProdutos[acharProdutoNoArray(IDProduto)])
     containerProduto.appendChild(containerPrecoProdutoDefinido)
 
     const categoria = liProduto.closest('.lista__categoria').dataset.categoria
     const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
     const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
-    liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria}`
+    liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria.toFixed(2)}`
     
     obterPrecoFinalListaProdutos()
 }
 
-function criarPrecoDoProduto(valorInputItemPreco) {
+function criarPrecoDoProduto(objetoProduto) {
     const div = document.createElement('div')
     div.classList.add('lista__categoria__item__preco__definido')
     const p = document.createElement('p')
-    p.innerHTML = `R$${(valorInputItemPreco).toFixed(2)}`
+    p.innerHTML = `R$${(objetoProduto.precoFinal).toFixed(2)}`
+    const span = document.createElement('span')
+    span.innerHTML = `${objetoProduto.quantidade} x R$${(objetoProduto.preco).toFixed(2)}`
+
+    const divBtns = document.createElement('div')
+    divBtns.classList.add('div__btns__preco__definido')
     const btnAlterarPreco = document.createElement('button')
     btnAlterarPreco.innerHTML = '<i class="fa-solid fa-square-pen"></i>'
     btnAlterarPreco.id = "alterarPrecoProduto"
     btnAlterarPreco.addEventListener('click', (e) => alterarPreco(e))
-
-
+    
     const btnExcluirPreco = document.createElement('button')
     btnExcluirPreco.innerHTML = '<i class="fa-solid fa-square-xmark"></i>'
     btnExcluirPreco.id = 'excluirPrecoProduto'
-
+    
     btnExcluirPreco.addEventListener('click', (e) => { excluirPreco(e) })
-
+    
+    divBtns.appendChild(btnAlterarPreco)
+    divBtns.appendChild(btnExcluirPreco)
+    div.appendChild(span)
     div.appendChild(p)
-    div.appendChild(btnAlterarPreco)
-    div.appendChild(btnExcluirPreco)
+    div.appendChild(divBtns)
     return div
 }
 
@@ -394,8 +400,8 @@ function excluirPreco(e) {
 
     const categoria = formulario.closest('.lista__categoria').dataset.categoria
     const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
-    const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
-    formulario.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${(precoFinalDaCategoria).toFixed(2)}`
+    const precoFinalDaCategoria = produtosDaCategoria.map(produto => parseFloat(produto.precoFinal))
+    formulario.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria}`
     
     obterPrecoFinalListaProdutos()
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
@@ -417,7 +423,7 @@ function obterPrecoFinalListaProdutos(){
     const elementoPrecoFinalGeral = document.querySelector('#precoFinalGeral')
     if(arrayProdutos.length > 0){
         const precoFinalGeral = arrayProdutos.map(produto => produto.precoFinal).reduce((a, b) => a + b) 
-        elementoPrecoFinalGeral.innerHTML = `R$${(precoFinalGeral).toFixed(2)}`
+        elementoPrecoFinalGeral.innerHTML = `R$${precoFinalGeral.toFixed(2)}`
         elementoPrecoFinalGeral.parentElement.style.display = 'flex'
     }else{
         elementoPrecoFinalGeral.innerHTML = `R$${0}`
