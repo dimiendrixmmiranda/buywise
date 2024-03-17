@@ -513,6 +513,24 @@ header button {
   position: relative;
   margin: 0 auto;
 }
+.lista .lista__categoria .lista__categoria__preco__final {
+  display: block;
+  background-color: #FF9A00;
+  padding: 0.2em 0;
+  text-align: center;
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 2px black;
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 0.5em;
+       column-gap: 0.5em;
+}
+.lista .lista__categoria .lista__categoria__preco__final strong {
+  color: red;
+  text-shadow: none;
+}
 .lista .lista__categoria .lista__categoria__btnExcluirLista {
   background-color: red;
   position: absolute;

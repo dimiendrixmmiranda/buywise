@@ -1,4 +1,3 @@
-import { animarTextoContainerFormulario } from "./animacaoTexto.js";
 import { gerarID } from "./gerarID.js";
 const formulario = document.querySelector('#form')
 const lista = document.querySelector('.lista')
@@ -17,9 +16,10 @@ formulario.addEventListener('submit', (e) => {
         tipoUnidade: e.target.closest('.container__formulario__form').querySelector('#unidadeProduto').value,
         categoria: e.target.closest('.container__formulario__form').querySelector('#categoriaProduto').value,
         quantidade: e.target.closest('.container__formulario__form').querySelector('#quantidadeProduto').value,
-        preco: '',
+        preco: 0,
         itemPego: false,
-        id: gerarID()
+        id: gerarID(),
+        precoFinal: 0
     }
     if (objetoProduto.categoria != '') {
         adicionandoCriandoNovaCategoria(objetoProduto)
@@ -28,6 +28,7 @@ formulario.addEventListener('submit', (e) => {
         limparFormulario(e)
         inputNomeProduto.focus()
     }
+    console.log(objetoProduto)
 })
 
 function criarProdutoDaLista(objetoProduto) {
@@ -46,27 +47,30 @@ function criarProdutoDaLista(objetoProduto) {
     pProduto.classList.add('lista__categoria__item__produto')
     pProduto.innerHTML = objetoProduto.nome
 
-    const divInserirPreco = document.createElement('div')
-    divInserirPreco.classList.add('lista__categoria__item__preco')
+    const formInserirPreco = document.createElement('form')
+    formInserirPreco.classList.add('lista__categoria__item__preco')
     const pPrecoTexto = document.createElement('p')
     pPrecoTexto.innerHTML = 'Inserir Preço:'
     const inputPreco = document.createElement('input')
     inputPreco.type = 'text'
     inputPreco.id = 'inputPreco'
-    inputPreco.value = 'R$'
+    inputPreco.setAttribute('minlength', '1')
+    inputPreco.setAttribute('required', '')
     const btnInserirPreco = document.createElement('button')
-    btnInserirPreco.addEventListener('click', (e) => inserirPrecoNoProduto(e))
+    btnInserirPreco.type = 'submit'
+    formInserirPreco.addEventListener('submit', (e) => inserirPrecoNoProduto(e))
 
     if (objetoProduto.preco) {
-        divInserirPreco.style.display = 'none'
+        formInserirPreco.style.display = 'none'
         const preco = criarPrecoDoProduto(objetoProduto.preco)
         divContainer.appendChild(preco)
     }
 
+
     btnInserirPreco.innerHTML = '<i class="fa-regular fa-circle-check"></i>'
-    divInserirPreco.appendChild(pPrecoTexto)
-    divInserirPreco.appendChild(inputPreco)
-    divInserirPreco.appendChild(btnInserirPreco)
+    formInserirPreco.appendChild(pPrecoTexto)
+    formInserirPreco.appendChild(inputPreco)
+    formInserirPreco.appendChild(btnInserirPreco)
 
     const divBtns = document.createElement('div')
     divBtns.classList.add('lista__categoria__item__btns')
@@ -92,7 +96,7 @@ function criarProdutoDaLista(objetoProduto) {
                 quantidade: formularioAlterarTarefa.querySelector('#quantidadeProduto').value,
                 preco: objetoProduto.preco,
                 itemPego: objetoProduto.itemPego,
-                id: objetoProduto.id
+                id: objetoProduto.id,
             }
             const produto = e.target.closest('.lista__categoria__lista__item').querySelector('.lista__categoria__lista__item__container')
             produto.querySelector('.lista__categoria__item__quantidade').innerHTML = objetoProdutoAlterado.quantidade
@@ -104,7 +108,6 @@ function criarProdutoDaLista(objetoProduto) {
             if (categoriaAtual == objetoProdutoAlterado.categoria) {
                 const id = e.target.closest('.lista__categoria__lista__item').dataset.id
                 arrayProdutos[acharProdutoNoArray(id)] = objetoProdutoAlterado
-                console.log('É igual')
             } else {
                 produto.remove()
                 const categoria = document.querySelector(`[data-categoria="${objetoProdutoAlterado.categoria}"] .lista__categoria__lista`)
@@ -112,7 +115,6 @@ function criarProdutoDaLista(objetoProduto) {
                     const novaCategoria = criarNovaCategoria(objetoProdutoAlterado)
                     const li = criarProdutoDaLista(objetoProdutoAlterado)
                     lista.appendChild(novaCategoria)
-                    console.log(novaCategoria)
                     novaCategoria.querySelector('.lista__categoria__lista').appendChild(li)
 
                     const id = e.target.closest('.lista__categoria__lista__item').dataset.id
@@ -148,7 +150,7 @@ function criarProdutoDaLista(objetoProduto) {
 
     divContainer.appendChild(pQuantidade)
     divContainer.appendChild(pProduto)
-    divContainer.appendChild(divInserirPreco)
+    divContainer.appendChild(formInserirPreco)
     divContainer.appendChild(divBtns)
 
     li.appendChild(divContainer)
@@ -171,9 +173,27 @@ function criarNovaCategoria(objetoProduto) {
     btnExcluirLista.classList.add('lista__categoria__btnExcluirLista')
     btnExcluirLista.addEventListener('click', (e) => excluirCategoria(e))
 
+    const totalDaCategoria = document.createElement('div')
+    totalDaCategoria.classList.add('lista__categoria__preco__final')
+    const p = document.createElement('p')
+    p.innerHTML = 'Preço final da Categoria:'
+    const strong = document.createElement('strong')
+    strong.id = 'precoFinal'
+    strong.innerHTML = 'R$0'
+    totalDaCategoria.appendChild(p)
+    totalDaCategoria.appendChild(strong)
+
+    if (objetoProduto.precoFinal) {
+        const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === objetoProduto.categoria)
+        const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
+        strong.innerHTML = `R$${precoFinalDaCategoria}`
+    }
+
     li.appendChild(btnExcluirLista)
     li.appendChild(tituloCategoria)
     li.appendChild(ul)
+    li.appendChild(totalDaCategoria)
+
     return li
 }
 
@@ -303,56 +323,83 @@ function excluirCategoria(e) {
 }
 
 function inserirPrecoNoProduto(e) {
-    const elementoProdutoPai = e.target.closest('.lista__categoria__lista__item__container')
-    const elementoItemPreco = e.target.closest('.lista__categoria__item__preco')
-    const valorInputItemPreco = elementoItemPreco.querySelector('#inputPreco').value
-    elementoItemPreco.style.display = 'none'
+    e.preventDefault()
+    const liProduto = e.target.closest('.lista__categoria__lista__item')
+    const containerProduto = liProduto.querySelector('.lista__categoria__lista__item__container')
+    const IDProduto = liProduto.dataset.id
 
-    const div = criarPrecoDoProduto(valorInputItemPreco)
-    elementoProdutoPai.appendChild(div)
-
-    const liID = elementoProdutoPai.parentElement.dataset.id
-    arrayProdutos[acharProdutoNoArray(liID)].preco = valorInputItemPreco
+    const inputForm = e.target.querySelector('#inputPreco')
+    const preco = parseFloat(inputForm.value.replace(',', '.'))
+    const quantidade = parseFloat(arrayProdutos[acharProdutoNoArray(IDProduto)].quantidade)
+    const precoFinal = preco * quantidade
+    arrayProdutos[acharProdutoNoArray(IDProduto)].preco = preco
+    arrayProdutos[acharProdutoNoArray(IDProduto)].precoFinal = precoFinal
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+
+    // parte visual
+    const formulario = liProduto.querySelector('.lista__categoria__item__preco')
+    formulario.style.display = 'none'
+    const containerPrecoProdutoDefinido = criarPrecoDoProduto((preco).toFixed(2))
+    containerProduto.appendChild(containerPrecoProdutoDefinido)
+
+    const categoria = liProduto.closest('.lista__categoria').dataset.categoria
+    const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
+    const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
+    liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria}`
 }
 
 function criarPrecoDoProduto(valorInputItemPreco) {
     const div = document.createElement('div')
     div.classList.add('lista__categoria__item__preco__definido')
     const p = document.createElement('p')
-    p.innerHTML = valorInputItemPreco
+    p.innerHTML = `R$${valorInputItemPreco}`
     const btnAlterarPreco = document.createElement('button')
     btnAlterarPreco.innerHTML = '<i class="fa-solid fa-square-pen"></i>'
     btnAlterarPreco.id = "alterarPrecoProduto"
-    btnAlterarPreco.addEventListener('click', (e) => {
-        const containerItem = e.target.closest('.lista__categoria__lista__item__container')
-        containerItem.querySelector('.lista__categoria__item__preco__definido').remove()
-        containerItem.querySelector('.lista__categoria__item__preco').style.display = 'block'
-        containerItem.querySelector('.lista__categoria__item__preco input').focus()
-        const idElemento = containerItem.parentElement.dataset.id
-        arrayProdutos[acharProdutoNoArray(idElemento)].preco = ''
-        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
-    })
+    btnAlterarPreco.addEventListener('click', (e) => alterarPreco(e))
 
 
     const btnExcluirPreco = document.createElement('button')
     btnExcluirPreco.innerHTML = '<i class="fa-solid fa-square-xmark"></i>'
     btnExcluirPreco.id = 'excluirPrecoProduto'
 
-    btnExcluirPreco.addEventListener('click', (e) => {
-        const containerItem = e.target.closest('.lista__categoria__lista__item__container')
-        containerItem.querySelector('.lista__categoria__item__preco__definido').remove()
-        containerItem.querySelector('.lista__categoria__item__preco').style.display = 'block'
-        containerItem.querySelector('.lista__categoria__item__preco input').focus()
-        containerItem.querySelector('.lista__categoria__item__preco input').value = 'R$'
-        const idElemento = containerItem.parentElement.dataset.id
-        arrayProdutos[acharProdutoNoArray(idElemento)].preco = ''
-        localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
-    })
-
+    btnExcluirPreco.addEventListener('click', (e) => { excluirPreco(e) })
 
     div.appendChild(p)
     div.appendChild(btnAlterarPreco)
     div.appendChild(btnExcluirPreco)
     return div
+}
+
+function excluirPreco(e) {
+    const formulario = e.target.parentElement.closest('.lista__categoria__lista__item__container').querySelector('.lista__categoria__item__preco')
+    formulario.style.display = 'block'
+    const containerPrecoDefinido = e.target.closest('.lista__categoria__item__preco__definido')
+    containerPrecoDefinido.remove()
+    const inputPreco = formulario.querySelector('#inputPreco')
+    inputPreco.value = ''
+    inputPreco.focus()
+
+    const idElemento = formulario.closest('.lista__categoria__lista__item').dataset.id
+    arrayProdutos[acharProdutoNoArray(idElemento)].preco = 0
+    arrayProdutos[acharProdutoNoArray(idElemento)].precoFinal = 0
+
+    const categoria = formulario.closest('.lista__categoria').dataset.categoria
+    const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
+    const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
+    console.log(precoFinalDaCategoria)
+    formulario.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria}`
+    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+}
+
+function alterarPreco(e) {
+    const formulario = e.target.parentElement.closest('.lista__categoria__lista__item__container').querySelector('.lista__categoria__item__preco')
+    formulario.style.display = 'block'
+    const containerPrecoDefinido = e.target.closest('.lista__categoria__item__preco__definido')
+    containerPrecoDefinido.remove()
+    const inputPreco = formulario.querySelector('#inputPreco')
+    const idElemento = formulario.closest('.lista__categoria__lista__item').dataset.id
+    inputPreco.value = arrayProdutos[acharProdutoNoArray(idElemento)].preco
+    inputPreco.focus()
+    localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
 }
