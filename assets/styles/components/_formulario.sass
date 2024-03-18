@@ -50,13 +50,12 @@
             font-weight: bold
             line-height: 1.2
             align-self: center
-            margin-bottom: 1em
+            margin-bottom: .6em
             strong
                 color: $laranja-claro
-            @media screen and (min-width: 425px)
-                font-size: 1.8em
-            @media screen and (min-width: 768px)
-                font-size: 2.4em
+        img
+            width: 100%
+            margin-bottom: .6em
     .container__formulario__form
         display: grid
         grid-template-columns: 1fr 60px
@@ -111,3 +110,59 @@
                 background-color: $laranja-claro
                 color: $branco
                 border-radius: 5px
+@media screen and ( min-width: 425px )
+    .container__formulario
+        .container__formulario__banner
+            p
+                font-size: 1.7em
+                max-width: 90%
+                margin: 0 auto
+            img
+                width: 85%
+                margin: 0 auto
+@media screen and ( min-width: 768px )
+    .container__formulario
+        .container__formulario__banner
+            p
+                font-size: 2.4em
+                max-width: 75%
+                margin: 0 auto
+            img
+                width: 60%
+                margin: 0 auto
+                margin-bottom: 1.5em
+        .container__formulario__form
+            max-width: 85%
+            margin: 0 auto
+            padding-bottom: 1.5em
+            fieldset
+                label
+                    font-size: 1.7em
+                input, select
+                    height: 30px
+                    font-size: 1.1em
+
+@media screen and ( min-width: 1024px )
+    .container__formulario
+        .container__formulario__banner
+            grid-template-columns: repeat(2, 50%)
+            p
+                font-size: 2em
+                margin: 0 auto
+                align-self: center
+                justify-self: center
+            img
+                width: 70%
+                margin: 0 auto
+                align-self: center
+                justify-self: center
+        .container__formulario__form
+            max-width: 85%
+            margin: 0 auto
+            padding-bottom: 1.5em
+            fieldset
+                label
+                    font-size: 1.7em
+                input, select
+                    height: 30px
+                    font-size: 1.1em

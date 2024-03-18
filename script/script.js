@@ -205,6 +205,7 @@ function adicionandoCriandoNovaCategoria(objetoProduto) {
         const listaDaCategoria = categoria.querySelector('.lista__categoria__lista')
         const produtoDaLista = criarProdutoDaLista(objetoProduto)
         listaDaCategoria.appendChild(produtoDaLista)
+        obterValorFinalDaCategoria(produtoDaLista)
         localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
     } else {
         const novaCategoria = criarNovaCategoria(objetoProduto)
@@ -241,7 +242,10 @@ function concluirTarefa(e) {
     const elementoContainer = elemento.querySelector('.lista__categoria__lista__item__container')
     const id = elemento.dataset.id
     elementoContainer.classList.toggle('lista__categoria__lista__item__coletado')
-    elemento.querySelector('.lista__categoria__item__preco__definido').classList.toggle('lista__categoria__item__preco__definido__coletado')
+    const precoDefinido = elemento.querySelector('.lista__categoria__item__preco__definido')
+    if(precoDefinido){
+        precoDefinido.classList.toggle('lista__categoria__item__preco__definido__coletado')
+    }
     arrayProdutos[acharProdutoNoArray(id)].itemPego = arrayProdutos[acharProdutoNoArray(id)].itemPego ? false : true
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
 }
@@ -249,6 +253,7 @@ function concluirTarefa(e) {
 function vereficarSeOItemFoiPego(objetoProduto, div) {
     if (objetoProduto.itemPego) {
         div.classList.add('lista__categoria__lista__item__coletado')
+        div.querySelector('.lista__categoria__item__preco__definido').classList.add('lista__categoria__item__preco__definido__coletado')
     } else {
         div.classList.remove('lista__categoria__lista__item__coletado')
     }
@@ -336,7 +341,7 @@ function inserirPrecoNoProduto(e) {
 
     const inputForm = e.target.querySelector('#inputPreco')
     const preco = parseFloat(inputForm.value.replace(',', '.'))
-    const quantidade = parseFloat(arrayProdutos[acharProdutoNoArray(IDProduto)].quantidade)
+    const quantidade = parseFloat((arrayProdutos[acharProdutoNoArray(IDProduto)].quantidade).replace(',','.'))
     const precoFinal = preco * quantidade
     arrayProdutos[acharProdutoNoArray(IDProduto)].preco = preco
     arrayProdutos[acharProdutoNoArray(IDProduto)].precoFinal = precoFinal
@@ -348,11 +353,13 @@ function inserirPrecoNoProduto(e) {
     const containerPrecoProdutoDefinido = criarPrecoDoProduto(arrayProdutos[acharProdutoNoArray(IDProduto)])
     containerProduto.appendChild(containerPrecoProdutoDefinido)
 
-    const categoria = liProduto.closest('.lista__categoria').dataset.categoria
-    const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
-    const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
-    liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria.toFixed(2)}`
+    // const categoria = liProduto.closest('.lista__categoria').dataset.categoria
+    // const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
+    // const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
+    // liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria.toFixed(2)}`
     
+    obterValorFinalDaCategoria(liProduto)
+
     obterPrecoFinalListaProdutos()
 }
 
@@ -429,4 +436,11 @@ function obterPrecoFinalListaProdutos(){
         elementoPrecoFinalGeral.innerHTML = `R$${0}`
         elementoPrecoFinalGeral.parentElement.style.display = 'none'
     }
+}
+
+function obterValorFinalDaCategoria(liProduto){
+    const categoria = liProduto.closest('.lista__categoria').dataset.categoria
+    const produtosDaCategoria = arrayProdutos.filter(produto => produto.categoria === categoria)
+    const precoFinalDaCategoria = produtosDaCategoria.map(produto => produto.precoFinal).reduce((a, b) => a + b)
+    liProduto.closest('.lista__categoria').querySelector('.lista__categoria__preco__final #precoFinal').innerHTML = `RS${precoFinalDaCategoria.toFixed(2)}`
 }
