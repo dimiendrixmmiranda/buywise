@@ -83,7 +83,7 @@ function criarProdutoDaLista(objetoProduto) {
     btnExcluir.addEventListener('click', (e) => excluirTarefa(e))
 
     const btnAlterar = criarElemento('button', 'btn__alterar')
-    btnAlterar.addEventListener('click', (e) => { alterarTarefa(e) })
+    btnAlterar.addEventListener('click', (e) => { alterarTarefa(e, objetoProduto) })
     const btnConcluir = criarElemento('button', 'btn__concluir')
     btnConcluir.addEventListener('click', (e) => concluirTarefa(e))
 
@@ -222,8 +222,11 @@ function inserirPrecoNoProduto(e) {
 
 function criarPrecoDoProduto(objetoProduto) {
     const div = criarElemento('div', 'lista__categoria__item__preco__definido')
-    const p = criarElemento('p', 'lista__categoria__item__preco__definido__texto', '', `R$${(objetoProduto.precoFinal)}`)
-    const span = criarElemento('span', 'lista__categoria__item__preco__definido__valor', '', `${objetoProduto.quantidade} x R$${(objetoProduto.preco)}`)
+    console.log(objetoProduto.preco)
+    const precoFinal = parseFloat(objetoProduto.quantidade.replace(',', '.')).toFixed(2) * parseFloat(objetoProduto.preco).toFixed(2)
+    objetoProduto.precoFinal = precoFinal
+    const p = criarElemento('p', 'lista__categoria__item__preco__definido__texto', '', `R$${parseFloat(precoFinal).toFixed(2)}`)
+    const span = criarElemento('span', 'lista__categoria__item__preco__definido__valor', '', `${objetoProduto.quantidade} x R$${parseFloat(objetoProduto.preco).toFixed(2)}`)
 
     const divBtns = criarElemento('div', 'div__btns__preco__definido')
     const btnAlterarPreco = criarElemento('button', 'div__btns__preco__definido__alterar', 'alterarPrecoProduto', '<i class="fa-solid fa-square-pen"></i>')
@@ -236,6 +239,8 @@ function criarPrecoDoProduto(objetoProduto) {
     div.appendChild(span)
     div.appendChild(p)
     div.appendChild(divBtns)
+    verificarPrecoCategoria()
+    verificarPrecoFinalGeral()
     return div
 }
 
@@ -269,69 +274,6 @@ function alterarPreco(e) {
     localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
 }
 
-function alterarTarefa(e) {
-    e.preventDefault()
-    console.log('FALTA IMPLEMENTAR!')
-}
-// TENHO QUE CRIAR UM FORMLUARIO QUANDO CLICAR EM ALTERAR TAREFA
-function criarFormulario(objetoProduto) {
-    const divFormulario = document.createElement('form')
-    divFormulario.id = 'formAlterarTarefa'
-    divFormulario.classList.add('lista__categoria__lista__item__alterar__tarefa')
-    divFormulario.innerHTML = `
-    <fieldset class="alterar__tarefa__nome">
-        <label for="nomeProduto">Nome do produto:</label>
-        <input type="text" name="nomeProduto" id="nomeProduto" required="" value="${objetoProduto.nome}">
-    </fieldset>
-    <fieldset class="alterar__tarefa__tipo">
-        <label for="unidadeProduto">TIPO</label>
-        <select name="unidadeProduto" id="unidadeProduto">
-            <option value="un">un</option>
-            <option value="kg">kg</option>
-            <option value="g">g</option>
-            <option value="L">L</option>
-            <option value="ml">ml</option>
-            <option value="dz">dz</option>
-        </select>
-    </fieldset>
-
-    <fieldset class="alterar__tarefa__categoria">
-        <label for="categoriaProduto">Categoria:</label>
-        <select name="categoriaProduto" id="categoriaProduto">
-            <option value="">Categoria</option>
-            <option value="Mercearia">Mercearia</option>
-            <option value="Padaria">Padaria</option>
-            <option value="Frutas e Verduras">Frutas e Verduras</option>
-            <option value="Carnes">Carnes</option>
-            <option value="Frios">Frios</option>
-            <option value="Limpeza">Limpeza</option>
-            <option value="Higiene Pessoal">Higiene Pessoal</option>
-            <option value="Petz">Petz</option>
-            <option value="Utensílios Domésticos">Utensílios Domésticos</option>
-            <option value="Outros">Outros</option>
-        </select>
-    </fieldset>
-    
-    <fieldset class="alterar__tarefa__preco">
-        <label for="precoProduto">Preço:</label>
-        <input type="text" id="precoProduto" required="" value="${objetoProduto.preco}">
-    </fieldset>
-
-    <fieldset class="alterar__tarefa__quantidade">
-        <label for="quantidadeProduto">QTDE.</label>
-        <input type="text" id="quantidadeProduto" required="" value="${objetoProduto.quantidade}">
-    </fieldset>
-
-    <fieldset class="alterar__tarefa__botoes">
-        <button type="submit">Adicionar</button>
-        <button type="reset">Cancelar</button>
-    </fieldset>
-    `
-
-    // fazer a parde no formulario de inserir o preço
-    return divFormulario
-}
-
 function verificarPrecoFinalGeral() {
     const containerPrecoFinalGeral = document.querySelector('.preco__final__geral')
     const elementoPrecoFinalGeral = document.querySelector('#precoFinalGeral')
@@ -358,3 +300,144 @@ function verificarPrecoCategoria() {
         elCategoria.innerHTML = `R$${precoCategoria.toFixed(2)}`
     })
 }
+
+// Falta a lógica da categoria: se queiser alterar a categoria dentro do alterarTarefa
+function alterarTarefa(e, objetoProduto) {
+    e.preventDefault()
+    const btn = e.target
+    btn.classList.toggle('active')
+    const formulario = criarFormulario()
+    const li = e.target.closest('.lista__categoria__lista__item')
+    if (btn.classList.contains('active')) {
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const produtoAlterado = {
+                nome: e.target['nomeProduto'].value,
+                tipoUnidade: e.target['unidadeProduto'].value,
+                categoria: e.target['categoriaProduto'].value,
+                quantidade: e.target['quantidadeProduto'].value,
+                preco: parseFloat((e.target['precoProduto'].value).replace(',','.')).toFixed(2),
+                itemPego: objetoProduto.itemPego,
+                id: objetoProduto.id,
+                precoFinal: 0
+            }
+
+            li.querySelector('.lista__categoria__item__quantidade').innerHTML = produtoAlterado.quantidade
+            li.querySelector('.lista__categoria__item__produto').innerHTML = produtoAlterado.nome
+
+            if (li.querySelector('.lista__categoria__item__preco__definido__valor')) {
+                li.querySelector('.lista__categoria__item__preco__definido__valor').innerHTML = `${produtoAlterado.quantidade} x R$${produtoAlterado.preco}`
+                produtoAlterado.precoFinal = parseFloat((produtoAlterado.preco)).toFixed(2) * parseFloat((produtoAlterado.quantidade).replace(',', '.')).toFixed(2)
+                li.querySelector('.lista__categoria__item__preco__definido__texto').innerHTML = `R$${produtoAlterado.precoFinal.toFixed(2)}`
+            } else {
+                const precoProduto = criarPrecoDoProduto(produtoAlterado)
+                li.querySelector('.lista__categoria__lista__item__container').appendChild(precoProduto)
+                const form = li.querySelector('.lista__categoria__item__preco')
+                form.style.display = 'none'
+            }
+
+            arrayProdutos[acharProdutoNoArray(objetoProduto.id)] = produtoAlterado
+            localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+            verificarPrecoCategoria()
+            verificarPrecoFinalGeral()
+
+            li.querySelector('#formAlterarTarefa').remove()
+            btn.classList.remove('active')
+        })
+        li.appendChild(formulario)
+    } else {
+        li.querySelector('#formAlterarTarefa').remove()
+    }
+    console.log('aq')
+}
+function criarFormulario() {
+    const formularioAlterarTarefa = criarElemento('form', 'lista__categoria__lista__item__alterar__tarefa', 'formAlterarTarefa')
+
+    const containerAlterarNome = criarElemento('fieldset', 'alterar__tarefa__nome')
+    const labelTituloNome = criarElemento('label', 'alterar__tarefa__nome__titulo', 'nomeProduto', 'Nome do Produto:')
+    const inputNome = criarElemento('input', 'alterar__tarefa__nome__nome', 'nomeProduto')
+    inputNome.type = 'text'
+    containerAlterarNome.appendChild(labelTituloNome)
+    containerAlterarNome.appendChild(inputNome)
+
+    const containerTipo = criarElemento('fieldset', 'alterar__tarefa__tipo')
+    const labelTipo = criarElemento('label', 'alterar__tarefa__tipo__titulo', 'unidadeProduto', 'TIPO')
+    const selectTipo = criarElemento('select', 'alterar__tarefa__tipo__select', 'unidadeProduto')
+    const optionUN = criarOption('un')
+    const optionKG = criarOption('kg')
+    const optionG = criarOption('g')
+    const optionL = criarOption('l')
+    const optionML = criarOption('ml')
+    const optionDZ = criarOption('dz')
+    selectTipo.appendChild(optionUN)
+    selectTipo.appendChild(optionKG)
+    selectTipo.appendChild(optionG)
+    selectTipo.appendChild(optionL)
+    selectTipo.appendChild(optionML)
+    selectTipo.appendChild(optionDZ)
+    containerTipo.appendChild(labelTipo)
+    containerTipo.appendChild(selectTipo)
+
+    const containerCategoria = criarElemento('fieldset', 'alterar__tarefa__categoria')
+    const labelCategoria = criarElemento('label', 'alterar__tarefa__categoria__titulo', 'categoriaProduto', 'Categoria')
+    const selectCategoria = criarElemento('select', 'alterar__tarefa__categoria__select', 'categoriaProduto')
+    const optionMercearia = criarOption('Mercearia')
+    const optionPadaria = criarOption('Padaria')
+    const optionFrutasEVerduras = criarOption('Frutas e Verduras')
+    const optionCarnes = criarOption('Carnes')
+    const optionFrios = criarOption('Frios')
+    const optionLimpeza = criarOption('Limpeza')
+    const optionHigienePessoal = criarOption('Higiene Pessoal')
+    const optionPetz = criarOption('Petz')
+    const optionUtensiliosDomesticos = criarOption('Utensilios Domesticos')
+    const optionOutros = criarOption('Outros')
+    selectCategoria.appendChild(optionMercearia)
+    selectCategoria.appendChild(optionPadaria)
+    selectCategoria.appendChild(optionFrutasEVerduras)
+    selectCategoria.appendChild(optionCarnes)
+    selectCategoria.appendChild(optionFrios)
+    selectCategoria.appendChild(optionLimpeza)
+    selectCategoria.appendChild(optionHigienePessoal)
+    selectCategoria.appendChild(optionPetz)
+    selectCategoria.appendChild(optionUtensiliosDomesticos)
+    selectCategoria.appendChild(optionOutros)
+    containerCategoria.appendChild(labelCategoria)
+    containerCategoria.appendChild(selectCategoria)
+
+    const containerAlterarPreco = criarElemento('fieldset', 'alterar__tarefa__preco')
+    const labelTituloPreco = criarElemento('label', 'alterar__tarefa__preco__titulo', 'precoProduto', 'Preço:')
+    const inputTituloPreco = criarElemento('input', 'alterar__tarefa__preco__input', 'precoProduto')
+    containerAlterarPreco.appendChild(labelTituloPreco)
+    containerAlterarPreco.appendChild(inputTituloPreco)
+
+    const containerAlterarQuantidade = criarElemento('fieldset', 'alterar__tarefa__quantidade')
+    const labelTituloQuantidade = criarElemento('label', 'alterar__tarefa__quantidade__titulo', 'quantidadeProduto', 'QTDE.')
+    const inputTituloQuantidade = criarElemento('input', 'alterar__tarefa__quantidade__input', 'quantidadeProduto')
+    inputTituloQuantidade.type = 'text'
+    containerAlterarQuantidade.appendChild(labelTituloQuantidade)
+    containerAlterarQuantidade.appendChild(inputTituloQuantidade)
+
+    const containerBotoes = criarElemento('fieldset', 'alterar__tarefa__botoes')
+    const btnAdicionar = criarElemento('button', 'btn__alterar__adicionar', 'btnAlterarAdicionar', 'Adicionar')
+    btnAdicionar.type = 'submit'
+    const btnCancelar = criarElemento('button', 'btn__alterar__cancelar', 'btnAlterarCancelar', 'Cancelar')
+    btnCancelar.type = 'submit'
+    containerBotoes.appendChild(btnAdicionar)
+    containerBotoes.appendChild(btnCancelar)
+
+
+    formularioAlterarTarefa.appendChild(containerAlterarNome)
+    formularioAlterarTarefa.appendChild(containerTipo)
+    formularioAlterarTarefa.appendChild(containerCategoria)
+    formularioAlterarTarefa.appendChild(containerAlterarPreco)
+    formularioAlterarTarefa.appendChild(containerAlterarQuantidade)
+    formularioAlterarTarefa.appendChild(containerBotoes)
+    return formularioAlterarTarefa
+}
+
+function criarOption(valor) {
+    const option = document.createElement('option')
+    option.value = valor
+    option.innerHTML = valor
+    return option
+}   
