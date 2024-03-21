@@ -222,7 +222,6 @@ function inserirPrecoNoProduto(e) {
 
 function criarPrecoDoProduto(objetoProduto) {
     const div = criarElemento('div', 'lista__categoria__item__preco__definido')
-    console.log(objetoProduto.preco)
     const precoFinal = parseFloat(objetoProduto.quantidade.replace(',', '.')).toFixed(2) * parseFloat(objetoProduto.preco).toFixed(2)
     objetoProduto.precoFinal = precoFinal
     const p = criarElemento('p', 'lista__categoria__item__preco__definido__texto', '', `R$${parseFloat(precoFinal).toFixed(2)}`)
@@ -301,13 +300,13 @@ function verificarPrecoCategoria() {
     })
 }
 
-// Falta a lógica da categoria: se queiser alterar a categoria dentro do alterarTarefa
 function alterarTarefa(e, objetoProduto) {
     e.preventDefault()
     const btn = e.target
     btn.classList.toggle('active')
     const formulario = criarFormulario()
     const li = e.target.closest('.lista__categoria__lista__item')
+    
     if (btn.classList.contains('active')) {
         formulario.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -316,31 +315,43 @@ function alterarTarefa(e, objetoProduto) {
                 tipoUnidade: e.target['unidadeProduto'].value,
                 categoria: e.target['categoriaProduto'].value,
                 quantidade: e.target['quantidadeProduto'].value,
-                preco: parseFloat((e.target['precoProduto'].value).replace(',','.')).toFixed(2),
+                preco: e.target['precoProduto'].value ? parseFloat((e.target['precoProduto'].value).replace(',', '.')).toFixed(2) : 0,
                 itemPego: objetoProduto.itemPego,
                 id: objetoProduto.id,
                 precoFinal: 0
             }
-
-            li.querySelector('.lista__categoria__item__quantidade').innerHTML = produtoAlterado.quantidade
-            li.querySelector('.lista__categoria__item__produto').innerHTML = produtoAlterado.nome
-
-            if (li.querySelector('.lista__categoria__item__preco__definido__valor')) {
-                li.querySelector('.lista__categoria__item__preco__definido__valor').innerHTML = `${produtoAlterado.quantidade} x R$${produtoAlterado.preco}`
-                produtoAlterado.precoFinal = parseFloat((produtoAlterado.preco)).toFixed(2) * parseFloat((produtoAlterado.quantidade).replace(',', '.')).toFixed(2)
-                li.querySelector('.lista__categoria__item__preco__definido__texto').innerHTML = `R$${produtoAlterado.precoFinal.toFixed(2)}`
-            } else {
-                const precoProduto = criarPrecoDoProduto(produtoAlterado)
-                li.querySelector('.lista__categoria__lista__item__container').appendChild(precoProduto)
-                const form = li.querySelector('.lista__categoria__item__preco')
-                form.style.display = 'none'
-            }
-
             arrayProdutos[acharProdutoNoArray(objetoProduto.id)] = produtoAlterado
             localStorage.setItem("produtos", JSON.stringify(arrayProdutos))
+
+            const produtoAtual = document.querySelector(`[data-id="${objetoProduto.id}"]`)
+            
+            if (produtoAlterado.categoria === objetoProduto.categoria) {
+                console.log('categoria é a mesma')
+                li.querySelector('.lista__categoria__item__quantidade').innerHTML = produtoAlterado.quantidade
+                li.querySelector('.lista__categoria__item__produto').innerHTML = produtoAlterado.nome
+                console.log(produtoAlterado)
+                if(produtoAlterado.preco){
+                    const precoDoProduto = criarPrecoDoProduto(produtoAlterado)
+                    produtoAtual.querySelector('.lista__categoria__lista__item__container').appendChild(precoDoProduto)
+                    produtoAtual.querySelector('.lista__categoria__item__preco').style.display = 'none'
+                }
+            } else {
+                console.log('categoria diferente')
+                const novoProduto = criarProdutoDaLista(produtoAlterado)
+                const categoria = document.querySelector(`[data-categoria="${produtoAlterado.categoria}"]`)
+                if (categoria) {
+                    console.log('categoria existente')
+                    categoria.querySelector('.lista__categoria__lista').appendChild(novoProduto)
+                } else {
+                    console.log('tenho que criar uma nova categoria')
+                    const categoria = criarNovaCategoria(produtoAlterado)
+                    categoria.querySelector('.lista__categoria__lista').appendChild(novoProduto)
+                    lista.appendChild(categoria)
+                }
+                produtoAtual.remove()
+            }
             verificarPrecoCategoria()
             verificarPrecoFinalGeral()
-
             li.querySelector('#formAlterarTarefa').remove()
             btn.classList.remove('active')
         })
@@ -348,7 +359,6 @@ function alterarTarefa(e, objetoProduto) {
     } else {
         li.querySelector('#formAlterarTarefa').remove()
     }
-    console.log('aq')
 }
 function criarFormulario() {
     const formularioAlterarTarefa = criarElemento('form', 'lista__categoria__lista__item__alterar__tarefa', 'formAlterarTarefa')
@@ -440,4 +450,4 @@ function criarOption(valor) {
     option.value = valor
     option.innerHTML = valor
     return option
-}   
+}
