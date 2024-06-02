@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
@@ -54,6 +56,16 @@
   }
   100% {
     width: 100%;
+  }
+}
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
   }
 }
 * {
@@ -122,6 +134,16 @@ body {
   }
   100% {
     width: 100%;
+  }
+}
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
   }
 }
 .cabecalho {
@@ -226,6 +248,16 @@ body {
   }
   100% {
     width: 100%;
+  }
+}
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
   }
 }
 .offcanvas {
@@ -399,6 +431,16 @@ body {
     width: 100%;
   }
 }
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
+  }
+}
 .conteudo-banner {
   max-width: 90%;
   margin: 0 auto;
@@ -462,6 +504,16 @@ body {
     width: 100%;
   }
 }
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
+  }
+}
 .conteudo-funcionalidades {
   font-size: 1.4em;
   font-family: "Oswald", sans-serif;
@@ -521,6 +573,16 @@ body {
   }
   100% {
     width: 100%;
+  }
+}
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
   }
 }
 .conteudo-ancora {
@@ -591,10 +653,20 @@ body {
     width: 100%;
   }
 }
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
+  }
+}
 .conteudo-formulario {
   background-color: #D21312;
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 80px 1fr;
   max-width: 90%;
   margin: 0 auto;
   font-weight: 600;
@@ -664,6 +736,111 @@ body {
   margin-top: 0.5em;
   cursor: pointer;
 }
+.conteudo-formulario fieldset {
+  position: relative;
+}
+.conteudo-formulario fieldset .conteudo-formulario-produto-info .conteudo-formulario-produto-info-btn {
+  position: absolute;
+  top: 54%;
+  right: 1.5%;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+.conteudo-formulario fieldset .conteudo-formulario-produto-info .conteudo-formulario-produto-info-btn::before {
+  content: "Informe o nome do produto";
+  background-color: #ED2B2A;
+  box-shadow: 2px 2px 3px 1px #000;
+  color: #fff;
+  width: 100px;
+  position: absolute;
+  top: -260%;
+  left: -360%;
+  padding: 0.4em;
+  border-radius: 6px;
+  transition: 0.6s ease;
+  opacity: 0;
+  z-index: -5;
+  display: none;
+}
+.conteudo-formulario fieldset .conteudo-formulario-produto-info .conteudo-formulario-produto-info-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 15%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #000;
+  opacity: 0;
+  transition: 0.6s ease;
+  z-index: -5;
+  display: none;
+}
+.conteudo-formulario fieldset .conteudo-formulario-produto-info .conteudo-formulario-produto-info-btn:hover::before {
+  opacity: 1;
+  z-index: 5;
+  display: block;
+  animation: aparecerBaloes 0.6s ease;
+}
+.conteudo-formulario fieldset .conteudo-formulario-produto-info .conteudo-formulario-produto-info-btn:hover::after {
+  opacity: 1;
+  z-index: 5;
+  display: block;
+  animation: aparecerBaloes 0.6s ease;
+}
+.conteudo-formulario fieldset .conteudo-formulario-quantidade-info .conteudo-formulario-quantidade-info-btn {
+  position: absolute;
+  top: 54%;
+  right: 13%;
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+.conteudo-formulario fieldset .conteudo-formulario-quantidade-info .conteudo-formulario-quantidade-info-btn::before {
+  content: "Informe a quantidade, utilize como unidade de medida: un (padrão), g ou kg como unidade de medida";
+  background-color: #ED2B2A;
+  box-shadow: 2px 2px 3px 1px #000;
+  color: #fff;
+  width: 200px;
+  position: absolute;
+  top: -400%;
+  left: -360%;
+  padding: 0.4em;
+  border-radius: 6px;
+  transition: 0.6s ease;
+  opacity: 0;
+  display: none;
+}
+.conteudo-formulario fieldset .conteudo-formulario-quantidade-info .conteudo-formulario-quantidade-info-btn::after {
+  content: "";
+  position: absolute;
+  top: -37%;
+  left: 10%;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #000;
+  opacity: 0;
+  transition: 0.6s ease;
+  display: none;
+}
+.conteudo-formulario fieldset .conteudo-formulario-quantidade-info .conteudo-formulario-quantidade-info-btn:hover::before {
+  display: block;
+  opacity: 1;
+  z-index: 5;
+  animation: aparecerBaloes 0.6s ease;
+}
+.conteudo-formulario fieldset .conteudo-formulario-quantidade-info .conteudo-formulario-quantidade-info-btn:hover::after {
+  display: block;
+  opacity: 1;
+  z-index: 5;
+  animation: aparecerBaloes 0.6s ease;
+}
 
 @keyframes cores {
   0% {
@@ -715,12 +892,22 @@ body {
     width: 100%;
   }
 }
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
+  }
+}
 .rodape {
   background-color: #D21312;
   padding: 0.5em 1em;
   font-size: 1.1em;
   text-align: center;
-  margin-top: 2em;
+  margin-top: 1.5em;
   color: #fff;
   font-weight: 400;
   line-height: 1.25;
@@ -729,4 +916,114 @@ body {
   color: #0a0229;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+@keyframes cores {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes offcanvasAbrir {
+  0% {
+    left: 100%;
+    display: none;
+  }
+  100% {
+    left: 20%;
+    display: grid;
+  }
+}
+@keyframes offcanvasFechar {
+  0% {
+    left: 20%;
+    display: grid;
+  }
+  100% {
+    left: 100%;
+    display: none;
+  }
+}
+@keyframes flutuar {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 20px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes crescerBordaBottom {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
+  }
+}
+.conteudo-lista {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  row-gap: 1em;
+}
+.conteudo-lista .conteudo-lista-item {
+  max-width: 90%;
+  margin: 0 auto;
+  background-color: #D21312;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: #fff;
+}
+.conteudo-lista .conteudo-lista-item h3 {
+  font-size: 1.4em;
+  text-align: center;
+  padding: 0.2em 0;
+  margin-bottom: 0.5em;
+}
+.conteudo-lista .conteudo-lista-item ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4em;
+  padding: 0 0.5em 0.5em 0.5em;
+}
+.conteudo-lista .conteudo-lista-item ul li {
+  background-color: #100244;
+  border-radius: 4px;
+  font-size: 1.1em;
+  width: 100%;
+  height: 40px;
+  text-shadow: 1px 1px 2px #000;
+}
+.conteudo-lista .conteudo-lista-salvarCompra {
+  background-color: orange;
+  font-size: 1.4em;
+  font-weight: bold;
+  max-width: 90%;
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  text-align: center;
+  padding: 0.4em 0;
+  justify-content: center;
+  border-radius: 12px;
 }/*# sourceMappingURL=style.css.map */

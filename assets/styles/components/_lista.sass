@@ -1,0 +1,44 @@
+@import '../abstract/_variaveis'
+.conteudo-lista
+    display: flex
+    flex-direction: column
+    margin-top: 1em
+    row-gap: 1em
+    .conteudo-lista-item
+        max-width: 90%
+        margin: 0 auto
+        background-color: $vermelho-1
+        display: flex
+        flex-direction: column
+        width: 100%
+        color: $branco
+        h3
+            font-size: 1.4em
+            text-align: center
+            padding: .2em 0 
+            margin-bottom: .5em
+        ul
+            list-style-type: none
+            display: flex
+            flex-direction: column
+            row-gap: .4em
+            padding: 0 .5em .5em .5em
+            li
+                background-color: $azul-4
+                border-radius: 4px
+                font-size: 1.1em
+                width: 100%
+                height: 40px 
+                text-shadow: 1px 1px 2px $preto
+    .conteudo-lista-salvarCompra
+        background-color: orange
+        font-size: 1.4em
+        font-weight: bold
+        max-width: 90%
+        margin: 0 auto
+        display: flex
+        width: 100%
+        text-align: center
+        padding: .4em 0
+        justify-content: center
+        border-radius: 12px

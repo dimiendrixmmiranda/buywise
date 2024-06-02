@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buywise - Sua Lista de Compras Inteligente e Organizada!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="./assets/imgs/faveicon.png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/styles/style.css">
 </head>
@@ -16,7 +18,7 @@
             <div class="cabecalho-link-imagem">
                 <img src="./assets/imgs/logo-buywise.png" alt="">
             </div>
-            <div class="cabecalho-link-titulo"> 
+            <div class="cabecalho-link-titulo">
                 <h1>Buywise</h1>
             </div>
         </a>
@@ -27,25 +29,32 @@
     <main class="conteudo">
         <div class="conteudo-banner">
             <img src="./assets/imgs/banner.svg" alt="">
-            <h2 class="conteudo-banner-texto">Torne suas compras mais eficientes com uma lista inteligente e organizada!</h2>
+            <h2 class="conteudo-banner-texto">Torne suas compras mais eficientes com uma lista inteligente e organizada!
+            </h2>
         </div>
         <div class="conteudo-funcionalidades">
             <p>Como Buywise você: </p>
         </div>
         <a href="#formulario" class="conteudo-ancora">
             <i class="fa-solid fa-angles-down"></i>
-        </a>        
+        </a>
 
         <form action="" class="conteudo-formulario" id="formulario">
             <fieldset class="conteudo-formulario-produto">
                 <label for="produto">Produto:</label>
                 <input type="text" name="produto" id="produto">
+                <div class="conteudo-formulario-produto-info">
+                    <button class="conteudo-formulario-produto-info-btn"><i class="fa-solid fa-info"></i></button>
+                </div>
             </fieldset>
-            
+
             <fieldset class="conteudo-formulario-quantidade">
                 <label for="quantidade">Qtde</label>
                 <!-- depois testar essa pattern -->
                 <input type="text" name="quantidade" id="quantidade" pattern="\d+(,|\.)?\d+?(g|kg|un|)">
+                <div class="conteudo-formulario-quantidade-info">
+                    <button class="conteudo-formulario-quantidade-info-btn"><i class="fa-solid fa-info"></i></button>
+                </div>
             </fieldset>
 
             <fieldset class="conteudo-formulario-categoria">
@@ -64,10 +73,34 @@
             </fieldset>
             <button type="submit" class="conteudo-formulario-btn">Salvar Produto</button>
         </form>
+
+        <ul class="conteudo-lista">
+            <li class="conteudo-lista-item">
+                <h3>Produtos Gerais</h3>
+                <ul>
+                    <li>Arroz</li>
+                    <li>Feijão</li>
+                    <li>Macarrão</li>
+                    <li>Miojo</li>
+                </ul>
+            </li>
+            <li class="conteudo-lista-item">
+                <h3>Produtos Gerais</h3>
+                <ul>
+                    <li>Arroz</li>
+                    <li>Feijão</li>
+                    <li>Macarrão</li>
+                    <li>Miojo</li>
+                </ul>
+            </li>
+            <button class="conteudo-lista-salvarCompra">Salvar Compra</button>
+        </ul>
     </main>
 
     <footer class="rodape">
-        Projeto produzido e idealizado por <strong>Dimi Endrix Martins Miranda</strong> utilizando conceitos de HTML, CSS(SASS) e JavaScript, com foco em manipulação de DOM, LocalStorage e o uso da biblioteca HTML2Pdf. <strong>Projeto sem fins lucrativos!</strong> 
+        Projeto produzido e idealizado por <strong>Dimi Endrix Martins Miranda</strong> utilizando conceitos de HTML,
+        CSS(SASS) e JavaScript, com foco em manipulação de DOM, LocalStorage e o uso da biblioteca HTML2Pdf.
+        <strong>Projeto sem fins lucrativos!</strong>
     </footer>
     <div class="offcanvas" id="offcanvas">
         <h2 class="offcanvas-titulo">Menu <i class="fa-solid fa-bars-staggered"></i></h2>

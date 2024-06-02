@@ -29,7 +29,7 @@ $gradientEscuro: linear-gradient(45deg, $azul-1, $azul-2, $azul-3, $azul-4, $azu
 $gradientClaro: linear-gradient(45deg, $azul-7, $azul-8, $azul-9, $azul-10, $azul-11, $azul-12)
 $flutuarAncora: flutuar 1.2s ease infinite
 $animacaoCrescerBorda: crescerBordaBottom .8s ease-in-out
-
+$animacaoAparecerBaloes: aparecerBaloes .6s ease
 
 // fontes
 $fonte-primaria: "Passion One", sans-serif
@@ -74,3 +74,12 @@ $fonte-terciaria: "Oswald", sans-serif
         width: 0
     100%
         width: 100%
+
+@keyframes aparecerBaloes
+    0%
+        transition: .6s
+        opacity: 0
+    100%
+        transition: .6s
+        opacity: 1
+        

@@ -2,7 +2,7 @@
 .conteudo-formulario
     background-color: $vermelho-1
     display: grid
-    grid-template-columns: 60px 1fr
+    grid-template-columns: 80px 1fr
     max-width: 90%
     margin: 0 auto
     font-weight: 600
@@ -59,3 +59,102 @@
         box-shadow: 2px 2px 4px $preto
         margin-top: .5em
         cursor: pointer
+    fieldset
+        position: relative
+        .conteudo-formulario-produto-info
+            .conteudo-formulario-produto-info-btn
+                position: absolute
+                top: 54%
+                right: 1.5%
+                border: none
+                width: 20px
+                height: 20px
+                border-radius: 100%
+                &::before
+                    content: 'Informe o nome do produto'
+                    background-color: $vermelho-2
+                    box-shadow: 2px 2px 3px 1px $preto
+                    color: $branco
+                    width: 100px
+                    position: absolute
+                    top: -260%
+                    left: -360%
+                    padding: .4em
+                    border-radius: 6px
+                    transition: .6s ease
+                    opacity: 0
+                    z-index: -5
+                    display: none
+                &::after
+                    content: ''
+                    position: absolute
+                    top: -50%
+                    left: 15%
+                    width: 0
+                    height: 0
+                    border-left: 8px solid transparent
+                    border-right: 8px solid transparent
+                    border-top: 8px solid $preto
+                    opacity: 0
+                    transition: .6s ease
+                    z-index: -5
+                    display: none
+                &:hover
+                    &::before
+                        opacity: 1
+                        z-index: 5
+                        display: block
+                        animation: $animacaoAparecerBaloes
+                    &::after
+                        opacity: 1
+                        z-index: 5
+                        display: block
+                        animation: $animacaoAparecerBaloes
+        .conteudo-formulario-quantidade-info
+            .conteudo-formulario-quantidade-info-btn
+                position: absolute
+                top: 54%
+                right: 13%
+                border: none
+                width: 20px
+                height: 20px
+                border-radius: 100%
+                &::before
+                    content: 'Informe a quantidade, utilize como unidade de medida: un (padrão), g ou kg como unidade de medida'
+                    background-color: $vermelho-2
+                    box-shadow: 2px 2px 3px 1px $preto
+                    color: $branco
+                    width: 200px
+                    position: absolute
+                    top: -400%
+                    left: -360%
+                    padding: .4em
+                    border-radius: 6px
+                    transition: .6s ease
+                    opacity: 0
+                    display: none
+                &::after
+                    content: ''
+                    position: absolute
+                    top: -37%
+                    left: 10%
+                    width: 0
+                    height: 0
+                    border-left: 8px solid transparent
+                    border-right: 8px solid transparent
+                    border-top: 8px solid $preto
+                    opacity: 0
+                    transition: .6s ease
+                    display: none
+                &:hover
+                    &::before
+                        display: block
+                        opacity: 1
+                        z-index: 5
+                        animation: $animacaoAparecerBaloes
+
+                    &::after
+                        display: block
+                        opacity: 1
+                        z-index: 5
+                        animation: $animacaoAparecerBaloes
