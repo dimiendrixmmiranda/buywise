@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap')
+// cores
+$azul-1: #0b11b9
+$azul-2: #0c1194
+$azul-3: #0a0e70
+$azul-4: #100244
+$azul-5: #0a0229
+$azul-6: #0a0229
+
+$azul-7: #878bf5
+$azul-8: #5e63ff
+$azul-9: #393fe2
+$azul-10: #2228ee
+$azul-11: #0e15db
+$azul-12: #040ab9
+
+$vermelho-1: #D21312
+$vermelho-2: #ED2B2A
+$vermelho-3: #ff0000
+
+$branco: #fff
+$preto: #000
+
+$amarelo-1: #dbc500
+
+// animação
+$corBackground: cores 6s ease infinite
+$gradientEscuro: linear-gradient(45deg, $azul-1, $azul-2, $azul-3, $azul-4, $azul-5, $azul-6)
+$gradientClaro: linear-gradient(45deg, $azul-7, $azul-8, $azul-9, $azul-10, $azul-11, $azul-12)
+$flutuarAncora: flutuar 1.2s ease infinite
+$animacaoCrescerBorda: crescerBordaBottom .8s ease-in-out
+
+
+// fontes
+$fonte-primaria: "Passion One", sans-serif
+$fonte-secundaria: "Inter", sans-serif
+$fonte-terciaria: "Oswald", sans-serif
+
+
+@keyframes cores
+    0%
+        background-position: 0% 50%
+    50%
+        background-position: 100% 50%
+    100%
+        background-position: 0% 50%
+
+@keyframes offcanvasAbrir
+    0%
+        left: 100%
+        display: none
+    100%
+        left: 20%
+        display: grid
+
+@keyframes offcanvasFechar
+    0%
+        left: 20%
+        display: grid
+    100%
+        left: 100%
+        display: none
+
+@keyframes flutuar
+    0%
+        top: 0
+    50%
+        top: 20px
+    100%
+        top: 0
+        
+@keyframes crescerBordaBottom
+    0%
+        width: 0
+    100%
+        width: 100%
