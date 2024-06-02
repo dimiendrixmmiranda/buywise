@@ -42,18 +42,18 @@
         <form action="" class="conteudo-formulario" id="formulario">
             <fieldset class="conteudo-formulario-produto">
                 <label for="produto">Produto:</label>
-                <input type="text" name="produto" id="produto">
+                <input type="text" name="produto" id="produto" autocomplete="off">
                 <div class="conteudo-formulario-produto-info">
-                    <button class="conteudo-formulario-produto-info-btn"><i class="fa-solid fa-info"></i></button>
+                    <button tabindex="1" class="conteudo-formulario-produto-info-btn" type="button"><i class="fa-solid fa-info"></i></button>
                 </div>
             </fieldset>
 
             <fieldset class="conteudo-formulario-quantidade">
                 <label for="quantidade">Qtde</label>
                 <!-- depois testar essa pattern -->
-                <input type="text" name="quantidade" id="quantidade" pattern="\d+(,|\.)?\d+?(g|kg|un|)">
+                <input type="text" name="quantidade" id="quantidade" autocomplete="off" pattern="\d+(\,|\.)?(un|g|kg)?">
                 <div class="conteudo-formulario-quantidade-info">
-                    <button class="conteudo-formulario-quantidade-info-btn"><i class="fa-solid fa-info"></i></button>
+                    <button tabindex="1" class="conteudo-formulario-quantidade-info-btn" type="button"><i class="fa-solid fa-info"></i></button>
                 </div>
             </fieldset>
 
@@ -78,22 +78,55 @@
             <li class="conteudo-lista-item">
                 <h3>Produtos Gerais</h3>
                 <ul>
-                    <li>Arroz</li>
-                    <li>Feijão</li>
-                    <li>Macarrão</li>
-                    <li>Miojo</li>
+                    <li class="conteudo-lista-item-produto">
+                        <div class="conteudo-produto">
+                            <p class="p-quantidade">500g</p>
+                            <p class="p-produto">Arroz</p>
+                            <div class="p-inserirPreco">
+                                <label for="p-inserirPreco">Inserir Preço</label>
+                                <input type="text" name="p-inserirPreco" id="p-inserirPreco" autocomplete="off">
+                                <button><i class="fa-solid fa-check"></i></button>
+                            </div>
+                            <div class="p-botoes">
+                                <button class="p-botoes-concluir"><i class="fa-solid fa-check"></i></button>
+                                <button class="p-botoes-excluir"><i class="fa-solid fa-xmark"></i></button>
+                                <button class="p-botoes-alterar"><i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+                        </div>
+                        <form class="conteudo-alterar-produto">
+                            <fieldset class="novo-nome-produto">
+                                <label for="novoNomeProduto">Novo nome do produto:</label>
+                                <input type="text" name="novoNomeProduto" id="novoNomeProduto">
+                            </fieldset>
+                            <fieldset class="novo-quantidade-produto">
+                                <label for="novaQuantidadeProduto">Qtde</label>
+                                <input type="text" name="novaQuantidadeProduto" id="novaQuantidadeProduto">
+                            </fieldset>
+                            <fieldset class="novo-categoria-produto">
+                                <label for="novaCategoria">Categoria</label>
+                                <select name="novaCategoria" id="novaCategoria">
+                                    <option>Selecione</option>
+                                    <option value="produtos-gerais">Produtos Gerais</option>
+                                    <option value="produtos-gerais">Carnes</option>
+                                    <option value="produtos-gerais">Bebidas</option>
+                                    <option value="produtos-gerais">Produtos de Limpeza</option>
+                                    <option value="produtos-gerais">Higiene Pessoal</option>
+                                    <option value="produtos-gerais">Padaria</option>
+                                    <option value="produtos-gerais">PetShop</option>
+                                    <option value="produtos-gerais">Utensílios Domésticos</option>
+                                </select>
+                            </fieldset>
+                            <button class="salvar-alteracao-produto">Salvar Alteração</button>
+                        </form>
+                    </li>
                 </ul>
+                <div class="conteudo-lista-item-precoFinal">
+                    <p>Preço final da categoria:</p>
+                    <p>R$59,90</p>
+                </div>
+                <button class="conteudo-lista-item-excluirLista"><i class="fa-solid fa-x"></i></button>
             </li>
-            <li class="conteudo-lista-item">
-                <h3>Produtos Gerais</h3>
-                <ul>
-                    <li>Arroz</li>
-                    <li>Feijão</li>
-                    <li>Macarrão</li>
-                    <li>Miojo</li>
-                </ul>
-            </li>
-            <button class="conteudo-lista-salvarCompra">Salvar Compra</button>
+            <button class="conteudo-lista-salvarCompra">Finalizar Compra</button>
         </ul>
     </main>
 

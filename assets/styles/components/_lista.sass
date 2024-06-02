@@ -5,17 +5,18 @@
     margin-top: 1em
     row-gap: 1em
     .conteudo-lista-item
-        max-width: 90%
+        max-width: 95%
         margin: 0 auto
         background-color: $vermelho-1
         display: flex
         flex-direction: column
         width: 100%
         color: $branco
+        position: relative
         h3
             font-size: 1.4em
             text-align: center
-            padding: .2em 0 
+            padding: .2em 0
             margin-bottom: .5em
         ul
             list-style-type: none
@@ -23,18 +24,148 @@
             flex-direction: column
             row-gap: .4em
             padding: 0 .5em .5em .5em
-            li
+            .conteudo-lista-item-produto
                 background-color: $azul-4
                 border-radius: 4px
-                font-size: 1.1em
+                font-size: .9em
                 width: 100%
-                height: 40px 
                 text-shadow: 1px 1px 2px $preto
+                display: grid
+                grid-template-rows: 45px auto
+                .conteudo-produto
+                    display: grid
+                    grid-template-columns: 15% 1fr 25% 20%
+                    width: 100%
+                    height: 100%
+                    .p-quantidade
+                        grid-column: 1/2
+                        width: 100%
+                        height: 100%
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                    .p-produto
+                        grid-column: 2/3
+                        width: 100%
+                        height: 100%
+                        display: flex
+                        align-items: center
+                        padding: 0 .2em
+                        overflow-x: scroll
+                        overflow-y: hidden
+                        white-space: nowrap
+                    .p-inserirPreco
+                        grid-column: 3/4
+                        padding: .4em
+                        display: flex
+                        flex-direction: column
+                        font-size: .7em
+                        text-align: center
+                        align-items: center
+                        justify-content: center
+                        position: relative
+                        input
+                            width: 100%
+                        button
+                            position: absolute
+                            top: 41%
+                            right: 2%
+                            font-size: 1em
+                            width: 20px
+                            height: 20px
+                            border-radius: 4px
+                            background-color: $verde-1
+                            color: $branco
+                    .p-botoes
+                        display: grid
+                        grid-template-columns: repeat(2, 50%)
+                        width: 100%
+                        height: 100%
+                        overflow: hidden
+                        padding: .2em
+                        gap: .1em
+                        cursor: pointer
+                        grid-column: 4/5
+                        button
+                            border: none
+                        .p-botoes-concluir
+                            font-size: .6em
+                            font-weight: bold
+                            background-color: $verde-1
+                            color: $branco
+                            grid-column: 1/3
+                        .p-botoes-excluir
+                            font-size: .5em
+                            grid-column: 1/2
+                            background-color: $vermelho-1
+                            color: $branco
+                        .p-botoes-alterar
+                            font-size: .5em
+                            grid-column: 2/3
+                            background-color: $amarelo-1
+                            color: $preto
+                .conteudo-alterar-produto
+                    z-index: 10
+                    background-color: $vermelho-2
+                    padding: .5em
+                    display: grid
+                    grid-template-columns: 60px 1fr
+                    row-gap: .6em
+                    box-shadow: 0px 0px 4px 2px $preto
+                    display: none
+                    fieldset
+                        border: none
+                        input, select
+                            width: 100%
+                            height: 25px
+                            padding: 0 .5em
+                    .novo-nome-produto
+                        grid-column: 1/3
+                        width: 100%
+                        height: 100%
+                        input
+                            width: 100%
+                    .salvar-alteracao-produto
+                        grid-column: 1/3
+                        font-size: 1.2em
+                        padding: .4em 0
+                        font-weight: bold
+                        text-transform: uppercase
+                        background-color: $verde-1
+                        border-radius: 4px
+                        border: none
+                        color: $branco
+        .conteudo-lista-item-excluirLista
+            position: absolute
+            top: 5px
+            right: 5px
+            width: 25px
+            height: 25px
+            font-size: 1em
+            border-radius: 50%
+            background-color: $branco
+            color: $vermelho-1
+            border: none
+            box-shadow: 0 0 3px 2px $preto
+        .conteudo-lista-item-precoFinal
+            background-color: $vermelho-2
+            box-shadow: 0 0 3px 1px $preto
+            padding: .4em
+            p
+                text-align: center
+                &:first-child
+                    font-size: 1.2em
+                    font-family: $fonte-secundaria
+                    font-weight: bold
+                &:last-child
+                    font-size: 2.6em
+                    font-family: $fonte-primaria
     .conteudo-lista-salvarCompra
-        background-color: orange
+        background-color: $verde-1
+        color: $branco
         font-size: 1.4em
         font-weight: bold
-        max-width: 90%
+        max-width: 95%
         margin: 0 auto
         display: flex
         width: 100%
@@ -42,3 +173,4 @@
         padding: .4em 0
         justify-content: center
         border-radius: 12px
+        z-index: 1
