@@ -2,7 +2,7 @@
 .conteudo-lista
     display: flex
     flex-direction: column
-    margin-top: 1em
+    margin-top: 2em
     row-gap: 1em
     .conteudo-lista-item
         max-width: 95%
@@ -23,7 +23,7 @@
             display: flex
             flex-direction: column
             row-gap: .4em
-            padding: 0 .5em .5em .5em
+            padding: 0 .5em 1.5em .5em
             .conteudo-lista-item-produto
                 background-color: $azul-4
                 border-radius: 4px
@@ -64,11 +64,13 @@
                         align-items: center
                         justify-content: center
                         position: relative
+                        label
+                            margin-bottom: .3em
                         input
                             width: 100%
                         button
                             position: absolute
-                            top: 41%
+                            top: 45%
                             right: 2%
                             font-size: 1em
                             width: 20px
@@ -95,12 +97,12 @@
                             color: $branco
                             grid-column: 1/3
                         .p-botoes-excluir
-                            font-size: .5em
+                            font-size: .8em
                             grid-column: 1/2
                             background-color: $vermelho-1
                             color: $branco
                         .p-botoes-alterar
-                            font-size: .5em
+                            font-size: .8em
                             grid-column: 2/3
                             background-color: $amarelo-1
                             color: $preto
@@ -158,7 +160,7 @@
                     font-family: $fonte-secundaria
                     font-weight: bold
                 &:last-child
-                    font-size: 2.6em
+                    font-size: 2.2em
                     font-family: $fonte-primaria
     .conteudo-lista-salvarCompra
         background-color: $verde-1
