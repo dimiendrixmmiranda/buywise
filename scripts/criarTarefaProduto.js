@@ -1,4 +1,9 @@
+import { arrayDeCompras } from "./arrayDeCompras.js"
 import { criarElemento } from "./criarElemento.js"
+import { concluirProduto, excluirItemDaLista, excluirLista } from "./crud.js"
+import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
+
+const listaDeCategorias = document.querySelector('.conteudo-lista')
 
 export function criarTarefaProduto(objetoProduto) {
 
@@ -8,36 +13,52 @@ export function criarTarefaProduto(objetoProduto) {
         const categoriaAtual = categoria
         const listaDaCategoriaAtual = categoriaAtual.querySelector('ul')
         const tarefa = criarTarefa(objetoProduto)
-        console.log(listaDaCategoriaAtual)
-        console.log(tarefa)
+        listaDaCategoriaAtual.appendChild(tarefa)
     } else {
-        console.log('tem que criar a categoria')
+        const categoriaAtual = criarNovaCategoria(objetoProduto)
+        const listaDaCategoriaAtual = categoriaAtual.querySelector('ul')
+        const tarefa = criarTarefa(objetoProduto)
+        listaDaCategoriaAtual.appendChild(tarefa)
+        listaDeCategorias.appendChild(categoriaAtual)
     }
-
-    // const quantidadeProduto = criarElemento('p', objetoProduto.quantidade, 'p-quantidade')
-    // const nomeProduto = criarElemento('p', objetoProduto.nome, 'p-produto')
-    // console.log(quantidadeProduto)
 }
 
 function criarTarefa(objetoProduto) {
     const li = criarElemento('li', '', 'conteudo-lista-item-produto')
+    li.dataset.id = objetoProduto.id
     const conteudoProduto = criarElemento('div', '', 'conteudo-produto')
     const pQuantidade = criarElemento('p', objetoProduto.quantidade, 'p-quantidade')
-    const pProduto = criarElemento('p', objetoProduto.produto, 'p-produto')
+    const pProduto = criarElemento('p', capitalizeFirstLetter(objetoProduto.nome.split(' ')).join(' '), 'p-produto')
 
     const divInserirPreco = criarElemento('div', '', 'p-inserirPreco')
     const label = criarElemento('label', 'Inserir Preço')
     label.setAttribute('for', 'p-inserirPreco')
-    const input = criarElemento('input', '', '', 'p-inserirPreco', 'text')
-    input.setAttribute('autocomplete', 'off')
+    const inputInserirPreco = criarElemento('input', '', '', 'p-inserirPreco', 'text')
+    inputInserirPreco.setAttribute('autocomplete', 'off')
+    inputInserirPreco.value = 'R$'
     const button = criarElemento('button', '<i class="fa-solid fa-check"></i>', '', '', 'button')
+    button.addEventListener('click', (e) => {inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido)})
+
     divInserirPreco.appendChild(label)
-    divInserirPreco.appendChild(input)
+    divInserirPreco.appendChild(inputInserirPreco)
     divInserirPreco.appendChild(button)
+
+    const divPrecoInserido = criarElemento('div', '', 'p-precoInserido')
+    const p1 = criarElemento('p', `${objetoProduto.quantidade} x R$${objetoProduto.preco.toFixed(2)}`)
+    const p2 = criarElemento('p', `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`)
+    const btnPrecoInserido = criarElemento('button', 'Alterar preço')
+    btnPrecoInserido.addEventListener('click', (e) => alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserido, inputInserirPreco))
+    divPrecoInserido.appendChild(p1)
+    divPrecoInserido.appendChild(p2)
+    divPrecoInserido.appendChild(btnPrecoInserido)
 
     const divBotoes = criarElemento('div', '', 'p-botoes')
     const btnConcluir = criarElemento('button', '<i class="fa-solid fa-check"></i>', 'p-botoes-concluir')
+    btnConcluir.addEventListener('click', (e) => concluirProduto(e))
+
     const btnExcluir = criarElemento('button', '<i class="fa-solid fa-xmark"></i>', 'p-botoes-excluir')
+    btnExcluir.addEventListener('click', (e) => excluirItemDaLista(e))
+
     const btnAlterar = criarElemento('button', '<i class="fa-solid fa-pen-to-square"></i>', 'p-botoes-alterar')
     divBotoes.appendChild(btnConcluir)
     divBotoes.appendChild(btnExcluir)
@@ -46,6 +67,7 @@ function criarTarefa(objetoProduto) {
     conteudoProduto.appendChild(pQuantidade)
     conteudoProduto.appendChild(pProduto)
     conteudoProduto.appendChild(divInserirPreco)
+    conteudoProduto.appendChild(divPrecoInserido)
     conteudoProduto.appendChild(divBotoes)
 
     const formulario = criarElemento('form', '', 'conteudo-alterar-produto')
@@ -69,8 +91,8 @@ function criarTarefa(objetoProduto) {
     const novoCategoriaProduto = criarElemento('fieldset', '', 'novo-categoria-produto')
     const labelNovaCategoria = criarElemento('label', 'QTDE')
     labelNovaCategoria.setAttribute('for', 'novaQuantidadeProduto')
-    // tem que arrumar os values
-    const selectCategoria = criarElemento('select', '<option>Selecione</option><option value="produtos-gerais">Produtos Gerais</option><option value="produtos-gerais">Carnes</option><option value="produtos-gerais">Bebidas</option><option value="produtos-gerais">Produtos de Limpeza</option><option value="produtos-gerais">Higiene Pessoal</option><option value="produtos-gerais">Padaria</option><option value="produtos-gerais">PetShop</option><option value="produtos-gerais">Utensílios Domésticos</option>', '', 'novaCategoria')
+
+    const selectCategoria = criarElemento('select', '<option>Selecione</option><option value="produtos-gerais">Produtos Gerais</option><option value="carnes">Carnes</option><option value="bebidas">Bebidas</option><option value="produtos-de-limpeza">Produtos de Limpeza</option><option value="higiene-pessoal">Higiene Pessoal</option><option value="padaria">Padaria</option><option value="petshop">PetShop</option><option value="utensilios-domesticos">Utensílios Domésticos</option>', '', 'novaCategoria')
     novoCategoriaProduto.appendChild(labelNovaCategoria)
     novoCategoriaProduto.appendChild(selectCategoria)
 
@@ -80,8 +102,92 @@ function criarTarefa(objetoProduto) {
     formulario.appendChild(novoCategoriaProduto)
     formulario.appendChild(btnSalvarAlterarcao)
 
-        
     li.appendChild(conteudoProduto)
     li.appendChild(formulario)
+
+    verificarSeOItemFoiPego(objetoProduto, li)
+    verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divInserirPreco)
+
     return li
+}
+
+function criarNovaCategoria(objetoProduto) {
+    const li = criarElemento('li', '', 'conteudo-lista-item')
+    li.dataset.categoria = objetoProduto.categoria
+
+
+    const titulo = criarElemento('h3', capitalizeFirstLetter(objetoProduto.categoria.split('-')).join(' '))
+    const listaDeTarefas = criarElemento('ul')
+
+    const divConteudoPrecoFinal = criarElemento('div', '', 'conteudo-lista-item-precoFinal')
+    const p1 = criarElemento('p', 'Preço final da categoria:')
+    const p2 = criarElemento('p', 'R$0,00')
+    divConteudoPrecoFinal.appendChild(p1)
+    divConteudoPrecoFinal.appendChild(p2)
+
+    const btnExcluirLista = criarElemento('button', '<i class="fa-solid fa-x"></i>', 'conteudo-lista-item-excluirLista')
+    btnExcluirLista.addEventListener('click', (e) => excluirLista(e))
+
+    li.appendChild(titulo)
+    li.appendChild(listaDeTarefas)
+    li.appendChild(divConteudoPrecoFinal)
+    li.appendChild(btnExcluirLista)
+    return li
+}
+
+function capitalizeFirstLetter(arrayString) {
+    const array = []
+    arrayString.forEach(palavra => {
+        array.push(palavra.charAt(0).toUpperCase() + palavra.slice(1))
+    });
+    return array
+}
+
+function verificarSeOItemFoiPego(objetoProduto, li) {
+    if (objetoProduto.itemPego) {
+        li.classList.add('concluido')
+        li.querySelector('.p-precoInserido').style.backgroundColor = '#1ebe5e'
+        li.querySelector('.p-inserirPreco').style.backgroundColor = '#1ebe5e'
+    } else {
+        li.classList.remove('concluido')
+        li.querySelector('.p-precoInserido').style.backgroundColor = '#17025f'
+        li.querySelector('.p-inserirPreco').style.backgroundColor = '#17025f'
+    }
+}
+
+function verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divInserirPreco){
+    if(objetoProduto.preco != 0){
+        console.log('tenho preco')
+        divPrecoInserido.style.display = 'flex'
+        divInserirPreco.style.display = 'none'
+    }else{
+        divInserirPreco.style.display = 'flex'
+        divPrecoInserido.style.display = 'none'
+        console.log('não tenho preco')
+    }
+}
+
+function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido){
+    const input = e.target.closest('.p-inserirPreco').querySelector('input') 
+    const precoFormatado = parseFloat(input.value.split('R$')[1].replace(',', '.'))
+    
+    objetoProduto.preco = precoFormatado
+    objetoProduto.precoFinal = objetoProduto.quantidade * precoFormatado
+
+    divInserirPreco.style.display = 'none'
+    divPrecoInserido.style.display = 'flex'
+    const ps = divPrecoInserido.querySelectorAll('p')
+    ps[0].innerHTML = `${objetoProduto.quantidade} x R$${objetoProduto.preco.toFixed(2)}`
+    ps[1].innerHTML = `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`
+    escreverInformacoesNoLocalStorage()
+}
+
+function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserido, inputInserirPreco){
+    console.log(e)
+    objetoProduto.preco = 0
+    objetoProduto.precoFinal = 0
+    divInserirPreco.style.display = 'flex'
+    divPrecoInserido.style.display = 'none'
+    inputInserirPreco.value = 'R$'
+    escreverInformacoesNoLocalStorage()
 }
