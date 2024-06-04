@@ -38,6 +38,9 @@ $gradientClaro: linear-gradient(45deg, $azul-7, $azul-8, $azul-9, $azul-10, $azu
 $flutuarAncora: flutuar 1.2s ease infinite
 $animacaoCrescerBorda: crescerBordaBottom .8s ease-in-out
 $animacaoAparecerBaloes: aparecerBaloes .6s ease
+$animarFormularioAlterarTarefa: animarFormularioAlterarTarefaAbrir .6s ease
+$animarFormularioAlterarTarefa: animarFormularioAlterarTarefaFechar .6s ease
+
 
 // fontes
 $fonte-primaria: "Passion One", sans-serif
@@ -91,4 +94,16 @@ $fonte-dinheiro: "DollarBill", sans-serif
     100%
         transition: .6s
         opacity: 1
+        
+@keyframes animarFormularioAlterarTarefaAbrir
+    0%
+        top: -100%
+    100%
+        top: 0%
+        
+@keyframes animarFormularioAlterarTarefaFechar
+    0%
+        top: 0%
+    100%
+        top: -100%
         

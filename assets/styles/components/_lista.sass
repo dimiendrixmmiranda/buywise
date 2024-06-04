@@ -34,6 +34,7 @@
                 text-shadow: 1px 1px 2px $preto
                 display: grid
                 grid-template-rows: 50px auto
+                position: relative
                 .conteudo-produto
                     display: grid
                     grid-template-columns: 15% 1fr 27% 20%
@@ -130,7 +131,6 @@
                         overflow: hidden
                         padding: .2em
                         gap: .1em
-                        cursor: pointer
                         grid-column: 4/5
                         button
                             border: none
@@ -153,14 +153,16 @@
                             background-color: $amarelo-1
                             color: $preto
                 .conteudo-alterar-produto
-                    z-index: 10
                     background-color: $vermelho-2
                     padding: .5em
                     display: grid
                     grid-template-columns: 60px 1fr
                     row-gap: .6em
-                    box-shadow: 0px 0px 4px 2px $preto
+                    box-shadow: 0px 0px 2px 1px $preto
                     display: none
+                    position: absolute
+                    bottom: 0
+                    left: 0
                     fieldset
                         border: none
                         input, select

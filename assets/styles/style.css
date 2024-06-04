@@ -73,6 +73,22 @@
     opacity: 1;
   }
 }
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -153,6 +169,22 @@ body {
   100% {
     transition: 0.6s;
     opacity: 1;
+  }
+}
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
   }
 }
 .cabecalho {
@@ -271,6 +303,22 @@ body {
   100% {
     transition: 0.6s;
     opacity: 1;
+  }
+}
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
   }
 }
 .offcanvas {
@@ -458,6 +506,22 @@ body {
     opacity: 1;
   }
 }
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
+  }
+}
 .conteudo-banner {
   max-width: 90%;
   margin: 0 auto;
@@ -535,6 +599,22 @@ body {
     opacity: 1;
   }
 }
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
+  }
+}
 .conteudo-funcionalidades {
   font-size: 1.4em;
   font-family: "Oswald", sans-serif;
@@ -608,6 +688,22 @@ body {
   100% {
     transition: 0.6s;
     opacity: 1;
+  }
+}
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
   }
 }
 .conteudo-ancora {
@@ -691,6 +787,22 @@ body {
   100% {
     transition: 0.6s;
     opacity: 1;
+  }
+}
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
   }
 }
 .conteudo-formulario {
@@ -936,6 +1048,22 @@ body {
     opacity: 1;
   }
 }
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
+  }
+}
 .rodape {
   background-color: #D21312;
   padding: 0.5em 1em;
@@ -1016,6 +1144,22 @@ body {
     opacity: 1;
   }
 }
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
+  }
+}
 .conteudo-lista {
   display: flex;
   flex-direction: column;
@@ -1056,6 +1200,7 @@ body {
   text-shadow: 1px 1px 2px #000;
   display: grid;
   grid-template-rows: 50px auto;
+  position: relative;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto {
   display: grid;
@@ -1165,7 +1310,6 @@ body {
   overflow: hidden;
   padding: 0.2em;
   gap: 0.1em;
-  cursor: pointer;
   grid-column: 4/5;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-botoes button {
@@ -1193,14 +1337,16 @@ body {
   color: #000;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-alterar-produto {
-  z-index: 10;
   background-color: #ED2B2A;
   padding: 0.5em;
   display: grid;
   grid-template-columns: 60px 1fr;
   row-gap: 0.6em;
-  box-shadow: 0px 0px 4px 2px #000;
+  box-shadow: 0px 0px 2px 1px #000;
   display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-alterar-produto fieldset {
   border: none;
@@ -1339,6 +1485,22 @@ body {
   100% {
     transition: 0.6s;
     opacity: 1;
+  }
+}
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
   }
 }
 .conteudo-precoFinalCompra {

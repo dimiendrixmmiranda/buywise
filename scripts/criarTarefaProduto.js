@@ -1,6 +1,7 @@
 import { arrayDeCompras } from "./arrayDeCompras.js"
+import { capitalizeFirstLetter } from "./capitalizeFirstLetter.js"
 import { criarElemento } from "./criarElemento.js"
-import { concluirProduto, excluirItemDaLista, excluirLista } from "./crud.js"
+import { alterarProduto, concluirProduto, excluirItemDaLista, excluirLista } from "./crud.js"
 import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
 import {verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
 
@@ -61,6 +62,8 @@ function criarTarefa(objetoProduto) {
     btnExcluir.addEventListener('click', (e) => excluirItemDaLista(e))
 
     const btnAlterar = criarElemento('button', '<i class="fa-solid fa-pen-to-square"></i>', 'p-botoes-alterar')
+    btnAlterar.addEventListener('click', (e) => alterarProduto(e, formulario, objetoProduto))
+
     divBotoes.appendChild(btnConcluir)
     divBotoes.appendChild(btnExcluir)
     divBotoes.appendChild(btnAlterar)
@@ -93,7 +96,7 @@ function criarTarefa(objetoProduto) {
     const labelNovaCategoria = criarElemento('label', 'QTDE')
     labelNovaCategoria.setAttribute('for', 'novaQuantidadeProduto')
 
-    const selectCategoria = criarElemento('select', '<option>Selecione</option><option value="produtos-gerais">Produtos Gerais</option><option value="carnes">Carnes</option><option value="bebidas">Bebidas</option><option value="produtos-de-limpeza">Produtos de Limpeza</option><option value="higiene-pessoal">Higiene Pessoal</option><option value="padaria">Padaria</option><option value="petshop">PetShop</option><option value="utensilios-domesticos">Utensílios Domésticos</option>', '', 'novaCategoria')
+    const selectCategoria = criarElemento('select', '<option data-selected="0">Selecione</option><option value="produtos-gerais" data-selected="1">Produtos Gerais</option><option value="carnes" data-selected="2">Carnes</option><option value="frutas-verduras" data-selected="3">Frutas/Verduras</option><option value="bebidas" data-selected="4">Bebidas</option><option value="produtos-de-limpeza" data-selected="5">Produtos de Limpeza</option><option value="higiene-pessoal" data-selected="6">Higiene Pessoal</option><option value="padaria" data-selected="7">Padaria</option><option value="petshop" data-selected="8">PetShop</option><option value="utensilios-domesticos" data-selected="9">Utensílios Domésticos</option>', '', 'novaCategoria')
     novoCategoriaProduto.appendChild(labelNovaCategoria)
     novoCategoriaProduto.appendChild(selectCategoria)
 
@@ -133,14 +136,6 @@ function criarNovaCategoria(objetoProduto) {
     li.appendChild(divConteudoPrecoFinal)
     li.appendChild(btnExcluirLista)
     return li
-}
-
-function capitalizeFirstLetter(arrayString) {
-    const array = []
-    arrayString.forEach(palavra => {
-        array.push(palavra.charAt(0).toUpperCase() + palavra.slice(1))
-    });
-    return array
 }
 
 function verificarSeOItemFoiPego(objetoProduto, li) {
