@@ -1,6 +1,7 @@
 import { acharProdutoPeloId } from "./acharProdutoPeloId.js"
 import { arrayDeCompras } from "./arrayDeCompras.js"
 import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
+import { verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
 
 export function excluirLista(e) {
     const listaDeProdutos = e.target.closest('.conteudo-lista-item').querySelectorAll('ul li')
@@ -14,6 +15,8 @@ export function excluirLista(e) {
     })
     // removendo visualmente
     e.target.closest('.conteudo-lista-item').remove()
+    verificarPrecoFinalDaCategoriaGeral()
+    verificarPrecoFinalGeralCompra() 
 }
 
 export function excluirItemDaLista(e) {
@@ -27,6 +30,8 @@ export function excluirItemDaLista(e) {
     } else {
         lista.remove() // removendo visualmente
     }
+    verificarPrecoFinalDaCategoriaGeral()
+    verificarPrecoFinalGeralCompra() 
     escreverInformacoesNoLocalStorage()
 }
 

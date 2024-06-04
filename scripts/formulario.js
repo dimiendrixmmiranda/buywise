@@ -3,11 +3,14 @@ import { criarTarefaProduto } from "./criarTarefaProduto.js"
 import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
 import { gerarId } from "./gerarId.js"
 import { limparCampos } from "./limparCampos.js"
+import { verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
 
 const formulario = document.querySelector('#formulario')
 arrayDeCompras[0].forEach(produto => {
     criarTarefaProduto(produto)
 });
+verificarPrecoFinalDaCategoriaGeral()
+verificarPrecoFinalGeralCompra()
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -22,7 +25,7 @@ formulario.addEventListener('submit', (e) => {
         categoria: inputCategoria.value,
         id: gerarId(),
         itemPego: false,
-        preco: 0, 
+        preco: 0,
         precoFinal: 0
     }
     arrayDeCompras[0].push(objetoProduto)

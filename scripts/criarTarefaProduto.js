@@ -2,6 +2,7 @@ import { arrayDeCompras } from "./arrayDeCompras.js"
 import { criarElemento } from "./criarElemento.js"
 import { concluirProduto, excluirItemDaLista, excluirLista } from "./crud.js"
 import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
+import {verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
 
 const listaDeCategorias = document.querySelector('.conteudo-lista')
 
@@ -107,7 +108,6 @@ function criarTarefa(objetoProduto) {
 
     verificarSeOItemFoiPego(objetoProduto, li)
     verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divInserirPreco)
-
     return li
 }
 
@@ -121,7 +121,7 @@ function criarNovaCategoria(objetoProduto) {
 
     const divConteudoPrecoFinal = criarElemento('div', '', 'conteudo-lista-item-precoFinal')
     const p1 = criarElemento('p', 'Preço final da categoria:')
-    const p2 = criarElemento('p', 'R$0,00')
+    const p2 = criarElemento('p', 'R$0,00', '', 'precoFinal')
     divConteudoPrecoFinal.appendChild(p1)
     divConteudoPrecoFinal.appendChild(p2)
 
@@ -156,14 +156,14 @@ function verificarSeOItemFoiPego(objetoProduto, li) {
 }
 
 function verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divInserirPreco){
+    // tem preço
     if(objetoProduto.preco != 0){
-        console.log('tenho preco')
         divPrecoInserido.style.display = 'flex'
         divInserirPreco.style.display = 'none'
     }else{
+        // não tem preço
         divInserirPreco.style.display = 'flex'
         divPrecoInserido.style.display = 'none'
-        console.log('não tenho preco')
     }
 }
 
@@ -179,6 +179,9 @@ function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInseri
     const ps = divPrecoInserido.querySelectorAll('p')
     ps[0].innerHTML = `${objetoProduto.quantidade} x R$${objetoProduto.preco.toFixed(2)}`
     ps[1].innerHTML = `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`
+
+    verificarPrecoFinalDaCategoriaGeral()
+    verificarPrecoFinalGeralCompra()
     escreverInformacoesNoLocalStorage()
 }
 
@@ -189,5 +192,8 @@ function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserid
     divInserirPreco.style.display = 'flex'
     divPrecoInserido.style.display = 'none'
     inputInserirPreco.value = 'R$'
+    inputInserirPreco.focus()
+    verificarPrecoFinalDaCategoriaGeral()
+    verificarPrecoFinalGeralCompra()
     escreverInformacoesNoLocalStorage()
 }
