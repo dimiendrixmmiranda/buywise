@@ -1,6 +1,7 @@
 import { acharProdutoPeloId } from "./acharProdutoPeloId.js"
 import { arrayDeCompras } from "./arrayDeCompras.js"
 import { capitalizeFirstLetter } from "./capitalizeFirstLetter.js"
+import { criarTarefaProduto } from "./criarTarefaProduto.js"
 import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
 import { verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
 
@@ -87,7 +88,7 @@ export function alterarProduto(e, formulario, objetoProduto) {
             }
         })
         selectNovaCategoria.selectedIndex = id
-        
+
         formulario.addEventListener('submit', (e) => {
             e.preventDefault()
             const inputNomeProduto = e.target.querySelector('#novoNomeProduto')
@@ -119,18 +120,27 @@ function ocultarFormulario(btnAlterar, formularioAlterarTarefa) {
     formularioAlterarTarefa.setAttribute('style', 'display: none; animation: animarFormularioAlterarTarefaFechar 0.6s ease;top: 0; position: absolute;')
 }
 
-function alterarProdutoVisualmente(li, novoObjetoProduto, novaCategoria){
-    const quantidade = li.querySelector('.p-quantidade')
-    quantidade.innerHTML = novoObjetoProduto.quantidade
-    const produto = li.querySelector('.p-produto')
-    produto.innerHTML = capitalizeFirstLetter(novoObjetoProduto.nome.split(' ')).join(' ')
-
-    const categoriaAntiga = li.closest('.conteudo-lista-item').dataset.categoria
-    // fazer a verificação se a categoria é igual ou diferente (fazer uma copia da li atual)
-    // let novaLi = li.outerHTML
-    // console.log(li)
-    // console.log(novaLi)
+function alterarProdutoVisualmente(li, novoObjetoProduto, novaCategoria) {
     
-    console.log(novaCategoria)
-    console.log(categoriaAntiga)
+    // fazer a verificação se a categoria é igual ou diferente (fazer uma copia da li atual)
+    
+    const categoriaAntiga = li.closest('.conteudo-lista-item').dataset.categoria
+    if (novaCategoria === categoriaAntiga) {
+        const quantidade = li.querySelector('.p-quantidade')
+        quantidade.innerHTML = novoObjetoProduto.quantidade
+        const produto = li.querySelector('.p-produto')
+        produto.innerHTML = capitalizeFirstLetter(novoObjetoProduto.nome.split(' ')).join(' ')
+    } else {
+        criarTarefaProduto(novoObjetoProduto)
+        const listaCategoriaAntiga = document.querySelectorAll(`[data-categoria="${categoriaAntiga}"] ul li`)
+        if(listaCategoriaAntiga.length > 1){
+            li.remove()
+        }else{
+            document.querySelector(`[data-categoria="${categoriaAntiga}"]`).remove()
+        }
+
+        verificarPrecoFinalDaCategoriaGeral()
+        verificarPrecoFinalGeralCompra()
+        console.log('vou mudar')
+    }
 }

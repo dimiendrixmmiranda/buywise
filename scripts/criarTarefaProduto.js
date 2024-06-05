@@ -3,7 +3,7 @@ import { capitalizeFirstLetter } from "./capitalizeFirstLetter.js"
 import { criarElemento } from "./criarElemento.js"
 import { alterarProduto, concluirProduto, excluirItemDaLista, excluirLista } from "./crud.js"
 import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
-import {verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
+import { verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
 
 const listaDeCategorias = document.querySelector('.conteudo-lista')
 
@@ -29,7 +29,8 @@ function criarTarefa(objetoProduto) {
     const li = criarElemento('li', '', 'conteudo-lista-item-produto')
     li.dataset.id = objetoProduto.id
     const conteudoProduto = criarElemento('div', '', 'conteudo-produto')
-    const pQuantidade = criarElemento('p', objetoProduto.quantidade, 'p-quantidade')
+
+    const pQuantidade = criarElemento('p', `${objetoProduto.quantidade.toFixed(3)}${objetoProduto.un}`, 'p-quantidade')
     const pProduto = criarElemento('p', capitalizeFirstLetter(objetoProduto.nome.split(' ')).join(' '), 'p-produto')
 
     const divInserirPreco = criarElemento('div', '', 'p-inserirPreco')
@@ -39,14 +40,21 @@ function criarTarefa(objetoProduto) {
     inputInserirPreco.setAttribute('autocomplete', 'off')
     inputInserirPreco.value = 'R$'
     const button = criarElemento('button', '<i class="fa-solid fa-check"></i>', '', '', 'button')
-    button.addEventListener('click', (e) => {inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido)})
+    button.addEventListener('click', (e) => { inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido) })
 
     divInserirPreco.appendChild(label)
     divInserirPreco.appendChild(inputInserirPreco)
     divInserirPreco.appendChild(button)
 
     const divPrecoInserido = criarElemento('div', '', 'p-precoInserido')
-    const p1 = criarElemento('p', `${objetoProduto.quantidade} x R$${objetoProduto.preco.toFixed(2)}`)
+    // tem que verificar se é grama ou kilograma pra adicionar 3 casas decimais
+    let quantidadeFormatada = ''
+    if(objetoProduto.un == 'g' || objetoProduto.un == 'kg'){
+        quantidadeFormatada = objetoProduto.quantidade.toFixed(3)
+    }else{
+        quantidadeFormatada = objetoProduto.quantidade
+    }
+    const p1 = criarElemento('p', `${quantidadeFormatada}${objetoProduto.un} x R$${objetoProduto.preco.toFixed(2)}`)
     const p2 = criarElemento('p', `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`)
     const btnPrecoInserido = criarElemento('button', 'Alterar preço')
     btnPrecoInserido.addEventListener('click', (e) => alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserido, inputInserirPreco))
@@ -118,7 +126,6 @@ function criarNovaCategoria(objetoProduto) {
     const li = criarElemento('li', '', 'conteudo-lista-item')
     li.dataset.categoria = objetoProduto.categoria
 
-
     const titulo = criarElemento('h3', capitalizeFirstLetter(objetoProduto.categoria.split('-')).join(' '))
     const listaDeTarefas = criarElemento('ul')
 
@@ -150,22 +157,22 @@ function verificarSeOItemFoiPego(objetoProduto, li) {
     }
 }
 
-function verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divInserirPreco){
+function verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divInserirPreco) {
     // tem preço
-    if(objetoProduto.preco != 0){
+    if (objetoProduto.preco != 0) {
         divPrecoInserido.style.display = 'flex'
         divInserirPreco.style.display = 'none'
-    }else{
+    } else {
         // não tem preço
         divInserirPreco.style.display = 'flex'
         divPrecoInserido.style.display = 'none'
     }
 }
 
-function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido){
-    const input = e.target.closest('.p-inserirPreco').querySelector('input') 
+function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido) {
+    const input = e.target.closest('.p-inserirPreco').querySelector('input')
     const precoFormatado = parseFloat(input.value.split('R$')[1].replace(',', '.'))
-    
+
     objetoProduto.preco = precoFormatado
     objetoProduto.precoFinal = objetoProduto.quantidade * precoFormatado
 
@@ -180,8 +187,7 @@ function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInseri
     escreverInformacoesNoLocalStorage()
 }
 
-function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserido, inputInserirPreco){
-    console.log(e)
+function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserido, inputInserirPreco) {
     objetoProduto.preco = 0
     objetoProduto.precoFinal = 0
     divInserirPreco.style.display = 'flex'
@@ -191,4 +197,12 @@ function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserid
     verificarPrecoFinalDaCategoriaGeral()
     verificarPrecoFinalGeralCompra()
     escreverInformacoesNoLocalStorage()
+}
+
+function formatarEstiloQuantidade(objetoProduto){
+    const quantidadeFormatada = ''
+
+    console.log(objetoProduto.quantidade)
+
+    return quantidadeFormatada
 }
