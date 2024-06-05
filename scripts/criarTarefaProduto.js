@@ -30,7 +30,14 @@ function criarTarefa(objetoProduto) {
     li.dataset.id = objetoProduto.id
     const conteudoProduto = criarElemento('div', '', 'conteudo-produto')
 
-    const pQuantidade = criarElemento('p', `${objetoProduto.quantidade.toFixed(3)}${objetoProduto.un}`, 'p-quantidade')
+    let quantidadeFormatada = ''
+    if(objetoProduto.un == 'g' || objetoProduto.un == 'kg'){
+        quantidadeFormatada = objetoProduto.quantidade.toFixed(3)
+    }else{
+        quantidadeFormatada = objetoProduto.quantidade
+    }
+
+    const pQuantidade = criarElemento('p', `${quantidadeFormatada}${objetoProduto.un}`, 'p-quantidade')
     const pProduto = criarElemento('p', capitalizeFirstLetter(objetoProduto.nome.split(' ')).join(' '), 'p-produto')
 
     const divInserirPreco = criarElemento('div', '', 'p-inserirPreco')
@@ -48,12 +55,6 @@ function criarTarefa(objetoProduto) {
 
     const divPrecoInserido = criarElemento('div', '', 'p-precoInserido')
     // tem que verificar se é grama ou kilograma pra adicionar 3 casas decimais
-    let quantidadeFormatada = ''
-    if(objetoProduto.un == 'g' || objetoProduto.un == 'kg'){
-        quantidadeFormatada = objetoProduto.quantidade.toFixed(3)
-    }else{
-        quantidadeFormatada = objetoProduto.quantidade
-    }
     const p1 = criarElemento('p', `${quantidadeFormatada}${objetoProduto.un} x R$${objetoProduto.preco.toFixed(2)}`)
     const p2 = criarElemento('p', `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`)
     const btnPrecoInserido = criarElemento('button', 'Alterar preço')

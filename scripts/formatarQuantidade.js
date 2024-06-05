@@ -13,6 +13,8 @@ export function formatarQuantidade(quantidade, un) {
         }
     } else if (un == 'kg') {
         novaQuantidade = quantidade.replace(',', '.')
+    } else{
+        novaQuantidade = quantidade
     }
     return parseFloat(novaQuantidade)
 }

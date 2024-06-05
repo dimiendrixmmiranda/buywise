@@ -1216,7 +1216,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-produto {
   grid-column: 2/3;

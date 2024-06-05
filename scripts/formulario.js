@@ -22,7 +22,7 @@ formulario.addEventListener('submit', (e) => {
     let quantidade = inputQuantidade.value.match(/(\d+)(,|\.)?(\d+)?/g)[0]
     let un = inputQuantidade.value.match(/un|g|kg/g)
     const quantidadeFormatada = formatarQuantidade(quantidade, un)
-
+    console.log(quantidadeFormatada)
     const objetoProduto = {
         nome: inputProduto.value,
         quantidade: parseFloat(quantidadeFormatada),
