@@ -10,7 +10,6 @@ const listaDeCategorias = document.querySelector('.conteudo-lista')
 export function criarTarefaProduto(objetoProduto) {
 
     const categoria = document.querySelector(`[data-categoria="${objetoProduto.categoria}"]`)
-
     if (categoria) {
         const categoriaAtual = categoria
         const listaDaCategoriaAtual = categoriaAtual.querySelector('ul')
@@ -31,9 +30,9 @@ function criarTarefa(objetoProduto) {
     const conteudoProduto = criarElemento('div', '', 'conteudo-produto')
 
     let quantidadeFormatada = ''
-    if(objetoProduto.un == 'g' || objetoProduto.un == 'kg'){
+    if (objetoProduto.un == 'g' || objetoProduto.un == 'kg') {
         quantidadeFormatada = objetoProduto.quantidade.toFixed(3)
-    }else{
+    } else {
         quantidadeFormatada = objetoProduto.quantidade
     }
 
@@ -200,7 +199,7 @@ function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserid
     escreverInformacoesNoLocalStorage()
 }
 
-function formatarEstiloQuantidade(objetoProduto){
+function formatarEstiloQuantidade(objetoProduto) {
     const quantidadeFormatada = ''
 
     console.log(objetoProduto.quantidade)

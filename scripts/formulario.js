@@ -33,8 +33,12 @@ formulario.addEventListener('submit', (e) => {
         preco: 0,
         precoFinal: 0
     }
-    arrayDeCompras[0].push(objetoProduto)
-    criarTarefaProduto(objetoProduto)
-    escreverInformacoesNoLocalStorage()
-    limparCampos([[inputProduto, ''], [inputQuantidade, ''], [inputCategoria, 'Selecione']])
+    if (objetoProduto.categoria != 'Selecione') {
+        arrayDeCompras[0].push(objetoProduto)
+        criarTarefaProduto(objetoProduto)
+        escreverInformacoesNoLocalStorage()
+        limparCampos([[inputProduto, ''], [inputQuantidade, ''], [inputCategoria, 'Selecione']])
+    } else {
+        alert('Selecione a categoria')
+    }
 })
