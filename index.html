@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./assets/styles/style.css">
 </head>
 
-<body>
+<body data-tema="dark">
     <header class="cabecalho">
         <a href="./index.html" class="cabecalho-link">
             <div class="cabecalho-link-imagem">
@@ -33,7 +33,7 @@
                 <a href="#"><i class="fa-solid fa-book"></i> Guia de uso</a>
             </li>
             <li class="cabecalho-links-item">
-                <input type="checkbox" name="alterarTema" id="alterarTema">
+                <input type="checkbox" name="alterarTema" id="alterarTema" data-tema="dark" checked>
             </li>
         </ul>
         <button type="button" class="cabecalho-link-bars" id="btnBars">
@@ -99,7 +99,7 @@
             <p class="conteudo-precoFinalCompra-preco" id="precoFinalGeralCompra" data-preco="0">R$0,00</p>
         </div>
         
-        <button class="conteudo-lista-salvarCompra">Finalizar Compra</button>
+        <button class="conteudo-lista-salvarCompra" id="finalizarCompra">Finalizar Compra</button>
     </main>
 
     <footer class="rodape">
@@ -107,7 +107,8 @@
         CSS(SASS) e JavaScript, com foco em manipulação de DOM, LocalStorage e o uso da biblioteca HTML2Pdf.
         <strong>Projeto sem fins lucrativos!</strong>
     </footer>
-    <div class="offcanvas" id="offcanvas">
+
+    <div class="offcanvas dark" id="offcanvas">
         <h2 class="offcanvas-titulo">Menu <i class="fa-solid fa-bars-staggered"></i></h2>
         <ul class="offcanvas-menu">
             <li class="offcanvas-menu-item">
@@ -121,7 +122,7 @@
             </li>
         </ul>
         <div class="offcanvas-tema">
-            <input type="checkbox" name="alterarTema" id="alterarTema">
+            <input type="checkbox" name="alterarTema" id="alterarTema" checked data-tema="dark">
         </div>
         <a href="#" class="offcanvas-erro">Relatar erro! <i class="fa-solid fa-circle-exclamation"></i></a>
         <button class="offcanvas-btnFechar" id="offcanvasBtnFechar"><i class="fa-solid fa-circle-xmark"></i></button>
@@ -130,7 +131,9 @@
 
     <script src="./scripts/offcanvas.js"></script>
     <script src="./scripts/fraseFuncionalidades.js"></script>
+    <script src="./scripts/definirTema.js"></script>
     <script type="module" src="./scripts/formulario.js"></script>
+    <script type="module" src="./scripts/finalizarCompra.js"></script>
 </body>
 
 </html>

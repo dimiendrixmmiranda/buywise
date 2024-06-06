@@ -5,6 +5,7 @@ import { formatarQuantidade } from "./formatarQuantidade.js"
 import { gerarId } from "./gerarId.js"
 import { limparCampos } from "./limparCampos.js"
 import { verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
+import { verificarSeTemAlgumaCategoria } from "./verificarSeTemAlgumaCategoria.js"
 
 const formulario = document.querySelector('#formulario')
 arrayDeCompras[0].forEach(produto => {
@@ -12,6 +13,7 @@ arrayDeCompras[0].forEach(produto => {
 });
 verificarPrecoFinalDaCategoriaGeral()
 verificarPrecoFinalGeralCompra()
+verificarSeTemAlgumaCategoria()
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -22,7 +24,6 @@ formulario.addEventListener('submit', (e) => {
     let quantidade = inputQuantidade.value.match(/(\d+)(,|\.)?(\d+)?/g)[0]
     let un = inputQuantidade.value.match(/un|g|kg/g)
     const quantidadeFormatada = formatarQuantidade(quantidade, un)
-    console.log(quantidadeFormatada)
     const objetoProduto = {
         nome: inputProduto.value,
         quantidade: parseFloat(quantidadeFormatada),
@@ -37,6 +38,7 @@ formulario.addEventListener('submit', (e) => {
         arrayDeCompras[0].push(objetoProduto)
         criarTarefaProduto(objetoProduto)
         escreverInformacoesNoLocalStorage()
+        verificarSeTemAlgumaCategoria()
         limparCampos([[inputProduto, ''], [inputQuantidade, ''], [inputCategoria, 'Selecione']])
     } else {
         alert('Selecione a categoria')

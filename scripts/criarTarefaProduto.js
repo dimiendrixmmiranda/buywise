@@ -30,7 +30,7 @@ function criarTarefa(objetoProduto) {
     const conteudoProduto = criarElemento('div', '', 'conteudo-produto')
 
     let quantidadeFormatada = ''
-    if (objetoProduto.un == 'g' || objetoProduto.un == 'kg') {
+    if (objetoProduto.un == 'g') {
         quantidadeFormatada = objetoProduto.quantidade.toFixed(3)
     } else {
         quantidadeFormatada = objetoProduto.quantidade
@@ -54,7 +54,7 @@ function criarTarefa(objetoProduto) {
 
     const divPrecoInserido = criarElemento('div', '', 'p-precoInserido')
     // tem que verificar se é grama ou kilograma pra adicionar 3 casas decimais
-    const p1 = criarElemento('p', `${quantidadeFormatada}${objetoProduto.un} x R$${objetoProduto.preco.toFixed(2)}`)
+    const p1 = criarElemento('p', `${quantidadeFormatada}${objetoProduto.un} x R$${(objetoProduto.preco).toFixed(2)}`)
     const p2 = criarElemento('p', `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`)
     const btnPrecoInserido = criarElemento('button', 'Alterar preço')
     btnPrecoInserido.addEventListener('click', (e) => alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserido, inputInserirPreco))
@@ -170,8 +170,10 @@ function verificarSeOPrecoDiferenteDeZero(objetoProduto, divPrecoInserido, divIn
 }
 
 function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInserido) {
+    console.log('aq')
     const input = e.target.closest('.p-inserirPreco').querySelector('input')
-    const precoFormatado = parseFloat(input.value.split('R$')[1].replace(',', '.'))
+    const inputFormatado = input.value.match(/R\$/g) ? input.value: `R$${input.value}` 
+    const precoFormatado = parseFloat(inputFormatado.split('R$')[1].replace(',', '.'))
 
     objetoProduto.preco = precoFormatado
     objetoProduto.precoFinal = objetoProduto.quantidade * precoFormatado
@@ -179,7 +181,7 @@ function inserirPrecoNoProduto(e, objetoProduto, divInserirPreco, divPrecoInseri
     divInserirPreco.style.display = 'none'
     divPrecoInserido.style.display = 'flex'
     const ps = divPrecoInserido.querySelectorAll('p')
-    ps[0].innerHTML = `${objetoProduto.quantidade} x R$${objetoProduto.preco.toFixed(2)}`
+    ps[0].innerHTML = `${objetoProduto.quantidade}${objetoProduto.un} x R$${objetoProduto.preco.toFixed(2)}`
     ps[1].innerHTML = `R$${(objetoProduto.quantidade * objetoProduto.preco).toFixed(2)}`
 
     verificarPrecoFinalDaCategoriaGeral()
@@ -197,12 +199,4 @@ function alterarPrecoInserido(e, objetoProduto, divInserirPreco, divPrecoInserid
     verificarPrecoFinalDaCategoriaGeral()
     verificarPrecoFinalGeralCompra()
     escreverInformacoesNoLocalStorage()
-}
-
-function formatarEstiloQuantidade(objetoProduto) {
-    const quantidadeFormatada = ''
-
-    console.log(objetoProduto.quantidade)
-
-    return quantidadeFormatada
 }
