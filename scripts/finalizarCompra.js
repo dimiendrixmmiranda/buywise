@@ -4,12 +4,27 @@ import { criarElemento } from "./criarElemento.js"
 const btnFinalizarCompra = document.querySelector('#finalizarCompra')
 btnFinalizarCompra.addEventListener('click', (e) => {
     e.preventDefault()
-    console.log(arrayDeCompras[0])
-    const containerCaixaFinalizarCompra = criarCaixaFinalizarCompra() 
+    const containerCaixaFinalizarCompra = criarCaixaFinalizarCompra()
     document.body.appendChild(containerCaixaFinalizarCompra)
 
     const btnCancelar = containerCaixaFinalizarCompra.querySelector('#cancelar')
+    const btnFinalizarCompra = containerCaixaFinalizarCompra.querySelector('#finalizarCompra')
 
+    btnFinalizarCompra.addEventListener('click', (e) => {
+        e.preventDefault()
+        const nomeDoMercado = e.target.closest('.caixa-finalizar-compra').querySelector('.caixa-finalizar-compra-input')
+        const data = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
+        const hora = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
+
+        const objetoGerarLista = {
+            nomeDoMercado: nomeDoMercado.value,
+            listaDeProdutos: arrayDeCompras[0],
+            data: data,
+            hora: hora
+        }
+
+        gerarPdfLista(objetoGerarLista)
+    })
     btnCancelar.addEventListener('click', (e) => {
         e.preventDefault()
         containerCaixaFinalizarCompra.remove()
@@ -28,4 +43,39 @@ function criarCaixaFinalizarCompra() {
     div.appendChild(buttonFinalizar)
     div.appendChild(buttonCancelar)
     return div
+}
+
+
+
+function gerarPdfLista(objetoGerarLista) {
+    const arrayFormatado = arrayEmOrdem(objetoGerarLista)
+    console.log(arrayFormatado)
+}
+
+function arrayEmOrdem(objetoGerarLista){
+    const arrayEmOrdem = []
+    console.log(objetoGerarLista)
+    const arrayProdutosGerais = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'produtos-gerais')
+    const arrayCarnes = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'carnes')
+    const arrayFrutasVerduras = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'frutas-verduras')
+    const arrayBebidas = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'bebidas')
+    const arrayProdutosDeLimpeza = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'produtos-de-limpeza')
+    const arrayHigienePessoal = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'higiene-pessoal')
+    const arrayPadaria = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'padaria')
+    const arrayPetshop = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'petshop')
+    const arrayUtensiliosDomesticos = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'utensilios-domesticos')
+
+
+    arrayEmOrdem.push(arrayProdutosGerais)
+    arrayEmOrdem.push(arrayCarnes)
+    arrayEmOrdem.push(arrayFrutasVerduras)
+    arrayEmOrdem.push(arrayBebidas)
+    arrayEmOrdem.push(arrayProdutosDeLimpeza)
+    arrayEmOrdem.push(arrayHigienePessoal)
+    arrayEmOrdem.push(arrayPadaria)
+    arrayEmOrdem.push(arrayPetshop)
+    arrayEmOrdem.push(arrayUtensiliosDomesticos)
+
+    const array = arrayEmOrdem.filter(array => array.length > 0)
+    return array
 }
