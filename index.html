@@ -27,7 +27,7 @@
                 <a href="#"><i class="fa-solid fa-house"></i> Página inicial</a>
             </li>
             <li class="cabecalho-links-item">
-                <a href="#"><i class="fa-solid fa-file-pen"></i> Histórico de compras</a>
+                <a href="./pages/historicoDeCompras.html"><i class="fa-solid fa-file-pen"></i> Histórico de compras</a>
             </li>
             <li class="cabecalho-links-item">
                 <a href="#"><i class="fa-solid fa-book"></i> Guia de uso</a>
@@ -66,7 +66,8 @@
             <fieldset class="conteudo-formulario-quantidade">
                 <label for="quantidade">Qtde</label>
                 <!-- depois testar essa pattern -->
-                <input type="text" name="quantidade" id="quantidade" autocomplete="off" pattern="(\d+)(,|\.)?(\d+)?(un|g|kg)">
+                <input type="text" name="quantidade" id="quantidade" autocomplete="off"
+                    pattern="(\d+)(,|\.)?(\d+)?(un|g|kg)">
                 <div class="conteudo-formulario-quantidade-info">
                     <button tabindex="1" class="conteudo-formulario-quantidade-info-btn" type="button"><i
                             class="fa-solid fa-info"></i></button>
@@ -93,12 +94,12 @@
 
         <ul class="conteudo-lista"></ul>
 
-        
+
         <div class="conteudo-precoFinalCompra">
             <p class="conteudo-precoFinalCompra-titulo">Preço final da compra:</p>
             <p class="conteudo-precoFinalCompra-preco" id="precoFinalGeralCompra" data-preco="0">R$0,00</p>
         </div>
-        
+
         <button class="conteudo-lista-salvarCompra" id="finalizarCompra">Finalizar Compra</button>
     </main>
 
@@ -134,6 +135,8 @@
     <script src="./scripts/definirTema.js"></script>
     <script type="module" src="./scripts/formulario.js"></script>
     <script type="module" src="./scripts/finalizarCompra.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 
 </html>

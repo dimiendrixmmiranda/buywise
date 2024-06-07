@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buywise - Histórico de Compras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="../assets/imgs/faveicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/styles/style.css">
+</head>
+
+<body data-tema="dark">
+    <header class="cabecalho">
+        <a href="./index.html" class="cabecalho-link">
+            <div class="cabecalho-link-imagem">
+                <img src="../assets/imgs/logo-buywise.png" alt="">
+            </div>
+            <div class="cabecalho-link-titulo">
+                <h1>Buywise</h1>
+            </div>
+        </a>
+        <ul class="cabecalho-links">
+            <li class="cabecalho-links-item">
+                <a href="../index.html"><i class="fa-solid fa-house"></i> Página inicial</a>
+            </li>
+            <li class="cabecalho-links-item">
+                <a href="./historicoDeCompras.html"><i class="fa-solid fa-file-pen"></i> Histórico de compras</a>
+            </li>
+            <li class="cabecalho-links-item">
+                <a href="#"><i class="fa-solid fa-book"></i> Guia de uso</a>
+            </li>
+            <li class="cabecalho-links-item">
+                <input type="checkbox" name="alterarTema" id="alterarTema" data-tema="dark" checked>
+            </li>
+        </ul>
+        <button type="button" class="cabecalho-link-bars" id="btnBars">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+    
+    <main>
+        <div class="historico-de-compras">
+            <h2 class="historico-de-compras-titulo">Histórico de compras <i class="fa-solid fa-clock"></i></h2>
+            <ul class="historico-de-compras-lista" id="historicoDeComprasLista">
+                <li class="historico-de-compras-lista-item">
+                    <button class="historico-de-compras-lista-item-botao">
+                        <p>Compra do dia 07/06/2024 - 15:03</p>
+                        <p>Supermercado Carreiro</p>
+                        <div>
+                            <i class="fa-solid fa-sort-up"></i>
+                        </div>
+                    </button>
+                    <ul class="historico-de-compras-lista-item-lista">
+                        <li>
+                            <h4>Produtos gerais</h4>
+                            <table>
+                                <thead>
+                                    <td>Nome</td>
+                                    <td>Quantidade</td>
+                                    <td>Preço unitário</td>
+                                    <td>Preço final</td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Leite condensado</td>
+                                        <td>5un</td>
+                                        <td>R$28.50</td>
+                                        <td>R$142.50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feijão</td>
+                                        <td>5un</td>
+                                        <td>R$28.50</td>
+                                        <td>R$142.50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Farinha</td>
+                                        <td>5un</td>
+                                        <td>R$28.50</td>
+                                        <td>R$142.50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Preço final da categoria:</td>
+                                        <td>R$248.50</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </main>
+    
+    <footer class="rodape">
+        Projeto produzido e idealizado por <strong>Dimi Endrix Martins Miranda</strong> utilizando conceitos de HTML,
+        CSS(SASS) e JavaScript, com foco em manipulação de DOM, LocalStorage e o uso da biblioteca HTML2Pdf.
+        <strong>Projeto sem fins lucrativos!</strong>
+    </footer>
+
+    <div class="offcanvas dark" id="offcanvas">
+        <h2 class="offcanvas-titulo">Menu <i class="fa-solid fa-bars-staggered"></i></h2>
+        <ul class="offcanvas-menu">
+            <li class="offcanvas-menu-item">
+                <a href="../index.html"><i class="fa-solid fa-house"></i> Página inicial</a>
+            </li>
+            <li class="offcanvas-menu-item">
+                <a href="./historicoDeCompras.html"><i class="fa-solid fa-file-pen"></i> Histórico de compras</a>
+            </li>
+            <li class="offcanvas-menu-item">
+                <a href="#"><i class="fa-solid fa-book"></i> Guia de uso</a>
+            </li>
+        </ul>
+        <div class="offcanvas-tema">
+            <input type="checkbox" name="alterarTema" id="alterarTema" checked data-tema="dark">
+        </div>
+        <a href="#" class="offcanvas-erro">Relatar erro! <i class="fa-solid fa-circle-exclamation"></i></a>
+        <button class="offcanvas-btnFechar" id="offcanvasBtnFechar"><i class="fa-solid fa-circle-xmark"></i></button>
+    </div>
+
+    <script src="../scripts/offcanvas.js"></script>
+    <script src="../scripts/definirTema.js"></script>
+</body>
+
+</html>

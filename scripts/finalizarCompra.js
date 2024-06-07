@@ -18,13 +18,14 @@ btnFinalizarCompra.addEventListener('click', (e) => {
 
         const objetoGerarLista = {
             nomeDoMercado: nomeDoMercado.value,
-            listaDeProdutos: arrayDeCompras[0],
+            listaDeProdutos: arrayEmOrdem(arrayDeCompras[0]),
             data: data,
             hora: hora
         }
-
-        gerarPdfLista(objetoGerarLista)
+        window.location.href = '../pages/historicoDeCompras.html'
+        console.log(objetoGerarLista)
     })
+
     btnCancelar.addEventListener('click', (e) => {
         e.preventDefault()
         containerCaixaFinalizarCompra.remove()
@@ -35,7 +36,9 @@ function criarCaixaFinalizarCompra() {
     const div = criarElemento('div', '', 'caixa-finalizar-compra')
     const label = criarElemento('label', 'Informe o nome do mercado:', 'caixa-finalizar-compra-label', 'inputFinalizarCompra')
     const input = criarElemento('input', '', 'caixa-finalizar-compra-input', 'inputFinalizarCompra', 'text')
-    input.setAttribute('max-length', '25')
+    input.setAttribute('maxlength', '25')
+    input.setAttribute('minlength', '1')
+    input.setAttribute('autocomplete', 'off')
     const buttonFinalizar = criarElemento('button', 'Finalizar Compra', 'caixa-finalizar-compra-btn', 'finalizarCompra', 'button')
     const buttonCancelar = criarElemento('button', 'Cancelar', 'caixa-finalizar-compra-btn', 'cancelar', 'button')
     div.appendChild(label)
@@ -45,25 +48,17 @@ function criarCaixaFinalizarCompra() {
     return div
 }
 
-
-
-function gerarPdfLista(objetoGerarLista) {
-    const arrayFormatado = arrayEmOrdem(objetoGerarLista)
-    console.log(arrayFormatado)
-}
-
-function arrayEmOrdem(objetoGerarLista){
+function arrayEmOrdem(array) {
     const arrayEmOrdem = []
-    console.log(objetoGerarLista)
-    const arrayProdutosGerais = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'produtos-gerais')
-    const arrayCarnes = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'carnes')
-    const arrayFrutasVerduras = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'frutas-verduras')
-    const arrayBebidas = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'bebidas')
-    const arrayProdutosDeLimpeza = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'produtos-de-limpeza')
-    const arrayHigienePessoal = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'higiene-pessoal')
-    const arrayPadaria = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'padaria')
-    const arrayPetshop = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'petshop')
-    const arrayUtensiliosDomesticos = objetoGerarLista.listaDeProdutos.filter(produto => produto.categoria == 'utensilios-domesticos')
+    const arrayProdutosGerais = array.filter(produto => produto.categoria == 'produtos-gerais')
+    const arrayCarnes = array.filter(produto => produto.categoria == 'carnes')
+    const arrayFrutasVerduras = array.filter(produto => produto.categoria == 'frutas-verduras')
+    const arrayBebidas = array.filter(produto => produto.categoria == 'bebidas')
+    const arrayProdutosDeLimpeza = array.filter(produto => produto.categoria == 'produtos-de-limpeza')
+    const arrayHigienePessoal = array.filter(produto => produto.categoria == 'higiene-pessoal')
+    const arrayPadaria = array.filter(produto => produto.categoria == 'padaria')
+    const arrayPetshop = array.filter(produto => produto.categoria == 'petshop')
+    const arrayUtensiliosDomesticos = array.filter(produto => produto.categoria == 'utensilios-domesticos')
 
 
     arrayEmOrdem.push(arrayProdutosGerais)
@@ -76,6 +71,7 @@ function arrayEmOrdem(objetoGerarLista){
     arrayEmOrdem.push(arrayPetshop)
     arrayEmOrdem.push(arrayUtensiliosDomesticos)
 
-    const array = arrayEmOrdem.filter(array => array.length > 0)
-    return array
+    const arrayFinal = arrayEmOrdem.filter(array => array.length > 0)
+
+    return arrayFinal
 }
