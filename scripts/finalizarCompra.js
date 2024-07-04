@@ -1,5 +1,6 @@
 import { arrayDeCompras } from "./arrayDeCompras.js"
 import { criarElemento } from "./criarElemento.js"
+import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
 
 const btnFinalizarCompra = document.querySelector('#finalizarCompra')
 btnFinalizarCompra.addEventListener('click', (e) => {
@@ -13,17 +14,21 @@ btnFinalizarCompra.addEventListener('click', (e) => {
     btnFinalizarCompra.addEventListener('click', (e) => {
         e.preventDefault()
         const nomeDoMercado = e.target.closest('.caixa-finalizar-compra').querySelector('.caixa-finalizar-compra-input')
-        const data = `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
-        const hora = `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`
-
+        const data = `${validarData(new Date().getDate())}/${validarData(new Date().getMonth() + 1)}/${new Date().getFullYear()}`
+        const hora = `${validarData(new Date().getHours())}:${validarData(new Date().getMinutes())}:${validarData(new Date().getSeconds())}`
+        console.log(hora)
         const objetoGerarLista = {
             nomeDoMercado: nomeDoMercado.value,
             listaDeProdutos: arrayEmOrdem(arrayDeCompras[0]),
             data: data,
             hora: hora
         }
+
+        arrayDeCompras[1].push(objetoGerarLista)
+        arrayDeCompras[0] = []
+        escreverInformacoesNoLocalStorage()
         window.location.href = '../pages/historicoDeCompras.html'
-        console.log(objetoGerarLista)
+
     })
 
     btnCancelar.addEventListener('click', (e) => {
@@ -74,4 +79,8 @@ function arrayEmOrdem(array) {
     const arrayFinal = arrayEmOrdem.filter(array => array.length > 0)
 
     return arrayFinal
+}
+
+function validarData(numero) {
+    return numero <= 9 ? '0' + numero : numero
 }

@@ -14,7 +14,7 @@
 
 <body data-tema="dark">
     <header class="cabecalho">
-        <a href="./index.html" class="cabecalho-link">
+        <a href="../index.html" class="cabecalho-link">
             <div class="cabecalho-link-imagem">
                 <img src="../assets/imgs/logo-buywise.png" alt="">
             </div>
@@ -40,61 +40,15 @@
             <i class="fa-solid fa-bars"></i>
         </button>
     </header>
-    
+
     <main>
         <div class="historico-de-compras">
             <h2 class="historico-de-compras-titulo">Histórico de compras <i class="fa-solid fa-clock"></i></h2>
-            <ul class="historico-de-compras-lista" id="historicoDeComprasLista">
-                <li class="historico-de-compras-lista-item">
-                    <button class="historico-de-compras-lista-item-botao">
-                        <p>Compra do dia 07/06/2024 - 15:03</p>
-                        <p>Supermercado Carreiro</p>
-                        <div>
-                            <i class="fa-solid fa-sort-up"></i>
-                        </div>
-                    </button>
-                    <ul class="historico-de-compras-lista-item-lista">
-                        <li>
-                            <h4>Produtos gerais</h4>
-                            <table>
-                                <thead>
-                                    <td>Nome</td>
-                                    <td>Quantidade</td>
-                                    <td>Preço unitário</td>
-                                    <td>Preço final</td>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Leite condensado</td>
-                                        <td>5un</td>
-                                        <td>R$28.50</td>
-                                        <td>R$142.50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Feijão</td>
-                                        <td>5un</td>
-                                        <td>R$28.50</td>
-                                        <td>R$142.50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Farinha</td>
-                                        <td>5un</td>
-                                        <td>R$28.50</td>
-                                        <td>R$142.50</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Preço final da categoria:</td>
-                                        <td>R$248.50</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+
+            <ul class="historico-de-compras-lista" id="historicoDeComprasLista"></ul>
         </div>
     </main>
-    
+
     <footer class="rodape">
         Projeto produzido e idealizado por <strong>Dimi Endrix Martins Miranda</strong> utilizando conceitos de HTML,
         CSS(SASS) e JavaScript, com foco em manipulação de DOM, LocalStorage e o uso da biblioteca HTML2Pdf.
@@ -123,6 +77,7 @@
 
     <script src="../scripts/offcanvas.js"></script>
     <script src="../scripts/definirTema.js"></script>
+    <script type="module" src="../scripts/criarItemHistoricoDeCompras.js"></script>
 </body>
 
 </html>

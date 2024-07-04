@@ -2,99 +2,113 @@
 .historico-de-compras
     max-width: 95%
     margin: 0 auto
+    display: flex
+    flex-direction: column
+    row-gap: 1em
     .historico-de-compras-titulo
         color: $branco
         text-align: center
-    .historico-de-compras-lista-item
-        width: 100%
+        font-size: 1.6em
+        margin: .5em 0
+    .historico-de-compras-lista
         display: flex
         flex-direction: column
         row-gap: .5em
-        button
+        .historico-de-compras-lista-item
             width: 100%
-            font-family: $fonte-primaria
-            position: relative
-            text-align: start
-            display: grid
-            grid-template-columns: 1fr 25%
-            padding: .5em
-            p
-                grid-column: 1/2
-                &:nth-child(1)
-                    font-size: 1.2em
-                &:nth-child(2)
-                    font-size: 1.8em
-            div
-                grid-column: 2/3
-                grid-row: 1/3
-                font-size: 4em
-                display: flex
-                justify-content: center
-                align-items: center
-                position: relative
+            display: flex
+            flex-direction: column
+            row-gap: .5em
+            color: $branco
+            button
                 width: 100%
-                height: 100%
-                i
-                    position: absolute
-                    top: 80%
-                    left: 50%
-                    transform: translate(-50%, -50%)
-        .historico-de-compras-lista-item-lista
-            background-color: $azul-14
-            box-shadow: 0 0 3px 1px $preto
-            border-radius: 6px
-            padding: .2em
-            li
-                display: flex
-                flex-direction: column
-                color: $branco
-                h4
-                    padding: .3em .2em
-                table
-                    thead
-                        width: 100%
-                        tr
+                font-family: $fonte-primaria
+                position: relative
+                text-align: start
+                display: grid
+                grid-template-columns: 1fr 25%
+                padding: .5em
+                p
+                    grid-column: 1/2
+                    &:nth-child(1)
+                        font-size: 1.2em
+                    &:nth-child(2)
+                        text-transform: uppercase
+                        font-size: 1.8em
+                div
+                    grid-column: 2/3
+                    grid-row: 1/3
+                    font-size: 4em
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    position: relative
+                    width: 100%
+                    height: 100%
+                    i
+                        position: absolute
+                        top: -40%
+            .active
+                display: block!important
+            .historico-de-compras-lista-item-tabela
+                display: none
+                div
+                    display: grid
+                    grid-template-columns: 1fr 25%
+                    padding: .4em .5em
+                    background-color: $azul-1
+                    margin-top: .5em
+                    p
+                        padding: .4em
+                        &:nth-child(1)
+                            background-color: $laranja
+                        &:nth-child(2)
+                            background-color: $azul-tabela-2
+                            text-align: center
+                            font-size: .95em
+                ul
+                    display: flex
+                    flex-direction: column
+                    row-gap: .5em
+                    font-size: .8em
+                    .historico-de-compras-lista-item-tabela-item
+                        background-color: $azul-12
+                        padding: .5em
+                        h4
+                            font-size: 1.4em
+                            text-align: center
+                            padding: 0 0 .4em 0
+                            text-transform: uppercase
+                        table
                             width: 100%
-                            display: grid
-                            grid-template-columns: repeat(4, 25%)
-                            td
-                                width: 100%
-                                background-color: $azul-15
-                                text-align: center
-                                font-weight: bold
-                                line-height: 1.1
-                                font-size: .7em
-                                display: flex
-                                align-items: center
-                                justify-content: center
-                                padding: .2em 0
-                                border: solid 1px black
-                    tbody
-                        width: 100%
-                        tr
-                            width: 100%
-                            display: grid
-                            grid-template-columns: repeat(4, 25%)
-                            td
-                                width: 100%
-                                background-color: $azul-16
-                                font-weight: bold
-                                line-height: 1.1
-                                font-size: .8em
-                                white-space: nowrap
-                                overflow-x: scroll
-                                overflow-y: hidden
-                                padding: .4em .2em
-                                border: solid 1px $branco
-                        tr
-                            &:last-child
-                                background-color: green
-                                margin-top: .2em
-                                td
-                                    &:first-child
-                                        grid-column: 1/3
-                                        font-size: .72em
-                                        overflow: hidden
+                            display: flex
+                            flex-direction: column
+                            tbody
+                                tr
+                                    display: grid
+                                    grid-template-columns: repeat(4, 25%)
+                                    td
+                                        overflow-x: scroll
+                                        overflow-y: hidden
+                                        white-space: nowrap
+                                        border: solid 1px $preto
+                                        padding: .2em
+                                        border-collapse: collapse
+                            thead
+                                tr
+                                    display: grid
+                                    grid-template-columns: repeat(4, 25%)
+                                    white-space: nowrap
+                                    td
+                                        background-color: $laranja
+                                        border: solid 1px $preto
+                                        padding: .2em
+                            tbody
+                                tr
+                                    background-color: $azul-tabela-1
                                     &:last-child
-                                        grid-column: 3/5
-                                        text-align: center
+                                        td
+                                            &:nth-child(1)
+                                                grid-column: 1/4
+                                    &:nth-child(even)
+                                        background-color: $azul-tabela-2

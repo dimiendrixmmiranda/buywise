@@ -1873,18 +1873,29 @@ button {
 .historico-de-compras {
   max-width: 95%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
 }
 .historico-de-compras .historico-de-compras-titulo {
   color: #fff;
   text-align: center;
+  font-size: 1.6em;
+  margin: 0.5em 0;
 }
-.historico-de-compras .historico-de-compras-lista-item {
-  width: 100%;
+.historico-de-compras .historico-de-compras-lista {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
 }
-.historico-de-compras .historico-de-compras-lista-item button {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  color: #fff;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button {
   width: 100%;
   font-family: "Passion One", sans-serif;
   position: relative;
@@ -1893,16 +1904,17 @@ button {
   grid-template-columns: 1fr 25%;
   padding: 0.5em;
 }
-.historico-de-compras .historico-de-compras-lista-item button p {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p {
   grid-column: 1/2;
 }
-.historico-de-compras .historico-de-compras-lista-item button p:nth-child(1) {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p:nth-child(1) {
   font-size: 1.2em;
 }
-.historico-de-compras .historico-de-compras-lista-item button p:nth-child(2) {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p:nth-child(2) {
+  text-transform: uppercase;
   font-size: 1.8em;
 }
-.historico-de-compras .historico-de-compras-lista-item button div {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button div {
   grid-column: 2/3;
   grid-row: 1/3;
   font-size: 4em;
@@ -1913,79 +1925,85 @@ button {
   width: 100%;
   height: 100%;
 }
-.historico-de-compras .historico-de-compras-lista-item button div i {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button div i {
   position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: -40%;
 }
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista {
-  background-color: #1a1fa8;
-  box-shadow: 0 0 3px 1px #000;
-  border-radius: 6px;
-  padding: 0.2em;
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .active {
+  display: block !important;
 }
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li {
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela {
+  display: none;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div {
+  display: grid;
+  grid-template-columns: 1fr 25%;
+  padding: 0.4em 0.5em;
+  background-color: #0b11b9;
+  margin-top: 0.5em;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p {
+  padding: 0.4em;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p:nth-child(1) {
+  background-color: #FC4100;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p:nth-child(2) {
+  background-color: #2C4E80;
+  text-align: center;
+  font-size: 0.95em;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul {
   display: flex;
   flex-direction: column;
-  color: #fff;
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li h4 {
-  padding: 0.3em 0.2em;
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table thead {
-  width: 100%;
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table thead tr {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table thead tr td {
-  width: 100%;
-  background-color: #3237cc;
-  text-align: center;
-  font-weight: bold;
-  line-height: 1.1;
-  font-size: 0.7em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.2em 0;
-  border: solid 1px black;
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table tbody {
-  width: 100%;
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table tbody tr {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-}
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table tbody tr td {
-  width: 100%;
-  background-color: #141661;
-  font-weight: bold;
-  line-height: 1.1;
+  row-gap: 0.5em;
   font-size: 0.8em;
-  white-space: nowrap;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item {
+  background-color: #040ab9;
+  padding: 0.5em;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item h4 {
+  font-size: 1.4em;
+  text-align: center;
+  padding: 0 0 0.4em 0;
+  text-transform: uppercase;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr td {
   overflow-x: scroll;
   overflow-y: hidden;
-  padding: 0.4em 0.2em;
-  border: solid 1px #fff;
+  white-space: nowrap;
+  border: solid 1px #000;
+  padding: 0.2em;
+  border-collapse: collapse;
 }
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table tbody tr:last-child {
-  background-color: green;
-  margin-top: 0.2em;
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table thead tr {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  white-space: nowrap;
 }
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table tbody tr:last-child td:first-child {
-  grid-column: 1/3;
-  font-size: 0.72em;
-  overflow: hidden;
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table thead tr td {
+  background-color: #FC4100;
+  border: solid 1px #000;
+  padding: 0.2em;
 }
-.historico-de-compras .historico-de-compras-lista-item .historico-de-compras-lista-item-lista li table tbody tr:last-child td:last-child {
-  grid-column: 3/5;
-  text-align: center;
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr {
+  background-color: #00215E;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr:last-child td:nth-child(1) {
+  grid-column: 1/4;
+}
+.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr:nth-child(even) {
+  background-color: #2C4E80;
 }
 
 @font-face {
