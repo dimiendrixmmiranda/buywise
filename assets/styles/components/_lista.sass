@@ -33,7 +33,7 @@
                 width: 100%
                 text-shadow: 1px 1px 2px $preto
                 display: grid
-                grid-template-rows: 50px auto
+                grid-template-rows: 50px auto auto
                 position: relative
                 .conteudo-produto
                     display: grid
@@ -164,8 +164,6 @@
                     grid-template-columns: 60px 1fr
                     row-gap: .6em
                     box-shadow: 0px 0px 2px 1px $preto
-                    display: none
-                    position: absolute
                     bottom: 0
                     left: 0
                     fieldset
@@ -217,17 +215,16 @@
                     font-size: 2.2em
                     font-family: $fonte-primaria
 .conteudo-lista-salvarCompra
+    display: flex
     background-color: $verde-1
     color: $branco
+    width: 95%
     font-size: 1.4em
     font-weight: bold
     max-width: 95%
-    margin: 0 auto
-    width: 100%
     text-align: center
     padding: .4em 0
     justify-content: center
-    border-radius: 12px
     z-index: 1
-    margin-top: .8em
-    display: none
+    align-self: center
+    margin: 1em auto 0 auto

@@ -1,0 +1,1 @@
+export const arrayDeProdutos = JSON.parse(localStorage.getItem("compras")) || [[], []]

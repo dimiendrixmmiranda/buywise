@@ -846,7 +846,6 @@ button {
   row-gap: 1.2em;
   margin-top: 2em;
   color: #fff;
-  border-radius: 6px;
 }
 .conteudo-formulario input, .conteudo-formulario select, .conteudo-formulario button {
   outline: none;
@@ -1231,7 +1230,7 @@ button {
   width: 100%;
   text-shadow: 1px 1px 2px #000;
   display: grid;
-  grid-template-rows: 50px auto;
+  grid-template-rows: 50px auto auto;
   position: relative;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto {
@@ -1380,8 +1379,6 @@ button {
   grid-template-columns: 60px 1fr;
   row-gap: 0.6em;
   box-shadow: 0px 0px 2px 1px #000;
-  display: none;
-  position: absolute;
   bottom: 0;
   left: 0;
 }
@@ -1445,20 +1442,19 @@ button {
 }
 
 .conteudo-lista-salvarCompra {
+  display: flex;
   background-color: #168040;
   color: #fff;
+  width: 95%;
   font-size: 1.4em;
   font-weight: bold;
   max-width: 95%;
-  margin: 0 auto;
-  width: 100%;
   text-align: center;
   padding: 0.4em 0;
   justify-content: center;
-  border-radius: 12px;
   z-index: 1;
-  margin-top: 0.8em;
-  display: none;
+  align-self: center;
+  margin: 1em auto 0 auto;
 }
 
 @font-face {

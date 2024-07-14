@@ -4,14 +4,15 @@ import { escreverInformacoesNoLocalStorage } from "./escreverNoLocalStorage.js"
 import { formatarQuantidade } from "./formatarQuantidade.js"
 import { gerarId } from "./gerarId.js"
 import { limparCampos } from "./limparCampos.js"
-import { verificarPrecoFinalDaCategoriaGeral, verificarPrecoFinalGeralCompra } from "./verificarPrecoFinalCategoria.js"
-import { verificarSeTemAlgumaCategoria } from "./verificarSeTemAlgumaCategoria.js"
+import { verificarPrecoFinalDeTodasAsCategorias } from "./verificacao/verificarPrecoFinalDaCategoria.js"
+import { verificarPrecoFinalGeralCompra } from "./verificacao/verificarPrecoFinalDaCompra.js"
+import { verificarSeTemAlgumaCategoria } from "./verificacao/verificarSeTemAlgumaCategoria.js"
 
 const formulario = document.querySelector('#formulario')
 arrayDeCompras[0].forEach(produto => {
     criarTarefaProduto(produto)
 });
-verificarPrecoFinalDaCategoriaGeral()
+verificarPrecoFinalDeTodasAsCategorias()
 verificarPrecoFinalGeralCompra()
 verificarSeTemAlgumaCategoria()
 
