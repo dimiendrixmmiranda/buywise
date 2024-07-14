@@ -1,4 +1,4 @@
-import { criarElemento } from "../criarElemento.js"
+import { criarElemento } from "./criarElemento.js"
 import { arrayDeProdutos } from "../dados/arrayDeProdutos.js"
 import { acharProdutoPeloIdentificador } from "../funcoes-adicionais/acharProdutoPeloIdentificador.js"
 import { escreverInformacoesNoLocalStorage } from "../funcoes-adicionais/escreverInformacoesNoLocalStorage.js"

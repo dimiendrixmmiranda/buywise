@@ -1,4 +1,4 @@
-import { criarElemento } from "../criarElemento.js"
+import { criarElemento } from "./criarElemento.js"
 
 export function gerarCaixaMensagem(mensagem) {
     const div = criarElemento('div', '', 'caixa-mensagem')

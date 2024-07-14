@@ -1,10 +1,9 @@
-import { arrayDeCompras } from "./arrayDeCompras.js";
-import { capitalizeFirstLetter } from "./capitalizeFirstLetter.js";
-import { criarElemento } from "./criarElemento.js";
+import { criarElemento } from "./crud/criarElemento.js";
+import { arrayDeProdutos } from "./dados/arrayDeProdutos.js";
 
 const historicoDeComprasLista = document.querySelector('#historicoDeComprasLista')
 
-arrayDeCompras[1].forEach(objetoCompra => {
+arrayDeProdutos[1].forEach(objetoCompra => {
     const liCompra = criarListaCompra(objetoCompra)
     historicoDeComprasLista.appendChild(liCompra)
 })

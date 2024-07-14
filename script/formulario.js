@@ -1,5 +1,5 @@
 import { validarQuantidade } from "./validacoes/validarQuantidade.js"
-import { gerarIdentificador } from "./gerarIdentificador.js"
+import { gerarIdentificador } from "./funcoes-adicionais/gerarIdentificador.js"
 import { gerarProdutosDaLista } from "./crud/gerarProdutosDaLista.js"
 import { arrayDeProdutos } from "./dados/arrayDeProdutos.js"
 import { escreverInformacoesNoLocalStorage } from "./funcoes-adicionais/escreverInformacoesNoLocalStorage.js"
@@ -34,7 +34,7 @@ formulario.addEventListener('submit', (e) => {
         gerarProdutosDaLista(objetoProduto)
         escreverInformacoesNoLocalStorage()
         // verificarSeTemAlgumaCategoria()
-        // limparCampos([[inputProduto, ''], [inputQuantidade, ''], [inputCategoria, 'Selecione']])
+        limparCampos([[inputProduto, ''], [inputQuantidade, ''], [inputCategoria, 'Selecione']])
     } else {
         alert('Selecione a categoria')
     }
@@ -42,3 +42,9 @@ formulario.addEventListener('submit', (e) => {
 
 verificarPrecoFinalDeCadaCategoria()
 
+function limparCampos(array){
+    array.forEach(input => {
+        console.log(input)
+        input[0].value = input[1]
+    })
+}

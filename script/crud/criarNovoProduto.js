@@ -1,4 +1,4 @@
-import { criarElemento } from "../criarElemento.js"
+import { criarElemento } from "./criarElemento.js"
 import { transformarPrimeiraLetraEmMaiuscula } from "../funcoes-adicionais/transformarPrimeiraLetraEmMaiuscula.js"
 import { alterarPrecoProduto } from "./alterarPrecoProduto.js"
 import { alterarProduto } from "./alterarProduto.js"

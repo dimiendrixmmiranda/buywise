@@ -28,6 +28,9 @@
                 display: grid
                 grid-template-columns: 1fr 25%
                 padding: .5em
+                background-color: $vermelho-1
+                color: $branco
+                border-radius: 6px
                 p
                     grid-column: 1/2
                     &:nth-child(1)
@@ -54,25 +57,26 @@
                 display: none
                 div
                     display: grid
-                    grid-template-columns: 1fr 25%
+                    grid-template-columns: 1fr 35%
                     padding: .4em .5em
-                    background-color: $azul-1
+                    background-color: $vermelho-1
                     margin-top: .5em
                     p
                         padding: .4em
-                        &:nth-child(1)
-                            background-color: $laranja
+                        white-space: nowrap
                         &:nth-child(2)
-                            background-color: $azul-tabela-2
+                            background-color: $azul-5
                             text-align: center
                             font-size: .95em
+                            border-radius: 6px
+                            font-weight: bold
                 ul
                     display: flex
                     flex-direction: column
                     row-gap: .5em
                     font-size: .8em
                     .historico-de-compras-lista-item-tabela-item
-                        background-color: $azul-12
+                        background-color: $vermelho-1
                         padding: .5em
                         h4
                             font-size: 1.4em
@@ -100,15 +104,15 @@
                                     grid-template-columns: repeat(4, 25%)
                                     white-space: nowrap
                                     td
-                                        background-color: $laranja
+                                        background-color: $azul-6
                                         border: solid 1px $preto
                                         padding: .2em
                             tbody
                                 tr
-                                    background-color: $azul-tabela-1
+                                    background-color: $azul-4
                                     &:last-child
                                         td
                                             &:nth-child(1)
                                                 grid-column: 1/4
                                     &:nth-child(even)
-                                        background-color: $azul-tabela-2
+                                        background-color: $azul-17
