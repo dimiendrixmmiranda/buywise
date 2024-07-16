@@ -4,6 +4,7 @@ import { gerarProdutosDaLista } from "./crud/gerarProdutosDaLista.js"
 import { arrayDeProdutos } from "./dados/arrayDeProdutos.js"
 import { escreverInformacoesNoLocalStorage } from "./funcoes-adicionais/escreverInformacoesNoLocalStorage.js"
 import { verificarPrecoFinalDeCadaCategoria } from "./validacoes/verificarPrecoFinalDeCadaCategoria.js"
+import { verificarSeTemAlgumaCategoria } from "./validacoes/verificarSeTemAlgumaCategoria.js"
 
 const formulario = document.querySelector('#formulario')
 
@@ -38,10 +39,10 @@ formulario.addEventListener('submit', (e) => {
     } else {
         alert('Selecione a categoria')
     }
+    verificarSeTemAlgumaCategoria()
 })
 
 verificarPrecoFinalDeCadaCategoria()
-
 function limparCampos(array){
     array.forEach(input => {
         console.log(input)

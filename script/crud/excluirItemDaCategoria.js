@@ -2,6 +2,7 @@ import { arrayDeProdutos } from "../dados/arrayDeProdutos.js"
 import { acharProdutoPeloIdentificador } from "../funcoes-adicionais/acharProdutoPeloIdentificador.js"
 import { escreverInformacoesNoLocalStorage } from "../funcoes-adicionais/escreverInformacoesNoLocalStorage.js"
 import { verificarPrecoFinalDeCadaCategoria } from "../validacoes/verificarPrecoFinalDeCadaCategoria.js"
+import { verificarSeTemAlgumaCategoria } from "../validacoes/verificarSeTemAlgumaCategoria.js"
 import { gerarCaixaMensagem } from "./gerarCaixaMensagem.js"
 
 export function excluirItemDaCategoria(e) {
@@ -23,6 +24,7 @@ export function excluirItemDaCategoria(e) {
             lista.remove() // removendo visualmente
         }
         verificarPrecoFinalDeCadaCategoria()
+        verificarSeTemAlgumaCategoria()
         escreverInformacoesNoLocalStorage()
         caixaDeMensagem.remove()
     })

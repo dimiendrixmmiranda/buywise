@@ -12,4 +12,8 @@
 @import '../styles/components/_caixaFinalizarCompras.sass';
 @import '../styles/components/_historicoDeCompras.sass';
 @import '../styles/components/_conteudo-compras-semana.sass';
-@import '../styles/components/_media.sass';
+
+@import '../styles/media/_media425.sass';
+@import '../styles/media/_media768.sass';
+@import '../styles/media/_media1024px.sass';
+@import '../styles/media/_media1440.sass';

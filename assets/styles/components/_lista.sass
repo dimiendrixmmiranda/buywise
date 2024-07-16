@@ -4,6 +4,7 @@
     flex-direction: column
     margin-top: 2em
     row-gap: 1em
+    justify-content: start
     .conteudo-lista-item
         max-width: 95%
         margin: 0 auto
@@ -13,6 +14,7 @@
         width: 100%
         color: $branco
         position: relative
+        height: fit-content
         h3
             font-size: 1.4em
             text-align: center
@@ -41,6 +43,7 @@
                     width: 100%
                     height: 100%
                     padding: 0 .3em 0 .2em
+                    position: relative
                     .p-quantidade
                         grid-column: 1/2
                         width: 100%
@@ -51,14 +54,24 @@
                         font-size: .95em
                     .p-produto
                         grid-column: 2/3
-                        width: 100%
-                        height: 100%
+                        width: 95%
+                        height: 70%
                         display: flex
                         align-items: center
                         padding: 0 .2em
                         overflow-x: scroll
                         overflow-y: hidden
                         white-space: nowrap
+                        position: absolute
+                        left: 0
+                        top: 50%
+                        transform: translate(0, -50%)
+                        &::-webkit-scrollbar-track
+                            background-color: $branco
+                        &::-webkit-scrollbar
+                            height: 5px
+                        &::-webkit-scrollbar-thumb
+                            background-color: $azul-2
                     .p-inserirPreco
                         grid-column: 3/4
                         padding: .3em

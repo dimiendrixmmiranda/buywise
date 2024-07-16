@@ -839,7 +839,7 @@ button {
   background-color: #D21312;
   display: grid;
   grid-template-columns: 80px 1fr;
-  max-width: 95%;
+  max-width: 90%;
   margin: 0 auto;
   font-weight: 600;
   padding: 0.8em;
@@ -1196,6 +1196,7 @@ button {
   flex-direction: column;
   margin-top: 2em;
   row-gap: 1em;
+  justify-content: start;
 }
 .conteudo-lista .conteudo-lista-item {
   max-width: 95%;
@@ -1206,6 +1207,8 @@ button {
   width: 100%;
   color: #fff;
   position: relative;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .conteudo-lista .conteudo-lista-item h3 {
   font-size: 1.4em;
@@ -1239,6 +1242,7 @@ button {
   width: 100%;
   height: 100%;
   padding: 0 0.3em 0 0.2em;
+  position: relative;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-quantidade {
   grid-column: 1/2;
@@ -1251,14 +1255,27 @@ button {
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-produto {
   grid-column: 2/3;
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 70%;
   display: flex;
   align-items: center;
   padding: 0 0.2em;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+.conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-produto::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+.conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-produto::-webkit-scrollbar {
+  height: 5px;
+}
+.conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-produto::-webkit-scrollbar-thumb {
+  background-color: #0c1194;
 }
 .conteudo-lista .conteudo-lista-item ul .conteudo-lista-item-produto .conteudo-produto .p-inserirPreco {
   grid-column: 3/4;
@@ -2294,20 +2311,18 @@ button {
     top: -100%;
   }
 }
-@media screen and (min-width: 375px) {
-  .conteudo-banner .conteudo-banner-texto {
-    font-size: 2.4em;
+@media screen and (min-width: 425px) {
+  .cabecalho .cabecalho-link {
+    grid-template-columns: 18% 1fr;
   }
-  .conteudo-ancora {
-    margin-top: 0.5em;
-  }
-  .conteudo-lista .conteudo-lista-item h3 {
-    font-size: 1.6em;
-  }
-}
-@media screen and (min-width: 500px) {
   .conteudo-banner {
-    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .conteudo-banner img {
+    max-width: 470px;
   }
   .conteudo-banner .conteudo-banner-texto {
     font-size: 2.4em;
@@ -2319,150 +2334,121 @@ button {
     max-width: 400px;
   }
   .conteudo-lista-salvarCompra {
-    max-width: 400px;
-  }
-  .conteudo-precoFinalCompra {
     max-width: 400px;
   }
 }
 @media screen and (min-width: 768px) {
-  .cabecalho {
-    grid-template-columns: 30% 1fr;
-  }
   .cabecalho .cabecalho-link {
-    grid-template-columns: 20% 1fr;
+    grid-template-columns: 14% 1fr;
   }
   .cabecalho .cabecalho-link .cabecalho-link-imagem img {
-    width: 80%;
+    max-width: 50px;
   }
-  .cabecalho .cabecalho-link .cabecalho-link-titulo h1 {
-    font-size: 2em;
+  .cabecalho .cabecalho-link .cabecalho-link-titulo {
+    font-size: 1.6em;
   }
   .cabecalho .cabecalho-link-bars {
     display: none;
   }
-  .cabecalho .cabecalho-links {
-    display: flex;
-    list-style: none;
-    align-items: center;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item {
-    flex-grow: 1;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item a {
-    text-decoration: none;
-    color: #fff;
-    position: relative;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item a:hover::before {
-    content: "";
-    height: 2px;
-    background-color: #D21312;
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 100%;
-    animation: crescerBordaBottom 0.8s ease-in-out;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item #alterarTema {
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    border: solid 2px #000;
-    box-shadow: 1px 1px 2px 1px #000;
-    background: transparent;
-    width: 50px;
-    height: 25px;
-    border-radius: 12px;
-    background-color: #fff;
-    position: relative;
-    transition: 0.6s ease;
-    cursor: pointer;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item #alterarTema::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: 25px;
-    height: 25px;
-    border-radius: 12px;
-    background-color: #ED2B2A;
-    box-shadow: 0 0 3px 1px #000;
-    transition: 0.6s ease;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item #alterarTema:checked {
-    background-color: #100244;
-  }
-  .cabecalho .cabecalho-links .cabecalho-links-item #alterarTema:checked::before {
-    transform: translate(100%);
-    transition: 0.6s ease;
-    background-color: #D21312;
-  }
   .conteudo-banner {
     display: grid;
-    max-width: 95%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 50%);
+    max-width: 90%;
   }
   .conteudo-banner img {
-    align-self: center;
-    justify-self: center;
-  }
-  .conteudo-banner .conteudo-banner-texto {
-    font-size: 2.6em;
-    align-self: center;
-    justify-self: center;
-  }
-  .conteudo-ancora {
-    margin-top: 0em;
+    width: 90%;
   }
   .conteudo-formulario {
-    max-width: 400px;
+    max-width: 500px;
   }
   .conteudo-lista {
-    display: flex;
-    flex-direction: row;
-    max-width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+    width: 95%;
     margin: 1.5em auto;
-    flex-wrap: wrap;
-    -moz-column-gap: 1.5em;
-         column-gap: 1.5em;
-    justify-content: space-between;
-  }
-  .conteudo-lista .conteudo-lista-item {
-    margin: 0;
-    display: flex;
-    max-width: 330px;
-    height: -moz-fit-content;
-    height: fit-content;
+    gap: 1em;
   }
   .conteudo-lista-salvarCompra {
-    max-width: 90%;
-  }
-  .conteudo-precoFinalCompra {
-    max-width: 90%;
+    max-width: 500px;
   }
 }
 @media screen and (min-width: 1024px) {
-  .cabecalho {
-    grid-template-columns: 25% 1fr;
+  .cabecalho .cabecalho-link {
+    grid-template-columns: 12% 1fr;
   }
-  .cabecalho .cabecalho-link .cabecalho-link-titulo h1 {
-    font-size: 2.4em;
+  .cabecalho .cabecalho-link .cabecalho-link-imagem img {
+    max-width: 60px;
   }
-  .cabecalho .cabecalho-links .cabecalho-links-item {
-    margin-top: 0.5em;
+  .cabecalho .cabecalho-link .cabecalho-link-titulo {
+    font-size: 1.8em;
   }
-  .cabecalho .cabecalho-links .cabecalho-links-item a {
-    font-size: 1.3em;
+  .cabecalho .cabecalho-link-bars {
+    display: none;
   }
   .conteudo-banner {
-    max-width: 85%;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    max-width: 80%;
+  }
+  .conteudo-banner img {
+    width: 90%;
   }
   .conteudo-banner .conteudo-banner-texto {
-    font-size: 3.2em;
+    font-size: 3em;
+  }
+  .conteudo-formulario {
+    max-width: 500px;
+  }
+  .conteudo-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    width: 95%;
+    margin: 1.5em auto;
+    gap: 0.5em;
+  }
+  .conteudo-lista-salvarCompra {
+    max-width: 95%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .cabecalho .cabecalho-link {
+    grid-template-columns: 8% 1fr;
+  }
+  .cabecalho .cabecalho-link .cabecalho-link-imagem img {
+    max-width: 60px;
+  }
+  .cabecalho .cabecalho-link .cabecalho-link-titulo {
+    font-size: 1.8em;
+  }
+  .cabecalho .cabecalho-link-bars {
+    display: none;
+  }
+  .conteudo-banner {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    max-width: 70%;
+    margin-top: 2.5em;
+  }
+  .conteudo-banner img {
+    width: 90%;
+  }
+  .conteudo-banner .conteudo-banner-texto {
+    font-size: 3.4em;
   }
   .conteudo-ancora {
-    margin-top: -15px;
+    margin-bottom: 1.5em;
+  }
+  .conteudo-formulario {
+    max-width: 500px;
+  }
+  .conteudo-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    width: 95%;
+    margin: 1.5em auto;
+    gap: 0.5em;
+  }
+  .conteudo-lista-salvarCompra {
+    max-width: 92%;
   }
 }/*# sourceMappingURL=style.css.map */

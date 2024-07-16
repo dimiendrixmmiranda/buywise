@@ -1,8 +1,11 @@
 import { gerarCaixaFinalizarCompra } from "./crud/gerarCaixaFinalizarCompra.js"
 import { arrayDeProdutos } from "./dados/arrayDeProdutos.js"
 import { escreverInformacoesNoLocalStorage } from "./funcoes-adicionais/escreverInformacoesNoLocalStorage.js"
+import { verificarSeTemAlgumaCategoria } from "./validacoes/verificarSeTemAlgumaCategoria.js"
 
 const finalizarCompra = document.querySelector('#finalizarCompra')
+verificarSeTemAlgumaCategoria()
+
 finalizarCompra.addEventListener('click', (e) => {
     e.preventDefault()
     const caixaMensagemFinalizarCompra = gerarCaixaFinalizarCompra()
