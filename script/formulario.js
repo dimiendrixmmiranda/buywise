@@ -45,7 +45,6 @@ formulario.addEventListener('submit', (e) => {
 verificarPrecoFinalDeCadaCategoria()
 function limparCampos(array){
     array.forEach(input => {
-        console.log(input)
         input[0].value = input[1]
     })
 }

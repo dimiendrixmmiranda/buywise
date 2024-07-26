@@ -1,14 +1,36 @@
 @media screen and ( min-width: 1024px )
     .cabecalho
+        grid-template-columns: auto 1fr 40px
         .cabecalho-link
-            grid-template-columns: 12% 1fr
-            .cabecalho-link-imagem
-                img
-                    max-width: 60px
-            .cabecalho-link-titulo
-                font-size: 1.8em
-        .cabecalho-link-bars
-            display: none
+            grid-template-columns: 20% 1fr
+            gap: .5em
+        .cabecalho-links
+            display: flex
+            list-style: none
+            gap: 1em
+            justify-content: end
+            align-items: center
+            padding-right: 1.5em
+            width: fit-content
+            margin-left: auto
+            .cabecalho-links-item
+                display: flex
+                gap: .5em
+                a
+                    text-decoration: none
+                    color: $branco
+                    font-size: 1.1em
+        .cabecalho-relatar-erro
+            display: flex
+            justify-content: center
+            align-items: center
+            a
+                text-decoration: none
+                font-size: 1.4em
+                background-color: transparent
+                border: none
+                color: $vermelho-1
+                text-shadow: 1px 1px 2px $preto    
     .conteudo-banner
         display: grid
         grid-template-columns: repeat(2, 50%)

@@ -32,10 +32,13 @@
             <li class="cabecalho-links-item">
                 <a href="#"><i class="fa-solid fa-book"></i> Guia de uso</a>
             </li>
-            <li class="cabecalho-links-item">
+            <li>
                 <input type="checkbox" name="alterarTema" id="alterarTema" data-tema="dark" checked>
             </li>
         </ul>
+        <div class="cabecalho-relatar-erro">
+            <a href="#"><i class="fa-solid fa-circle-exclamation"></i></a>
+        </div>
         <button type="button" class="cabecalho-link-bars" id="btnBars">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -46,13 +49,16 @@
             <h2 class="conteudo-banner-texto">Torne suas compras mais eficientes com uma lista inteligente e organizada!
             </h2>
         </div>
-        <!-- <div class="conteudo-funcionalidades">
-            <p>Como Buywise você:<strong id="fraseFuncionalidade"></strong></p>
-        </div> -->
         <a href="#formulario" class="conteudo-ancora">
             <i class="fa-solid fa-angles-down"></i>
         </a>
-
+        <div class="conteudo-funcionalidades">
+            <h2 class="conteudo-funcionalidades-titulo">Como Buywise você:</h2>
+            <ul class="conteudo-funcionalidades-lista">
+                <li><i class="fa-solid fa-circle"></i> Registro de Local e Data: Armazena o nome do mercado e a data da
+                    compra, facilitando a análise de onde e quando as compras foram feitas.,</li>
+            </ul>
+        </div>
         <form action="" class="conteudo-formulario" id="formulario">
             <fieldset class="conteudo-formulario-produto">
                 <label for="produto">Produto:</label>
@@ -132,7 +138,7 @@
     <script src="./script/funcoes-adicionais/definirTema.js"></script>
     <script type="module" src="./script/formulario.js"></script>
     <script type="module" src="./script/finalizarCompra.js"></script>
-
+    <script src="./script/funcionalidades.js"></script>
 </body>
 
 </html>

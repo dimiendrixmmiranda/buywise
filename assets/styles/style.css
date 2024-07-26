@@ -13,6 +13,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Oswald:wght@200..700&family=Passion+One:wght@400;700;900&display=swap");
 @font-face {
   font-family: DollarBill;
   src: url("../fonts/DollarBill.ttf");
@@ -105,7 +106,6 @@ body {
   overflow-x: hidden;
   display: grid;
   grid-template-rows: auto 1fr;
-  scroll-behavior: smooth;
 }
 
 [data-tema=dark] {
@@ -229,7 +229,7 @@ button {
   justify-content: center;
 }
 .cabecalho .cabecalho-link .cabecalho-link-imagem img {
-  width: 75%;
+  width: 100%;
   display: block;
   max-width: 40px;
 }
@@ -259,7 +259,7 @@ button {
   align-items: center;
   margin-top: 0.15em;
 }
-.cabecalho .cabecalho-links {
+.cabecalho .cabecalho-links, .cabecalho .cabecalho-relatar-erro {
   display: none;
 }
 
@@ -645,15 +645,25 @@ button {
   }
 }
 .conteudo-funcionalidades {
-  font-size: 1.4em;
-  font-family: "Oswald", sans-serif;
-  max-width: 90%;
-  height: 60px;
-  margin: 0 auto;
-  margin-top: 0.8em;
-  color: #D21312;
-  text-shadow: 2px 2px 3px #000;
+  width: 95%;
+  color: #fff;
+  margin: 1em auto;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.conteudo-funcionalidades .conteudo-funcionalidades-titulo {
+  text-align: start;
+}
+.conteudo-funcionalidades .conteudo-funcionalidades-lista {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+.conteudo-funcionalidades .conteudo-funcionalidades-lista li i {
+  font-size: 0.7em;
 }
 
 @font-face {
@@ -839,6 +849,8 @@ button {
   background-color: #D21312;
   display: grid;
   grid-template-columns: 80px 1fr;
+  height: -moz-fit-content;
+  height: fit-content;
   max-width: 90%;
   margin: 0 auto;
   font-weight: 600;
@@ -1098,7 +1110,7 @@ button {
   padding: 0.5em 1em;
   font-size: 1.1em;
   text-align: center;
-  margin-top: 1.5em;
+  margin-top: 0.5em;
   color: #fff;
   font-weight: 400;
   line-height: 1.25;
@@ -1670,6 +1682,7 @@ button {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   border-radius: 6px;
+  max-width: 300px;
 }
 .caixa-mensagem p {
   grid-column: 1/3;
@@ -1883,32 +1896,38 @@ button {
     top: -100%;
   }
 }
-.historico-de-compras {
+main {
+  position: relative;
+}
+main .historico-de-compras {
+  height: 100%;
   max-width: 95%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   row-gap: 1em;
 }
-.historico-de-compras .historico-de-compras-titulo {
+main .historico-de-compras .historico-de-compras-titulo {
   color: #fff;
   text-align: center;
-  font-size: 1.6em;
+  font-size: 1.4em;
   margin: 0.5em 0;
 }
-.historico-de-compras .historico-de-compras-lista {
+main .historico-de-compras .historico-de-compras-lista {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
+  height: 100%;
+  list-style: none;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item {
   width: 100%;
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
   color: #fff;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button {
   width: 100%;
   font-family: "Passion One", sans-serif;
   position: relative;
@@ -1920,17 +1939,17 @@ button {
   color: #fff;
   border-radius: 6px;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p {
   grid-column: 1/2;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p:nth-child(1) {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p:nth-child(1) {
   font-size: 1.2em;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p:nth-child(2) {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button p:nth-child(2) {
   text-transform: uppercase;
   font-size: 1.8em;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button div {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button div {
   grid-column: 2/3;
   grid-row: 1/3;
   font-size: 4em;
@@ -1941,60 +1960,60 @@ button {
   width: 100%;
   height: 100%;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button div i {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item button div i {
   position: absolute;
   top: -40%;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .active {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .active {
   display: block !important;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela {
   display: none;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div {
   display: grid;
   grid-template-columns: 1fr 35%;
   padding: 0.4em 0.5em;
   background-color: #D21312;
   margin-top: 0.5em;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p {
   padding: 0.4em;
   white-space: nowrap;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p:nth-child(2) {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div p:nth-child(2) {
   background-color: #0a0229;
   text-align: center;
   font-size: 0.95em;
   border-radius: 6px;
   font-weight: bold;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
   font-size: 0.8em;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item {
   background-color: #D21312;
   padding: 0.5em;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item h4 {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item h4 {
   font-size: 1.4em;
   text-align: center;
   padding: 0 0 0.4em 0;
   text-transform: uppercase;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr {
   display: grid;
   grid-template-columns: repeat(4, 25%);
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr td {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr td {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -2002,24 +2021,44 @@ button {
   padding: 0.2em;
   border-collapse: collapse;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table thead tr {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table thead tr {
   display: grid;
   grid-template-columns: repeat(4, 25%);
   white-space: nowrap;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table thead tr td {
-  background-color: #0a0229;
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table thead tr td {
+  background-color: #FC4100;
   border: solid 1px #000;
   padding: 0.2em;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr {
   background-color: #100244;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr:last-child td:nth-child(1) {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr:last-child td:nth-child(1) {
   grid-column: 1/4;
 }
-.historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr:nth-child(even) {
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela ul .historico-de-compras-lista-item-tabela-item table tbody tr:nth-child(even) {
   background-color: #1c20a1;
+}
+main .historico-de-compras .historico-de-compras-lista .historico-de-compras-lista-item .historico-de-compras-lista-item-tabela div {
+  margin-bottom: 3em;
+}
+main .historico-de-compras-botoes {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  gap: 1em;
+}
+main .historico-de-compras-botoes a, main .historico-de-compras-botoes button {
+  white-space: nowrap;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.2em 0.4em;
+  background-color: #D21312;
+  border: none;
+  border-radius: 6px;
 }
 
 @font-face {
@@ -2337,53 +2376,222 @@ button {
     max-width: 400px;
   }
 }
+@font-face {
+  font-family: DollarBill;
+  src: url("../fonts/DollarBill.ttf");
+}
+@keyframes cores {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes offcanvasAbrir {
+  0% {
+    left: 100%;
+    display: none;
+  }
+  100% {
+    left: 20%;
+    display: grid;
+  }
+}
+@keyframes offcanvasFechar {
+  0% {
+    left: 20%;
+    display: grid;
+  }
+  100% {
+    left: 100%;
+    display: none;
+  }
+}
+@keyframes flutuar {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 20px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes crescerBordaBottom {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes aparecerBaloes {
+  0% {
+    transition: 0.6s;
+    opacity: 0;
+  }
+  100% {
+    transition: 0.6s;
+    opacity: 1;
+  }
+}
+@keyframes animarFormularioAlterarTarefaAbrir {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+@keyframes animarFormularioAlterarTarefaFechar {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: -100%;
+  }
+}
 @media screen and (min-width: 768px) {
+  .cabecalho {
+    grid-template-columns: auto 1fr 40px;
+  }
   .cabecalho .cabecalho-link {
-    grid-template-columns: 14% 1fr;
+    grid-template-columns: 20% 1fr;
+    gap: 0.5em;
   }
-  .cabecalho .cabecalho-link .cabecalho-link-imagem img {
-    max-width: 50px;
+  .cabecalho .cabecalho-links {
+    display: flex;
+    list-style: none;
+    gap: 0.2em;
+    justify-content: end;
+    align-items: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left: auto;
   }
-  .cabecalho .cabecalho-link .cabecalho-link-titulo {
-    font-size: 1.6em;
+  .cabecalho .cabecalho-links .cabecalho-links-item {
+    display: flex;
+    gap: 0.2em;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5em;
+  }
+  .cabecalho .cabecalho-links .cabecalho-links-item:hover {
+    background-color: #D21312;
+    border-radius: 4px;
+    transition: 0.6s ease;
+  }
+  .cabecalho .cabecalho-links .cabecalho-links-item a {
+    text-decoration: none;
+    color: #fff;
+  }
+  .cabecalho .cabecalho-relatar-erro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cabecalho .cabecalho-relatar-erro a {
+    text-decoration: none;
+    font-size: 1.4em;
+    background-color: transparent;
+    border: none;
+    color: #D21312;
+    text-shadow: 1px 1px 2px #000;
   }
   .cabecalho .cabecalho-link-bars {
     display: none;
   }
-  .conteudo-banner {
+  .conteudo {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+  }
+  .conteudo .conteudo-banner {
+    grid-column: 1/3;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     max-width: 90%;
   }
-  .conteudo-banner img {
+  .conteudo .conteudo-banner img {
     width: 90%;
   }
-  .conteudo-formulario {
-    max-width: 500px;
+  .conteudo .conteudo-ancora {
+    grid-column: 1/3;
   }
-  .conteudo-lista {
+  .conteudo .conteudo-formulario {
+    max-width: 500px;
+    padding: 0.5em;
+    margin: 0.5em;
+    align-self: center;
+    justify-self: center;
+  }
+  .conteudo .conteudo-funcionalidades {
+    max-height: 250px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    align-self: center;
+    justify-self: center;
+  }
+  .conteudo .conteudo-lista {
+    grid-column: 1/3;
     display: grid;
     grid-template-columns: repeat(2, 49%);
     width: 95%;
     margin: 1.5em auto;
     gap: 1em;
   }
-  .conteudo-lista-salvarCompra {
+  .conteudo .conteudo-lista-salvarCompra {
     max-width: 500px;
+    grid-column: 1/3;
   }
 }
 @media screen and (min-width: 1024px) {
+  .cabecalho {
+    grid-template-columns: auto 1fr 40px;
+  }
   .cabecalho .cabecalho-link {
-    grid-template-columns: 12% 1fr;
+    grid-template-columns: 20% 1fr;
+    gap: 0.5em;
   }
-  .cabecalho .cabecalho-link .cabecalho-link-imagem img {
-    max-width: 60px;
+  .cabecalho .cabecalho-links {
+    display: flex;
+    list-style: none;
+    gap: 1em;
+    justify-content: end;
+    align-items: center;
+    padding-right: 1.5em;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left: auto;
   }
-  .cabecalho .cabecalho-link .cabecalho-link-titulo {
-    font-size: 1.8em;
+  .cabecalho .cabecalho-links .cabecalho-links-item {
+    display: flex;
+    gap: 0.5em;
   }
-  .cabecalho .cabecalho-link-bars {
-    display: none;
+  .cabecalho .cabecalho-links .cabecalho-links-item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1em;
+  }
+  .cabecalho .cabecalho-relatar-erro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cabecalho .cabecalho-relatar-erro a {
+    text-decoration: none;
+    font-size: 1.4em;
+    background-color: transparent;
+    border: none;
+    color: #D21312;
+    text-shadow: 1px 1px 2px #000;
   }
   .conteudo-banner {
     display: grid;
@@ -2411,44 +2619,36 @@ button {
   }
 }
 @media screen and (min-width: 1440px) {
-  .cabecalho .cabecalho-link {
-    grid-template-columns: 8% 1fr;
-  }
-  .cabecalho .cabecalho-link .cabecalho-link-imagem img {
-    max-width: 60px;
-  }
-  .cabecalho .cabecalho-link .cabecalho-link-titulo {
-    font-size: 1.8em;
-  }
-  .cabecalho .cabecalho-link-bars {
-    display: none;
-  }
-  .conteudo-banner {
+  .conteudo .conteudo-banner {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     max-width: 70%;
     margin-top: 2.5em;
   }
-  .conteudo-banner img {
+  .conteudo .conteudo-banner img {
     width: 90%;
   }
-  .conteudo-banner .conteudo-banner-texto {
+  .conteudo .conteudo-banner .conteudo-banner-texto {
     font-size: 3.4em;
   }
-  .conteudo-ancora {
+  .conteudo .conteudo-ancora {
     margin-bottom: 1.5em;
   }
-  .conteudo-formulario {
+  .conteudo .conteudo-formulario {
     max-width: 500px;
   }
-  .conteudo-lista {
+  .conteudo .conteudo-funcionalidades {
+    max-height: 600px;
+    overflow: hidden;
+  }
+  .conteudo .conteudo-lista {
     display: grid;
     grid-template-columns: repeat(3, 33%);
     width: 95%;
     margin: 1.5em auto;
     gap: 0.5em;
   }
-  .conteudo-lista-salvarCompra {
+  .conteudo .conteudo-lista-salvarCompra {
     max-width: 92%;
   }
 }/*# sourceMappingURL=style.css.map */

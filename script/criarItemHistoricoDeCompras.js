@@ -1,7 +1,11 @@
 import { criarElemento } from "./crud/criarElemento.js";
 import { arrayDeProdutos } from "./dados/arrayDeProdutos.js";
+import { limparHistoricoDeCompras } from "./funcoes-adicionais/limparHistoricoDeCompras.js";
 
 const historicoDeComprasLista = document.querySelector('#historicoDeComprasLista')
+
+// limpar historico de compras
+limparHistoricoDeCompras()
 
 arrayDeProdutos[1].forEach(objetoCompra => {
     const liCompra = criarListaCompra(objetoCompra)

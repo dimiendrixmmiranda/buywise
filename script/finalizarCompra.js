@@ -31,7 +31,6 @@ finalizarCompra.addEventListener('click', (e) => {
         arrayDeProdutos[0] = []
         escreverInformacoesNoLocalStorage()
         window.location.href = '../pages/historicoDeCompras.html'
-
     })
 
     btnCancelar.addEventListener('click', (e) => {

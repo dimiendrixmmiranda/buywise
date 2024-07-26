@@ -1,27 +1,78 @@
+@import '../abstract/_variaveis'
 @media screen and ( min-width: 768px )
     .cabecalho
+        grid-template-columns: auto 1fr 40px
         .cabecalho-link
-            grid-template-columns: 14% 1fr
-            .cabecalho-link-imagem
-                img
-                    max-width: 50px
-            .cabecalho-link-titulo
-                font-size: 1.6em
+            grid-template-columns: 20% 1fr
+            gap: .5em
+        .cabecalho-links
+            display: flex
+            list-style: none
+            gap: .2em
+            justify-content: end
+            align-items: center
+            width: fit-content
+            margin-left: auto
+            .cabecalho-links-item
+                display: flex
+                gap: .2em
+                width: 100%
+                height: 100%
+                white-space: nowrap
+                justify-content: center
+                align-items: center
+                padding: 0 .5em
+                &:hover
+                    background-color: $vermelho-1
+                    border-radius: 4px
+                    transition: .6s ease
+                a
+                    text-decoration: none
+                    color: $branco
+        .cabecalho-relatar-erro
+            display: flex
+            justify-content: center
+            align-items: center
+            a
+                text-decoration: none
+                font-size: 1.4em
+                background-color: transparent
+                border: none
+                color: $vermelho-1
+                text-shadow: 1px 1px 2px $preto
         .cabecalho-link-bars
             display: none
-    .conteudo-banner
+    .conteudo
         display: grid
         grid-template-columns: repeat(2, 50%)
-        max-width: 90%
-        img
-            width: 90%
-    .conteudo-formulario
-        max-width: 500px
-    .conteudo-lista
-        display: grid
-        grid-template-columns: repeat(2, 49%)
-        width: 95%
-        margin: 1.5em auto
-        gap: 1em
-    .conteudo-lista-salvarCompra
-        max-width: 500px
+        .conteudo-banner
+            grid-column: 1/3
+            display: grid
+            grid-template-columns: repeat(2, 50%)
+            max-width: 90%
+            img
+                width: 90%
+        .conteudo-ancora
+            grid-column: 1/3
+        .conteudo-formulario
+            max-width: 500px
+            padding: .5em
+            margin: .5em
+            align-self: center
+            justify-self: center
+        .conteudo-funcionalidades
+            max-height: 250px
+            overflow-y: scroll
+            overflow-x: hidden
+            align-self: center
+            justify-self: center
+        .conteudo-lista
+            grid-column: 1/3
+            display: grid
+            grid-template-columns: repeat(2, 49%)
+            width: 95%
+            margin: 1.5em auto
+            gap: 1em
+        .conteudo-lista-salvarCompra
+            max-width: 500px
+            grid-column: 1/3
